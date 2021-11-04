@@ -2,10 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1_page.dart';
 
+import 'controllers/progress_controller.dart';
 import 'routes/app_pages.dart';
 
-void main() {
+void main() async {
+  await initServices();
   runApp(const MyApp());
+}
+
+initServices() async {
+  print('starting services ...');
+
+  /// Here is where you put get_storage, hive, shared_pref initialization.
+  /// or moor connection, or whatever that's async.
+  //await Get.putAsync(SettingsService()).init();
+  await Get.putAsync(() => ProgressController().init());
+  print('All services started...');
 }
 
 class MyApp extends StatelessWidget {
@@ -15,13 +27,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      defaultTransition: Transition.fadeIn,
-      getPages: AppPages.pages,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-      ),
-      home: const Act1Page()//const SplashPage(), //for test... default home is SplashPage()...
-    );
+        defaultTransition: Transition.fadeIn,
+        getPages: AppPages.pages,
+        title: 'Flutter Demo',
+        theme: ThemeData(),
+        home:
+            const Act1Page() //const SplashPage(), //for test... default home is SplashPage()...
+        );
   }
 }
-

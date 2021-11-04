@@ -1,7 +1,5 @@
-import 'package:get/get.dart';
+import 'package:history_game_project/controllers/base_controller.dart';
 
-class Act1Controller extends GetxController{
+class Act1Controller extends BaseController{
 
-
-  RxInt progress = 0.obs;
 }

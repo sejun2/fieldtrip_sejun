@@ -2,7 +2,8 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
-import 'package:history_game_project/controllers/act1_controller.dart';
+import 'package:history_game_project/controllers/progress_controller.dart';
+import 'package:history_game_project/widgets/statement_scene_widget.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
 class Act1Page extends StatefulWidget {
@@ -13,10 +14,11 @@ class Act1Page extends StatefulWidget {
 }
 
 class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
-  int _currentIndex = 0;
   var _isIntroVisible = true;
 
-  final act1Controller = Get.put(Act1Controller());
+  final progressService = Get.put<ProgressController>(ProgressController());
+
+  double _opacity = 0.0;
 
   ///Animation controllers
   late AnimationController introController;
@@ -24,6 +26,9 @@ class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
 
   late AnimationController backgroundController;
   late Animation backgroundAnimation;
+
+  late AnimationController statementContainerController;
+  late Animation statementContainerAnimation;
 
   late AnimationController animationController;
   late Animation animation;
@@ -33,8 +38,8 @@ class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
     _initAnimation();
+    progressService.lastProgress = 8;
   }
 
   _initAnimation() async {
@@ -46,6 +51,11 @@ class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
     backgroundAnimation =
         CurvedAnimation(parent: backgroundController, curve: Curves.linear);
+    statementContainerController = AnimationController(
+        vsync: this, duration: const Duration(seconds: 3), upperBound: 0.5);
+    statementContainerAnimation = CurvedAnimation(
+        parent: statementContainerController, curve: Curves.linear);
+
     backgroundAnimation.addListener(() {});
 
     introAnimation.addListener(() {
@@ -57,11 +67,13 @@ class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
         await introController.reverse(from: 1.0);
       }
       if (status == AnimationStatus.dismissed) {
-        await backgroundController.forward(from: 0);
+        backgroundController.forward(from: 0);
+        statementContainerController.forward(from: 0);
         setState(() {
           Get.log('setState...');
+          _opacity = 1;
           _isIntroVisible = false;
-          act1Controller.progress.value = 1;
+          progressService.progress++;
         });
       }
     });
@@ -82,14 +94,16 @@ class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
         color: Colors.black,
         child: Stack(
           children: [
-            Opacity(
-                opacity: backgroundAnimation.value as double,
+            AnimatedOpacity(
+                opacity: _opacity,
+                duration: const Duration(seconds: 3),
                 child: Image.asset('assets/background/hearing2.png',
                     fit: BoxFit.fill)),
             Positioned(
               bottom: 50,
-              child: Opacity(
-                opacity: 0.5,
+              child: AnimatedOpacity(
+                duration: const Duration(seconds: 3),
+                opacity: _opacity,
                 child: Container(
                   width: Get.width,
                   height: Get.height * 2 / 5,
@@ -98,37 +112,81 @@ class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
                 ),
               ),
             ),
+            Obx(
+              () => ProsteIndexedStack(
+                index: progressService.progress.value,
+                children: [
+                  IndexedStackChild(child: Container()),
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                      statement:
+                          '전 중앙정보부의 부장 김형욱은 미국 프레이저 청문회에 참석해 대통령의 통치와 부정부패 및 비리 등을 폭로한다.',
+                      name: '나레이션',
+                    ),
+                  ),
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                      statement:
+                          '심지어 김형욱은 프레이저 청문회에서 밝히진 않았지만 FBI와 기자들에게 잔뜩 알린 대통령의 치부들, 특히 스위스 비밀계좌에 관한 내용에 상세히 적힌 회고록을 작성하고 있었고,',
+                      name: '나레이션',
+                    ),
+                  ),
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                      statement:
+                          '이것이 세상에 알려지면 가뜩이나 정권 유지가 위기에 놓은 대통령은 궁지에 몰릴 터였다.',
+                      name: '나레이션',
+                    ),
+                  ),
 
-            ///오른쪽 인물 Widget
-            Positioned(
-              child: Image.asset(
-                'assets/character/american1.png',
-                fit: BoxFit.fitHeight,
-                height: (Get.height - Get.height * 2 / 5) * 2 / 5,
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                      statement:
+                      '내가 1960년대 정보부장 시절 주미대사 김현철씨가 말하길 \'박동선이라는 자가 박 대통령의 친척이라고 하고 다닌다\'는 보고를 받았고, 귀국한 박씨를 조사하면서 알게 되었다.',
+                      name: '김형욱',
+                      leftPerson: 'assets/character/american2.png',
+                      rightPerson: 'assets/character/kimhyungwook3.png',
+                    ),
+                  ),
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                      statement:
+                      '이후 나는 박씨가 미국에 발이 넓다는 걸 알고 편의를 제공했었다. 또한 그의 클럽이 자금난이라고 해서 서울 암달러상에게 구한 10만 달러를 파우치편으로 보내주었다.',
+                      name: '김형욱',
+                      leftPerson: 'assets/character/american2.png',
+                      rightPerson: 'assets/character/kimhyungwook3.png',
+                    ),
+                  ),
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                      statement:
+                      '또한 한국의 정부 보유금 300만달러를 박동선의 거래은행에 맡기게 해 클럽 운용자금으로 융자해주었다.',
+                      name: '김형욱',
+                      leftPerson: 'assets/character/american2.png',
+                      rightPerson: 'assets/character/kimhyungwook3.png',
+                    ),
+                  ),
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                      statement:
+                      '정확한 내용이나 증거를 확인할 수 있는 내용입니까?',
+                      name: '기자',
+                      leftPerson: 'assets/character/american2.png',
+                      rightPerson: 'assets/character/kimhyungwook3.png',
+                    ),
+                  ),
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                      statement:
+                      '작성 중인 회고록이 있으며, 회고록에 상세한 내용을 담아 공개할 예정입니다.',
+                      name: '김형욱',
+                      leftPerson: 'assets/character/american2.png',
+                      rightPerson: 'assets/character/kimhyungwook3.png',
+                    ),
+                  ),
+                ],
               ),
-              top: 70,
-              left: 60,
             ),
-
-            ///왼쪽 인물 Widget
-            Positioned(
-                top: 70,
-                right: 60,
-                child: Image.asset(
-                  'assets/character/american2.png',
-                  fit: BoxFit.fitHeight,
-                  height: (Get.height - Get.height * 2 / 5) * 2 / 5,
-                )),
-            Obx(() => ProsteIndexedStack(
-                  index: act1Controller.progress.value,
-                  children: [
-                    IndexedStackChild(child: Container()),
-                    IndexedStackChild(child: _buildStatementWidget()),
-                    IndexedStackChild(child: _buildStatementWidget()),
-                    IndexedStackChild(child: _buildStatementWidget()),
-                    IndexedStackChild(child: _buildStatementWidget()),
-                  ],
-                )),
             Visibility(
               visible: _isIntroVisible,
               child: Align(
@@ -151,9 +209,9 @@ class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
 
   Widget _buildStatementWidget() {
     Get.log(
-        '_buildStatementWidget ... progress : ${act1Controller.progress.value}');
+        '_buildStatementWidget ... progress : ${progressService.progress.value}');
 
-    switch (act1Controller.progress.value) {
+    switch (progressService.progress.value) {
       case 1:
         return Positioned(
           bottom: 50,
@@ -169,7 +227,7 @@ class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
                   displayFullTextOnTap: true,
                   isRepeatingAnimation: false,
                   onFinished: () {
-                    act1Controller.progress++;
+                    progressService.progress++;
                   },
                   animatedTexts: [
                     TyperAnimatedText(
