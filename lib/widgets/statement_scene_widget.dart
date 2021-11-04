@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
 import 'package:history_game_project/controllers/base_controller.dart';
-import 'package:history_game_project/controllers/progress_controller.dart';
+import 'package:history_game_project/services/progress_controller.dart';
 import 'package:history_game_project/widgets/custom_animated_text_widget.dart';
 
 class StatementSceneWidget extends StatefulWidget {
@@ -34,7 +34,7 @@ class StatementSceneWidget extends StatefulWidget {
 }
 
 class _StatementSceneWidgetState extends State<StatementSceneWidget> {
-  final progressService = Get.put(ProgressController());
+  final progressService = Get.put(ProgressService());
 
   @override
   Widget build(BuildContext context) {

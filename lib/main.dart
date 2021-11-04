@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1_page.dart';
 
-import 'controllers/progress_controller.dart';
+import 'services/progress_controller.dart';
 import 'routes/app_pages.dart';
 
 void main() async {
@@ -16,7 +16,7 @@ initServices() async {
   /// Here is where you put get_storage, hive, shared_pref initialization.
   /// or moor connection, or whatever that's async.
   //await Get.putAsync(SettingsService()).init();
-  await Get.putAsync(() => ProgressController().init());
+  await Get.putAsync(() => ProgressService().init());
   print('All services started...');
 }
 

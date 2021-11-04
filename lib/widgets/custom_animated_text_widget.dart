@@ -61,7 +61,11 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
   _runAnimation() async {
     await _textAnimationController.forward();
   }
-
+@override
+  void dispose() {
+    _textAnimationController.dispose();
+    super.dispose();
+  }
   @override
   void didChangeDependencies() {
     print('didChangeDependencies called...');

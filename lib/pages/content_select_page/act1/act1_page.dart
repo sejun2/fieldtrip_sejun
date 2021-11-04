@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
-import 'package:history_game_project/controllers/progress_controller.dart';
+import 'package:history_game_project/services/progress_controller.dart';
 import 'package:history_game_project/widgets/statement_scene_widget.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
@@ -16,7 +16,7 @@ class Act1Page extends StatefulWidget {
 class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
   var _isIntroVisible = true;
 
-  final progressService = Get.put<ProgressController>(ProgressController());
+  final progressService = Get.put<ProgressService>(ProgressService());
 
   double _opacity = 0.0;
 

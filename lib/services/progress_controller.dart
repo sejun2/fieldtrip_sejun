@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class ProgressController extends GetxService{
+class ProgressService extends GetxService{
   init() async{
     Get.log('init progressController...');
     await 2.delay();
