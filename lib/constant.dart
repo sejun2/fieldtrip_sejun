@@ -7,3 +7,4 @@ const statementTextStyle = TextStyle(
   color: Colors.white,
   height: 1.5
 );
+typedef OnAnimatedTextFinished = Function();

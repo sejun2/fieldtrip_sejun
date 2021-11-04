@@ -9,9 +9,11 @@ class ProgressController extends GetxService{
 
   RxInt progress = 0.obs;
   int lastProgress = -99;
+  var isDone = false.obs;
 
   void incrementProgress(){
     if(progress.value == lastProgress){
+      isDone.value = true;
       return;
     }
     progress.value++;
@@ -19,5 +21,6 @@ class ProgressController extends GetxService{
   void resetProgress(){
     progress.value = 0;
     lastProgress = -99;
+    isDone.value = false;
   }
 }

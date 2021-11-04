@@ -3,4 +3,5 @@ abstract class AppRoutes{
   static String ACT1 = '/act1';
   static String SELECTION = '/select';
   static String ACT1_INTRO = '/act1/intro';
+  static String Q1 = '/act1/question1';
 }

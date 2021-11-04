@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
 import 'package:history_game_project/controllers/base_controller.dart';
 import 'package:history_game_project/controllers/progress_controller.dart';
+import 'package:history_game_project/widgets/custom_animated_text_widget.dart';
 
 class StatementSceneWidget extends StatefulWidget {
   const StatementSceneWidget({
@@ -82,20 +83,13 @@ class _StatementSceneWidgetState extends State<StatementSceneWidget> {
                     widget.name,
                     style: statementTextStyle,
                   ),
-                  AnimatedTextKit(
-                    displayFullTextOnTap: true,
-                    isRepeatingAnimation: false,
-                    onFinished: () {
-                      Get.log('onFinished...');
-                      progressService.incrementProgress();
-                      Get.log('progress : ${progressService.progress.value}');
-                    },
-                    animatedTexts: [
-                      TyperAnimatedText(widget.statement,
-                          speed: const Duration(milliseconds: 80),
-                          textStyle: statementTextStyle),
-                    ],
-                  ),
+                  CustomAnimatedTextWidget(
+                      text: widget.statement,
+                      onFinished: () {
+                        Get.log('onFinished...');
+                        progressService.incrementProgress();
+                        Get.log('progress : ${progressService.progress.value}');
+                      }),
                 ],
               ),
             ),

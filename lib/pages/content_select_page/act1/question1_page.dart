@@ -17,7 +17,6 @@ class _Question1PageState extends State<Question1Page> {
   void initState() {
     super.initState();
     progressService.resetProgress();
-
   }
 
   @override
