@@ -27,6 +27,7 @@ class _Question1PageState extends State<Question1Page>
   late AnimationController hintController;
   late Animation hintAnimation;
 
+  bool isHintClickable = false;
   final hintList = [
     'Hint.1\n각 문장의 숫자에 주목하세요.',
     'Hint.2\n각 문장의 숫자에 해당하는 n번째 글자에 주목하세요.\n(ex. 1의 첫번째 글자)',
@@ -76,6 +77,12 @@ class _Question1PageState extends State<Question1Page>
         } else {
           Get.toNamed('act1/hint5');
         }
+      }
+      if(status == AnimationStatus.forward){
+        isHintClickable = true;
+      }
+      if(status == AnimationStatus.reverse){
+        isHintClickable = false;
       }
     });
   }
@@ -201,7 +208,9 @@ class _Question1PageState extends State<Question1Page>
                   bottom: 0,
                   child: GestureDetector(
                     onTap: () {
-                      hintController.reverse(from: 1.0);
+                      if(isHintClickable) {
+                        hintController.reverse(from: 1.0);
+                      }
                     },
                     child: Opacity(
                       opacity: hintAnimation.value,
