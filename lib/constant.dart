@@ -8,9 +8,14 @@ const statementTextStyle = TextStyle(
     height: 1.5
 );
 const questionTextStyle = TextStyle(
-    fontSize: 18,
+    fontSize: 14,
     color: Colors.black,
     height: 1.2
+);
+const hintTextStyle = TextStyle(
+  fontSize: 14,
+  color: Colors.red,
+  height: 1.2
 );
 
 typedef OnAnimatedTextFinished = Function();

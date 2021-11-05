@@ -2,18 +2,18 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
-import 'package:history_game_project/services/progress_controller.dart';
+import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/statement_scene_widget.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
-class Act1Page extends StatefulWidget {
-  const Act1Page({Key? key}) : super(key: key);
+class Act1_1Page extends StatefulWidget {
+  const Act1_1Page({Key? key}) : super(key: key);
 
   @override
-  _Act1PageState createState() => _Act1PageState();
+  _Act1_1PageState createState() => _Act1_1PageState();
 }
 
-class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
+class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
   var _isIntroVisible = true;
 
   final progressService = Get.put<ProgressService>(ProgressService());
@@ -53,6 +53,7 @@ class _Act1PageState extends State<Act1Page> with TickerProviderStateMixin {
     progressService.isDone.listen((isDone) {
       if (isDone) {
         Future.delayed(const Duration(milliseconds: 2500), () {
+          progressService.resetProgress();
           Get.log('isDone::true...');
           Get.toNamed('act1/question1');
         });

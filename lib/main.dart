@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:history_game_project/pages/content_select_page/act1/act1_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-1/act1_1_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-1/question1_page.dart';
 
-import 'services/progress_controller.dart';
+import 'services/progress_service.dart';
 import 'routes/app_pages.dart';
 
 void main() async {
@@ -27,12 +28,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         defaultTransition: Transition.fadeIn,
         getPages: AppPages.pages,
         title: 'Flutter Demo',
         theme: ThemeData(),
         home:
-            const Act1Page() //const SplashPage(), //for test... default home is SplashPage()...
+            const Question1Page() //const SplashPage(), //for test... default home is SplashPage()...
         );
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
 import 'package:history_game_project/controllers/base_controller.dart';
-import 'package:history_game_project/services/progress_controller.dart';
+import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/custom_animated_text_widget.dart';
 
 class StatementSceneWidget extends StatefulWidget {
