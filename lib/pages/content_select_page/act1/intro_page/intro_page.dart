@@ -106,7 +106,15 @@ class _IntroPageState extends State<IntroPage> {
             ),
             Align(
                 alignment: Alignment.center,
-                child: _canRun ? content1 : Container())
+                child: _canRun
+                    ? GestureDetector(
+                        onTap: () {
+                          if (_isClickable) {
+                            Get.toNamed('/act1');
+                          }
+                        },
+                        child: content1)
+                    : Container())
           ],
         ),
       ),
