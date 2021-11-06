@@ -6,6 +6,7 @@ import 'package:history_game_project/controllers/base_controller.dart';
 import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/custom_animated_text_widget.dart';
 
+/// 대사 및 인물 사진 위젯
 class StatementSceneWidget extends StatefulWidget {
   const StatementSceneWidget({
     Key? key,
