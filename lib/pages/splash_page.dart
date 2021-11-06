@@ -41,6 +41,9 @@ class _SplashPageState extends State<SplashPage> {
         alignment: Alignment.center,
         children: [
           Positioned(
+              child: Image.asset('assets/background/startbackground.png',
+                  width: Get.width, height: Get.height, fit: BoxFit.fill)),
+          Positioned(
               bottom: Get.height / 5,
               child: const TextButton(
                 onPressed: null,
@@ -55,9 +58,15 @@ class _SplashPageState extends State<SplashPage> {
                 builder: (controller) {
                   ///Show only play icon for fast testing
                   if (controller.currentStep != 8) {
-                    return GestureDetector(onTap: (){
-                      Get.toNamed('/select');
-                    },child: const Icon(Icons.play_circle_filled_rounded, size: 45, color: Colors.brown,));
+                    return GestureDetector(
+                        onTap: () {
+                          Get.toNamed('/select');
+                        },
+                        child: const Icon(
+                          Icons.play_circle_filled_rounded,
+                          size: 45,
+                          color: Colors.brown,
+                        ));
                     return CircularStepProgressIndicator(
                       totalSteps: 8,
                       currentStep: controller.currentStep,
@@ -67,9 +76,15 @@ class _SplashPageState extends State<SplashPage> {
                       unselectedColor: const Color.fromRGBO(216, 136, 30, 0.4),
                     );
                   } else {
-                    return GestureDetector(onTap: (){
-                      Get.offNamed('/select');
-                    },child: const Icon(Icons.play_circle_filled_rounded, size: 45, color: Colors.brown,));
+                    return GestureDetector(
+                        onTap: () {
+                          Get.offNamed('/select');
+                        },
+                        child: const Icon(
+                          Icons.play_circle_filled_rounded,
+                          size: 45,
+                          color: Colors.brown,
+                        ));
                   }
                 },
               )),
