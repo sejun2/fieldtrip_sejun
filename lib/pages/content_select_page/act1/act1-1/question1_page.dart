@@ -16,6 +16,8 @@ class _Question1PageState extends State<Question1Page>
     with TickerProviderStateMixin {
   final progressService = Get.put<ProgressService>(ProgressService());
 
+  bool _isIgnored = true;
+
   late TextEditingController answerTextController;
 
   late AnimationController answerController;
@@ -60,14 +62,30 @@ class _Question1PageState extends State<Question1Page>
       if (status == AnimationStatus.completed) {
         Timer(const Duration(milliseconds: 600), () {
           notAnswerController.reverse(from: 1.0);
+          setState(() {
+            _isIgnored = false;
+          });
         });
+      }
+      if(status == AnimationStatus.dismissed){
+       setState(() {
+         _isIgnored = true;
+       });
       }
     });
     answerController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         Timer(const Duration(milliseconds: 600), () {
           answerController.reverse(from: 1.0);
+          setState(() {
+            _isIgnored = false;
+          });
         });
+      }
+      if(status == AnimationStatus.dismissed){
+      setState(() {
+        _isIgnored = true;
+      });
       }
     });
     hintAnimation.addStatusListener((status) {
@@ -80,9 +98,15 @@ class _Question1PageState extends State<Question1Page>
       }
       if(status == AnimationStatus.forward){
         isHintClickable = true;
+        setState(() {
+         _isIgnored = false;
+        });
       }
       if(status == AnimationStatus.reverse){
         isHintClickable = false;
+        setState(() {
+          _isIgnored = true;
+        });
       }
     });
   }
@@ -148,72 +172,10 @@ class _Question1PageState extends State<Question1Page>
               return Positioned(
                   top: 0,
                   bottom: 0,
-                  child: Opacity(
-                    opacity: answerAnimation.value,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Opacity(
-                          opacity: 0.6,
-                          child: Container(
-                            color: Colors.black,
-                            width: Get.width,
-                            height: Get.height * 2 / 5,
-                          ),
-                        ),
-                        const Text(
-                          '정답입니다.',
-                          style: statementTextStyle,
-                        ),
-                      ],
-                    ),
-                  ));
-            },
-            animation: answerAnimation,
-          ),
-          //정답이 아닙니다 위젯
-          AnimatedBuilder(
-            builder: (BuildContext context, Widget? child) {
-              return Positioned(
-                  top: 0,
-                  bottom: 0,
-                  child: Opacity(
-                    opacity: notAnswerAnimation.value,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Opacity(
-                          opacity: 0.6,
-                          child: Container(
-                            color: Colors.black,
-                            width: Get.width,
-                            height: Get.height * 2 / 5,
-                          ),
-                        ),
-                        const Text(
-                          '정답이 아닙니다.',
-                          style: statementTextStyle,
-                        ),
-                      ],
-                    ),
-                  ));
-            },
-            animation: notAnswerAnimation,
-          ),
-          //Hint 위젯
-          AnimatedBuilder(
-            builder: (BuildContext context, Widget? child) {
-              return Positioned(
-                  top: 0,
-                  bottom: 0,
-                  child: GestureDetector(
-                    onTap: () {
-                      if(isHintClickable) {
-                        hintController.reverse(from: 1.0);
-                      }
-                    },
+                  child: IgnorePointer(
+                    ignoring: _isIgnored,
                     child: Opacity(
-                      opacity: hintAnimation.value,
+                      opacity: answerAnimation.value,
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
@@ -225,11 +187,82 @@ class _Question1PageState extends State<Question1Page>
                               height: Get.height * 2 / 5,
                             ),
                           ),
-                          Text(
-                            hintList[_hintIndex],
+                          const Text(
+                            '정답입니다.',
                             style: statementTextStyle,
                           ),
                         ],
+                      ),
+                    ),
+                  ));
+            },
+            animation: answerAnimation,
+          ),
+          //정답이 아닙니다 위젯
+          AnimatedBuilder(
+            builder: (BuildContext context, Widget? child) {
+              return Positioned(
+                  top: 0,
+                  bottom: 0,
+                  child: IgnorePointer(
+                    ignoring: _isIgnored,
+                    child: Opacity(
+                      opacity: notAnswerAnimation.value,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Opacity(
+                            opacity: 0.6,
+                            child: Container(
+                              color: Colors.black,
+                              width: Get.width,
+                              height: Get.height * 2 / 5,
+                            ),
+                          ),
+                          const Text(
+                            '정답이 아닙니다.',
+                            style: statementTextStyle,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ));
+            },
+            animation: notAnswerAnimation,
+          ),
+          //Hint 위젯
+          AnimatedBuilder(
+            builder: (BuildContext context, Widget? child) {
+              return Positioned(
+                  top: 0,
+                  bottom: 0,
+                  child: IgnorePointer(
+                    ignoring: _isIgnored,
+                    child: GestureDetector(
+                      onTap: () {
+                        if(isHintClickable) {
+                          hintController.reverse(from: 1.0);
+                        }
+                      },
+                      child: Opacity(
+                        opacity: hintAnimation.value,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Opacity(
+                              opacity: 0.6,
+                              child: Container(
+                                color: Colors.black,
+                                width: Get.width,
+                                height: Get.height * 2 / 5,
+                              ),
+                            ),
+                            Text(
+                              hintList[_hintIndex],
+                              style: statementTextStyle,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ));
@@ -285,31 +318,28 @@ class _Question1PageState extends State<Question1Page>
               ),
             ),
             //정답 입력 위젯
-            Material(
-              elevation: 5,
-              child: SizedBox(
-                width: Get.width,
-                child: TextFormField(
-                  controller: answerTextController,
-                  style: const TextStyle(color: Colors.white),
-                  cursorColor: Colors.white,
-                  decoration: InputDecoration(
-                      suffixIcon: GestureDetector(
-                          onTap: () {
-                            print('check icon clicked...');
-                            checkAnswer();
-                          },
-                          child: const Icon(Icons.check_circle_outline,
-                              size: 34, color: Colors.white)),
-                      fillColor: Colors.white,
-                      hintText: '정답을 입력하세요.',
-                      enabledBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 3.0, color: Colors.white),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(width: 3.0, color: Colors.white),
-                      )),
-                ),
+            SizedBox(
+              width: Get.width,
+              child: TextFormField(
+                controller: answerTextController,
+                style: const TextStyle(color: Colors.white),
+                cursorColor: Colors.white,
+                decoration: InputDecoration(
+                    suffixIcon: GestureDetector(
+                        onTap: () {
+                          print('check icon clicked...');
+                          checkAnswer();
+                        },
+                        child: const Icon(Icons.check_circle_outline,
+                            size: 34, color: Colors.white)),
+                    fillColor: Colors.white,
+                    hintText: '정답을 입력하세요.',
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(width: 3.0, color: Colors.white),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(width: 3.0, color: Colors.white),
+                    )),
               ),
             ),
           ].map((e) {

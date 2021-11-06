@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(),
         home:
-            const SplashPage() //const SplashPage(), //for test... default home is SplashPage()...
+            const Question1Page() //const SplashPage(), //for test... default home is SplashPage()...
         );
   }
 }
