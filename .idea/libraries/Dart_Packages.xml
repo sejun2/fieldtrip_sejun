@@ -16,6 +16,13 @@
             </list>
           </value>
         </entry>
+        <entry key="audioplayer">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayer-0.8.1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="boolean_selector">
           <value>
             <list>
@@ -210,6 +217,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.2.1/lib" />
       <root url="file://$PROJECT_DIR$/../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.8.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayer-0.8.1/lib" />
       <root url="file://$PROJECT_DIR$/../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/charcode-1.3.1/lib" />

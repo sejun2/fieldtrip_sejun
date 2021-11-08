@@ -44,8 +44,7 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
 
     statementContainerController =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
-    statementContainerAnimation = CurvedAnimation(
-        parent: statementContainerController, curve: Curves.linear);
+    statementContainerAnimation = Tween<double>(begin: 0, end: 0.7).animate(statementContainerController);
 
     backgroundAnimation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -103,7 +102,7 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
                     width: Get.width,
                     height: Get.height * 2 / 5,
                     padding: const EdgeInsets.all(8),
-                    color: Colors.amber,
+                    color: Colors.black,
                   ),
                 ),
               );

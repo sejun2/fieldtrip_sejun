@@ -214,7 +214,7 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                   child: const Text(
                     'CHAPTER. 1\n폭로',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white, fontSize: 35),
+                    style: chapterTextStyle
                   ),
                 ),
               ),

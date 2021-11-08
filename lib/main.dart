@@ -5,6 +5,7 @@ import 'package:history_game_project/pages/content_select_page/act1/act1-1/quest
 import 'package:history_game_project/pages/content_select_page/act1/act1-2/act1_2_page.dart';
 import 'package:history_game_project/pages/splash_page.dart';
 
+import 'pages/content_select_page/act1/act1-4/act1_4_page.dart';
 import 'services/progress_service.dart';
 import 'routes/app_pages.dart';
 
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(),
         home:
-            const Act1_2Page() //const SplashPage(), //for test... default home is SplashPage()...
+            const Act1_4Page() //const SplashPage(), //for test... default home is SplashPage()...
         );
   }
 }

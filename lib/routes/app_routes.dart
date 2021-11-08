@@ -7,4 +7,6 @@ abstract class AppRoutes{
   static String ACT1_HINT5 = '/act1/hint5';
   static String ACT1_2 = '/act1-2';
   static String Act1_3 = '/act1-3';
+  static String ACT1_4 = '/act1-4';
+  static String Q2 = '/act1/question2';
 }
