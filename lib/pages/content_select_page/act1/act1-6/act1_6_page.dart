@@ -6,14 +6,14 @@ import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/statement_scene_widget.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
-class Act1_5Page extends StatefulWidget {
-  const Act1_5Page({Key? key}) : super(key: key);
+class Act1_6Page extends StatefulWidget {
+  const Act1_6Page({Key? key}) : super(key: key);
 
   @override
-  _Act1_5PageState createState() => _Act1_5PageState();
+  _Act1_6PageState createState() => _Act1_6PageState();
 }
 
-class _Act1_5PageState extends State<Act1_5Page> {
+class _Act1_6PageState extends State<Act1_6Page> {
   final ProgressService progressService = Get.put(ProgressService());
 
   bool _isIgnore = true;
@@ -32,6 +32,7 @@ class _Act1_5PageState extends State<Act1_5Page> {
         //isDone 일경우
         Get.log('isDone : $value');
         _isIgnore = false;
+        Get.offNamed('/act1-7');
       }
     });
   }
@@ -44,7 +45,7 @@ class _Act1_5PageState extends State<Act1_5Page> {
           GestureDetector(
             onTap: () {},
             child: Image.asset(
-              'assets/background/tortureroom.png',
+              'assets/background/bluehouse_inside.png',
               width: Get.width,
               height: Get.height,
               fit: BoxFit.fill,
@@ -63,40 +64,42 @@ class _Act1_5PageState extends State<Act1_5Page> {
             ),
           ),
           Obx(
-            () => ProsteIndexedStack(
+                () => ProsteIndexedStack(
                 index: progressService.progress.value,
                 children: [
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         rightPerson: 'assets/character/kimjaegyu1.png',
-                        leftPerson: 'assets/character/professor.png',
-                        statement: '제임스 류에 대해 확인되었다. 알고 있는 모든 사실을 실토해라.',
+                        leftPerson: 'assets/character/parkjunghee1.png',
+                        statement: '도청 사실을 알게 된 김재규 부장은 박정희에게 보고하러 대통령 집무실로 향한다.',
+                        name: '나레이션'),
+                  ),
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                        leftPerson: 'assets/character/kimjaegyu1.png',
+                        rightPerson: 'assets/character/parkjunghee1.png',
+                        statement:
+                        '각하 보고 드릴 사항이...',
                         name: '김재규'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/kimjaegyu1.png',
-                        rightPerson: 'assets/character/professor.png',
-                        statement:
-                            '미국에서 제임스 류 라는 중앙정보부 요원의 의뢰로 강형욱을 도청했고, 한국으로 돌아온 후에는 김재규에 대한 도청을 의뢰받았소.',
-                        name: '교수'),
+                        rightPerson: 'assets/character/parkjunghee1.png',
+                        statement: '자! 나가봅시다.',
+                        name: '박정희'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '김재규 부장이 찾아본 결과 제임스 류의 한국 이름은 유동훈.',
+                        statement:
+                        '김재규 부장이 고깝게 보이는 박 대통령은 측근들을 데리고 김재규 부장을 대놓고 무시한 채 지나가 버린다.',
                         name: '나레이션'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
-                            '그는 차지철 실장이 군인이었던 시절 그의 밑에서 복무한 부대원 출신이었으며, 차지철 실장의 추천으로 중앙정보부에 들어온 차지철 실장의 세작이었다는 것을 알게 된다.',
-                        name: '나레이션'),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        statement:
-                            '유동훈의 목적은 프랑스 주재 한국대사와 짜고 프랑스로 강형욱을 유인하여 현지에서 암살하는 것이었다.',
+                        '차지철 실장이 김형욱을 암살할 의도를 가지고 있음을 알게 되었고, 이를 저지하고 싶지만 김형욱에 대한 분노가 머리 끝까지 치달은 박 대통령을 설득하기란 거의 불가능에 가까운 상황.',
                         name: '나레이션'),
                   ),
                 ]),
@@ -104,7 +107,7 @@ class _Act1_5PageState extends State<Act1_5Page> {
           GestureDetector(
             onTap: () {
               if (!_isIgnore) {
-                Get.offNamed('/act1-6');
+                Get.offNamed('/act1-7');
               }
             },
             child: Container(

@@ -30,6 +30,9 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
   bool isDone = false;
   late Duration interval;
   late Duration fastDuration;
+
+
+
   @override
   void initState() {
     super.initState();

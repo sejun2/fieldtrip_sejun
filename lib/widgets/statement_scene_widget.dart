@@ -1,8 +1,6 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
-import 'package:history_game_project/controllers/base_controller.dart';
 import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/custom_animated_text_widget.dart';
 

@@ -7,6 +7,8 @@ import 'package:history_game_project/pages/content_select_page/act1/act1-4/act1_
 import 'package:history_game_project/pages/content_select_page/act1/act1-4/hint_page/hint2_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-4/question2_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-5/act1_5_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-6/act1_6_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-7/question3_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/intro_page/intro_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-1/question1_page.dart';
 import 'package:history_game_project/pages/content_select_page/content_select_page.dart';
@@ -20,6 +22,8 @@ abstract class AppPages {
     GetPage(name: AppRoutes.ACT1_INTRO, page: () => const IntroPage()),
     GetPage(name: AppRoutes.ACT1, page: () => const Act1_1Page()),
     GetPage(name: AppRoutes.Q1, page: () => const Question1Page()),
+    GetPage(name: AppRoutes.Q3, page: ()=> const Question3Page()),
+    GetPage(name: AppRoutes.ACT1_6, page: () => const Act1_6Page()),
     GetPage(name: AppRoutes.ACT1_HINT5, page: () => const Hint5Page()),
     GetPage(name: AppRoutes.ACT1_2, page: () => const Act1_2Page()),
     GetPage(name: AppRoutes.Act1_3, page: () => const Act1_3Page()),
