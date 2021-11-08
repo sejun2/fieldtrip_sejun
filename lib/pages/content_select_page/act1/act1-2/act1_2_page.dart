@@ -27,11 +27,12 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
 
   void _initResources() {
     progressService.isDone.listen((value) {
-      Future.delayed(const Duration(milliseconds: 2500), () {
-        progressService.resetProgress();
+      if(value){
+      Future.delayed(const Duration(milliseconds: 2500), () async {
+       await progressService.resetProgress();
         Get.log('isDone::true...');
-        Get.toNamed('/act1-3');
-      });
+        Get.offNamed('/act1-3');
+      });}
     });
   }
 

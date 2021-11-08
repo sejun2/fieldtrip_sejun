@@ -40,11 +40,13 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
     Get.log('dispose called...');
     super.dispose();
   }
+
   @override
   void deactivate() {
     Get.log('deactivate called...');
     super.deactivate();
   }
+
   @override
   void initState() {
     super.initState();
@@ -52,8 +54,8 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
     progressService.lastProgress = 8;
     progressService.isDone.listen((isDone) {
       if (isDone) {
-        Future.delayed(const Duration(milliseconds: 2500), () {
-          progressService.resetProgress();
+        Future.delayed(const Duration(milliseconds: 2500), () async {
+          await progressService.resetProgress();
           Get.log('isDone::true...');
           Get.toNamed('act1/question1');
         });

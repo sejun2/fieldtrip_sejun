@@ -12,16 +12,16 @@ class ProgressService extends GetxService{
     return this;
 
   }
-  void incrementProgress(){
+  incrementProgress() async{
     Get.log('incrementProgress called...');
+    Get.log('current lastProcess : $lastProgress');
     if(progress.value == lastProgress){
       isDone.value = true;
       return;
     }
     progress.value++;
-
   }
-  void resetProgress(){
+  resetProgress() async {
     Get.log('resetProgress called...');
     progress.value = 0;
     lastProgress = -99;

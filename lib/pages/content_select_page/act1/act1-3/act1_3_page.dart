@@ -28,7 +28,10 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
   void _initResources() {
     progressService.isDone.listen((value) {
       //해당 page의 progress가 끝났을 경우...
-      Get.log('act1_2 isDone...');
+      Future.delayed(const Duration(seconds: 2), () {
+        progressService.resetProgress();
+        Get.log('act1-3 done...');
+      });
     });
   }
 
@@ -129,53 +132,54 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
                 )),
                 IndexedStackChild(
                     child: const StatementSceneWidget(
-                      name: '박정희',
-                      statement: '그 배신자 새끼를 어떻게 하면 좋겠나?',
-                      leftPerson: 'assets/character/chajichul.png',
-                      rightPerson: 'assets/character/parkjunghee1.png',
-                    )),
+                  name: '박정희',
+                  statement: '그 배신자 새끼를 어떻게 하면 좋겠나?',
+                  leftPerson: 'assets/character/chajichul.png',
+                  rightPerson: 'assets/character/parkjunghee1.png',
+                )),
                 IndexedStackChild(
                     child: const StatementSceneWidget(
-                      name: '차지철',
-                      statement: '당장 잡아다가 청와대 뒷마당 무궁화 퇴비로 써야죠. 각하!',
-                      leftPerson: 'assets/character/chajichul.png',
-                      rightPerson: 'assets/character/parkjunghee1.png',
-                    )),
+                  name: '차지철',
+                  statement: '당장 잡아다가 청와대 뒷마당 무궁화 퇴비로 써야죠. 각하!',
+                  leftPerson: 'assets/character/chajichul.png',
+                  rightPerson: 'assets/character/parkjunghee1.png',
+                )),
                 IndexedStackChild(
                     child: const StatementSceneWidget(
-                      name: '김재규',
-                      statement: '각하 우선 제가 미국으로 넘어가서 조용히 해결해보겠습니다.',
-                      leftPerson: 'assets/character/kimjaegyu1.png',
-                      rightPerson: 'assets/character/parkjunghee1.png',
-                    )),
+                  name: '김재규',
+                  statement: '각하 우선 제가 미국으로 넘어가서 조용히 해결해보겠습니다.',
+                  leftPerson: 'assets/character/kimjaegyu1.png',
+                  rightPerson: 'assets/character/parkjunghee1.png',
+                )),
                 IndexedStackChild(
                     child: const StatementSceneWidget(
-                      name: '박정희',
-                      statement: '김부장 잠시..',
-                      leftPerson: 'assets/character/kimjaegyu1.png',
-                      rightPerson: 'assets/character/parkjunghee1.png',
-                    )),
+                  name: '박정희',
+                  statement: '김부장 잠시..',
+                  leftPerson: 'assets/character/kimjaegyu1.png',
+                  rightPerson: 'assets/character/parkjunghee1.png',
+                )),
                 IndexedStackChild(
                     child: const StatementSceneWidget(
-                      name: '김재규',
-                      statement: '각하 현재 미국의 시선이 김형욱에게 집중되어 있습니다. 제가 미국으로 넘어가 직접 만나서 회고록부터 회수하도록 하겠습니다.',
-                      leftPerson: 'assets/character/kimjaegyu1.png',
-                      rightPerson: 'assets/character/parkjunghee1.png',
-                    )),
+                  name: '김재규',
+                  statement:
+                      '각하 현재 미국의 시선이 김형욱에게 집중되어 있습니다. 제가 미국으로 넘어가 직접 만나서 회고록부터 회수하도록 하겠습니다.',
+                  leftPerson: 'assets/character/kimjaegyu1.png',
+                  rightPerson: 'assets/character/parkjunghee1.png',
+                )),
                 IndexedStackChild(
                     child: const StatementSceneWidget(
-                      name: '박정희',
-                      statement: '김부장도 내가 그만두기를 바라나?',
-                      leftPerson: 'assets/character/kimjaegyu1.png',
-                      rightPerson: 'assets/character/parkjunghee1.png',
-                    )),
+                  name: '박정희',
+                  statement: '김부장도 내가 그만두기를 바라나?',
+                  leftPerson: 'assets/character/kimjaegyu1.png',
+                  rightPerson: 'assets/character/parkjunghee1.png',
+                )),
                 IndexedStackChild(
                     child: const StatementSceneWidget(
-                      name: '김재규',
-                      statement: '제가.. 각하 옆을 지키겠습니다.',
-                      leftPerson: 'assets/character/kimjaegyu1.png',
-                      rightPerson: 'assets/character/parkjunghee1.png',
-                    )),
+                  name: '김재규',
+                  statement: '제가.. 각하 옆을 지키겠습니다.',
+                  leftPerson: 'assets/character/kimjaegyu1.png',
+                  rightPerson: 'assets/character/parkjunghee1.png',
+                )),
               ],
             );
           })
