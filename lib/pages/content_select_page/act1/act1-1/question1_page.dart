@@ -357,7 +357,7 @@ class _Question1PageState extends State<Question1Page>
     if (answerTextController.text.trim() == '희망은대통령을끌어내리는것') {
       answerController.forward();
       Timer(const Duration(milliseconds: 800), () {
-        Get.toNamed('/act1-2');
+        Get.offNamed('/act1-2');
       });
     } else {
       notAnswerController.forward();

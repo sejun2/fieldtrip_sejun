@@ -25,6 +25,7 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
 
   double _backgroundOpacity = 0.0;
 
+
   void _initResources() {
     progressService.isDone.listen((value) {
       if(value){
@@ -67,6 +68,7 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    statementContainerController.dispose();
     backgroundController.dispose();
     super.dispose();
   }

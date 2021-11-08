@@ -9,6 +9,7 @@ import 'package:history_game_project/pages/content_select_page/act1/act1-4/quest
 import 'package:history_game_project/pages/content_select_page/act1/act1-5/act1_5_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-6/act1_6_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-7/question3_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-8/act1_8_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/intro_page/intro_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-1/question1_page.dart';
 import 'package:history_game_project/pages/content_select_page/content_select_page.dart';
@@ -31,5 +32,6 @@ abstract class AppPages {
     GetPage(name: AppRoutes.ACT1_4, page: () => const Act1_4Page()),
     GetPage(name: AppRoutes.ACT1_5, page: () => const Act1_5Page()),
     GetPage(name: AppRoutes.Q2_HINT, page: () => const Hint2Page()),
+    GetPage(name: AppRoutes.ACT1_8, page: () => const Act1_8Page()),
   ];
 }

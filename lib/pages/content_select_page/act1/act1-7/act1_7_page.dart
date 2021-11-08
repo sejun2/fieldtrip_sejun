@@ -6,14 +6,14 @@ import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/statement_scene_widget.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
-class Act1_6Page extends StatefulWidget {
-  const Act1_6Page({Key? key}) : super(key: key);
+class Act1_7Page extends StatefulWidget {
+  const Act1_7Page({Key? key}) : super(key: key);
 
   @override
-  _Act1_6PageState createState() => _Act1_6PageState();
+  _Act1_7PageState createState() => _Act1_7PageState();
 }
 
-class _Act1_6PageState extends State<Act1_6Page> {
+class _Act1_7PageState extends State<Act1_7Page> {
   final ProgressService progressService = Get.put(ProgressService());
 
   bool _isIgnore = true;
@@ -31,7 +31,9 @@ class _Act1_6PageState extends State<Act1_6Page> {
       if (value) {
         //isDone 일경우
         Get.log('isDone : $value');
-        _isIgnore = false;
+        setState(() {
+          _isIgnore = false;
+        });
       }
     });
   }
@@ -63,7 +65,7 @@ class _Act1_6PageState extends State<Act1_6Page> {
             ),
           ),
           Obx(
-                () => ProsteIndexedStack(
+            () => ProsteIndexedStack(
                 index: progressService.progress.value,
                 children: [
                   IndexedStackChild(child: Container()),
@@ -79,7 +81,7 @@ class _Act1_6PageState extends State<Act1_6Page> {
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/sujiparktomson.png',
                         statement:
-                        '파티에 참여한 김재규 부장은 수지 박 톰슨을 만나 김형욱의 의향을 전해 듣게 되는데,',
+                            '파티에 참여한 김재규 부장은 수지 박 톰슨을 만나 김형욱의 의향을 전해 듣게 되는데,',
                         name: '나레이션'),
                   ),
                   IndexedStackChild(
@@ -93,33 +95,35 @@ class _Act1_6PageState extends State<Act1_6Page> {
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/sujiparktomson.png',
-                        statement:
-                        '혁명 이라니.. 그 무슨!!',
+                        statement: '혁명 이라니.. 그 무슨!!',
                         name: '김재규'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement:
-                        '그토록 존경하고 가까이 지내던 박 대통령이긴 하나,',
+                        statement: '그토록 존경하고 가까이 지내던 박 대통령이긴 하나,',
                         name: '나레이션'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
-                        '그를 몰아내고 정권을 차지하라는 김형욱의 권유는 너무나 고민되면서 매혹적인 것이었다.',
+                            '그를 몰아내고 정권을 차지하라는 김형욱의 권유는 너무나 고민되면서 매혹적인 것이었다.',
                         name: '나레이션'),
                   ),
                 ]),
           ),
-          GestureDetector(
-            onTap: () {
-              if (!_isIgnore) {
-                Get.offNamed('/act1/question3');
-              }
-            },
-            child: Container(
-              width: Get.width,
-              height: Get.height,
+          IgnorePointer(
+            ignoring: _isIgnore,
+            child: GestureDetector(
+              onTap: () {
+                if (!_isIgnore) {
+                  Get.toNamed('/act1/question3');
+                }
+              },
+              child: Container(
+                color: Colors.transparent,
+                width: Get.width,
+                height: Get.height,
+              ),
             ),
           ),
         ],

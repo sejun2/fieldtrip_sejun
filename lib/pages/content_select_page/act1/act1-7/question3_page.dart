@@ -13,8 +13,8 @@ class Question3Page extends StatefulWidget {
   _Question3PageState createState() => _Question3PageState();
 }
 
-class _Question3PageState extends State<Question3Page> with TickerProviderStateMixin{
-
+class _Question3PageState extends State<Question3Page>
+    with TickerProviderStateMixin {
   final progressService = Get.put<ProgressService>(ProgressService());
 
   bool _isIgnored = true;
@@ -32,9 +32,9 @@ class _Question3PageState extends State<Question3Page> with TickerProviderStateM
 
   bool isHintClickable = false;
   final hintList = [
-    'Hint.1\n매뉴얼은 해석하지 않아도 인물 확인이 가능합니다.',
-    'Hint.2\n영어 문장에서 차이점이 보이는 것들을 조합하세요.',
-    'Hint.3\n소문자들을 순서대로 조합하세요.',
+    'Hint.1\n숫자 키 패드',
+    'Hint.2\n숫자 한 묶음씩 컴퓨터 숫자 키패드로 확인 후 조합하세요.',
+    'Hint.3\n2486 = ㅇ',
     'Hint.4\n정답 확인'
   ];
   int _hintIndex = 0;
@@ -94,7 +94,7 @@ class _Question3PageState extends State<Question3Page> with TickerProviderStateM
         if (_hintIndex != 3) {
           _hintIndex++;
         } else {
-          Get.toNamed('act1/hint2');
+          Get.toNamed('act1/hint3');
         }
       }
       if (status == AnimationStatus.forward) {
@@ -121,14 +121,12 @@ class _Question3PageState extends State<Question3Page> with TickerProviderStateM
     super.dispose();
   }
 
-
   @override
   void initState() {
     _initResources();
     _initAnimation();
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +138,8 @@ class _Question3PageState extends State<Question3Page> with TickerProviderStateM
             width: Get.width,
             height: Get.height,
             fit: BoxFit.fill,
-          ), Positioned(
+          ),
+          Positioned(
             child: GestureDetector(
                 onTap: () {
                   hintController.forward();
@@ -261,6 +260,7 @@ class _Question3PageState extends State<Question3Page> with TickerProviderStateM
       ),
     );
   }
+
   Widget _buildContent() {
     return Positioned(
         left: 0,
@@ -271,20 +271,42 @@ class _Question3PageState extends State<Question3Page> with TickerProviderStateM
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Align(child: Text('도청장치 실행 메뉴얼\nUSER\'S GUIDE', style: questionTextStyle,), alignment: Alignment.center),
-            const Text('THIS DEVICE CAN BE USED IN A jACKET.', style: questionTextStyle),
-            const Text('IN aDDITION. IT IS mADE SMALL AND CAN Be USED IN', style: questionTextStyle),
-            const Text(
-              "COMBINATION WITH ANY OBJECT.",
-              style: questionTextStyle,
+            const Align(
+                child: Text(
+                  '수지 박 톰슨 포섭',
+                  style: questionTextStyle,
+                ),
+                alignment: Alignment.center),
+            const SizedBox(
+              height: 12,
             ),
-            const Text('PLEAsE USE IT CArEFULLy.',
-                style: questionTextStyle),
+            const Align(
+              child: Text('2486', style: questionTextStyle),
+              alignment: Alignment.center,
+            ),
+            const Align(
+                child: Text('7894163', style: questionTextStyle),
+                alignment: Alignment.center),
             const Align(
               child: Text(
-                "도청 매뉴얼에 숨겨져 있는 인물은 누구인가?",
-                style: TextStyle(fontSize: 22, color: Colors.black),
+                '2486',
+                style: questionTextStyle,
               ),
+              alignment: Alignment.center,
+            ),
+            const Align(
+              child: Text(
+                '963',
+                style: questionTextStyle,
+              ),
+              alignment: Alignment.center,
+            ),
+            const Align(
+              child: Text(
+                '74123',
+                style: questionTextStyle,
+              ),
+              alignment: Alignment.center,
             ),
             //정답 입력 위젯
             SizedBox(
@@ -295,17 +317,19 @@ class _Question3PageState extends State<Question3Page> with TickerProviderStateM
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
                   enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)
-                  ),
+                      borderSide: BorderSide(color: Colors.transparent)),
                   focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)
-                  ),
+                      borderSide: BorderSide(color: Colors.transparent)),
                   suffixIcon: GestureDetector(
                       onTap: () {
                         print('check icon clicked...');
                         checkAnswer();
                       },
-                      child: Image.asset('assets/background/icon_ok.png', width: 34,height: 34,)),
+                      child: Image.asset(
+                        'assets/background/icon_ok.png',
+                        width: 34,
+                        height: 34,
+                      )),
                   fillColor: Colors.black,
                   hintText: '정답을 입력하세요.',
                 ),
@@ -313,19 +337,20 @@ class _Question3PageState extends State<Question3Page> with TickerProviderStateM
             ),
           ].map((e) {
             return Padding(
-              padding: const EdgeInsets.only(left: 18 , bottom: 8, right: 18),
+              padding: const EdgeInsets.only(left: 18, bottom: 8, right: 18),
               child: e,
             );
           }).toList(),
         ));
   }
-  void checkAnswer(){
-    if(answerTextController.text == 'jamesryu'.trim()){
+
+  void checkAnswer() {
+    if (answerTextController.text == '유인'.trim()) {
       answerController.forward(from: 0.0);
-      Timer(const Duration(milliseconds: 600), (){
-        Get.offNamed('/act1-5');
+      Timer(const Duration(milliseconds: 600), () {
+        Get.offNamed('/act1-8');
       });
-    }else{
+    } else {
       notAnswerController.forward(from: 0.0);
     }
   }

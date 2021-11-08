@@ -82,6 +82,7 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    statementContainerController.dispose();
     backgroundController.dispose();
     super.dispose();
   }

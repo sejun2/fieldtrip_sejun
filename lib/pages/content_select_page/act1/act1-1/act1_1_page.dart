@@ -38,14 +38,10 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
   @override
   void dispose() {
     Get.log('dispose called...');
+    animationController.dispose();
     super.dispose();
   }
 
-  @override
-  void deactivate() {
-    Get.log('deactivate called...');
-    super.deactivate();
-  }
 
   @override
   void initState() {
@@ -57,7 +53,7 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
         Future.delayed(const Duration(milliseconds: 2500), () async {
           await progressService.resetProgress();
           Get.log('isDone::true...');
-          Get.toNamed('act1/question1');
+          Get.offNamed('act1/question1');
         });
       }
     });
@@ -74,8 +70,8 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
         CurvedAnimation(parent: backgroundController, curve: Curves.linear);
     statementContainerController = AnimationController(
         vsync: this, duration: const Duration(seconds: 3), upperBound: 0.5);
-    statementContainerAnimation = CurvedAnimation(
-        parent: statementContainerController, curve: Curves.linear);
+    statementContainerAnimation =
+        Tween<double>(begin: 0, end: 0.7).animate(statementContainerController);
 
     backgroundAnimation.addListener(() {});
 
@@ -129,7 +125,7 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                   width: Get.width,
                   height: Get.height * 2 / 5,
                   padding: const EdgeInsets.all(8),
-                  color: Colors.amber,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -211,11 +207,8 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                 alignment: Alignment.center,
                 child: Opacity(
                   opacity: introAnimation.value as double,
-                  child: const Text(
-                    'CHAPTER. 1\n폭로',
-                    textAlign: TextAlign.center,
-                    style: chapterTextStyle
-                  ),
+                  child: const Text('CHAPTER. 1\n폭로',
+                      textAlign: TextAlign.center, style: chapterTextStyle),
                 ),
               ),
             ),

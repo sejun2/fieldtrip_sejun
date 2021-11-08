@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-1/act1_1_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-1/question1_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-2/act1_2_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-6/act1_6_page.dart';
 import 'package:history_game_project/pages/splash_page.dart';
 
 import 'pages/content_select_page/act1/act1-4/act1_4_page.dart';
+import 'pages/content_select_page/act1/act1-7/act1_7_page.dart';
 import 'services/progress_service.dart';
 import 'routes/app_pages.dart';
 
