@@ -11,6 +11,7 @@ class Question1Page extends StatefulWidget {
   @override
   _Question1PageState createState() => _Question1PageState();
 }
+
 //TODO: Notification 때문에 클릭영역 문제있음. Notification이 입력 및 확인버튼 클릭 영역 침범
 class _Question1PageState extends State<Question1Page>
     with TickerProviderStateMixin {
@@ -67,10 +68,10 @@ class _Question1PageState extends State<Question1Page>
           });
         });
       }
-      if(status == AnimationStatus.dismissed){
-       setState(() {
-         _isIgnored = true;
-       });
+      if (status == AnimationStatus.dismissed) {
+        setState(() {
+          _isIgnored = true;
+        });
       }
     });
     answerController.addStatusListener((status) {
@@ -82,10 +83,10 @@ class _Question1PageState extends State<Question1Page>
           });
         });
       }
-      if(status == AnimationStatus.dismissed){
-      setState(() {
-        _isIgnored = true;
-      });
+      if (status == AnimationStatus.dismissed) {
+        setState(() {
+          _isIgnored = true;
+        });
       }
     });
     hintAnimation.addStatusListener((status) {
@@ -96,13 +97,13 @@ class _Question1PageState extends State<Question1Page>
           Get.toNamed('act1/hint5');
         }
       }
-      if(status == AnimationStatus.forward){
+      if (status == AnimationStatus.forward) {
         isHintClickable = true;
         setState(() {
-         _isIgnored = false;
+          _isIgnored = false;
         });
       }
-      if(status == AnimationStatus.reverse){
+      if (status == AnimationStatus.reverse) {
         isHintClickable = false;
         setState(() {
           _isIgnored = true;
@@ -133,7 +134,7 @@ class _Question1PageState extends State<Question1Page>
       body: Stack(
         children: [
           Image.asset(
-            'assets/background/gun.png',
+            'assets/background/questionbackground.png',
             fit: BoxFit.fill,
             width: Get.width,
             height: Get.height,
@@ -240,7 +241,7 @@ class _Question1PageState extends State<Question1Page>
                     ignoring: _isIgnored,
                     child: GestureDetector(
                       onTap: () {
-                        if(isHintClickable) {
+                        if (isHintClickable) {
                           hintController.reverse(from: 1.0);
                         }
                       },
@@ -294,7 +295,8 @@ class _Question1PageState extends State<Question1Page>
                 style: questionTextStyle),
             const Text('10. 스위스 비밀계좌 관련 내용이 상세히 적힌 이 회고록을 작성해였다. 그는,',
                 style: questionTextStyle),
-            const Text('5. 최측근을 통해 스위스 비밀 계좌를 관리하고 있다.', style: questionTextStyle),
+            const Text('5. 최측근을 통해 스위스 비밀 계좌를 관리하고 있다.',
+                style: questionTextStyle),
             const Text('4. 현 청와대 주변에는 탱크가 순찰을 돌며 공포심 조장을 하고 있으며,',
                 style: questionTextStyle),
             const Text('8. 사람을 남산으로 끌고 와 고문을 자행하는 등, 독재자의 모습을 취하고 있다.',
@@ -325,26 +327,26 @@ class _Question1PageState extends State<Question1Page>
                 style: const TextStyle(color: Colors.white),
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
-                    suffixIcon: GestureDetector(
-                        onTap: () {
-                          print('check icon clicked...');
-                          checkAnswer();
-                        },
-                        child: const Icon(Icons.check_circle_outline,
-                            size: 34, color: Colors.white)),
-                    fillColor: Colors.white,
-                    hintText: '정답을 입력하세요.',
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(width: 3.0, color: Colors.white),
-                    ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(width: 3.0, color: Colors.white),
-                    )),
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent)
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent)
+                  ),
+                  suffixIcon: GestureDetector(
+                      onTap: () {
+                        print('check icon clicked...');
+                        checkAnswer();
+                      },
+                      child: Image.asset('assets/background/icon_ok.png', width: 34,height: 34,)),
+                  fillColor: Colors.black,
+                  hintText: '정답을 입력하세요.',
+                ),
               ),
             ),
           ].map((e) {
             return Padding(
-              padding: const EdgeInsets.only(left: 12, bottom: 8, right: 12),
+              padding: const EdgeInsets.only(left: 18 , bottom: 8, right: 18),
               child: e,
             );
           }).toList(),
@@ -354,10 +356,10 @@ class _Question1PageState extends State<Question1Page>
   void checkAnswer() {
     if (answerTextController.text.trim() == '희망은대통령을끌어내리는것') {
       answerController.forward();
-      Timer(const Duration(milliseconds: 800), (){
+      Timer(const Duration(milliseconds: 800), () {
         Get.toNamed('/act1-2');
       });
-    }else{
+    } else {
       notAnswerController.forward();
     }
   }
