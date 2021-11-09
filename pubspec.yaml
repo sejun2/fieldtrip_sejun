@@ -39,8 +39,8 @@ dependencies:
   step_progress_indicator: ^1.0.1
   delayed_display: ^2.0.0
   proste_indexed_stack: ^0.2.4
-  audioplayer: ^0.8.1
-
+  audioplayers: ^0.20.1
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

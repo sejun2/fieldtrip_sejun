@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/services/progress_service.dart';
@@ -18,9 +19,18 @@ class _Act1_6PageState extends State<Act1_6Page> {
 
   bool _isIgnore = true;
 
+  late AudioPlayer _player;
+  final String audioPath = 'BGM/partyroom_sound.mp3';
+
+  initResources() async{
+    _player = await AudioCache().play(audioPath);
+  }
+
   @override
   void initState() {
     super.initState();
+
+    initResources();
 
     progressService.lastProgress = 5;
 
@@ -31,8 +41,9 @@ class _Act1_6PageState extends State<Act1_6Page> {
       if (value) {
         //isDone 일경우
         Get.log('isDone : $value');
+      setState(() {
         _isIgnore = false;
-        Get.offNamed('/act1-7');
+      });
       }
     });
   }
@@ -104,15 +115,18 @@ class _Act1_6PageState extends State<Act1_6Page> {
                   ),
                 ]),
           ),
-          GestureDetector(
-            onTap: () {
-              if (!_isIgnore) {
-                Get.offNamed('/act1-7');
-              }
-            },
-            child: Container(
-              width: Get.width,
-              height: Get.height,
+          IgnorePointer(
+            ignoring: _isIgnore,
+            child: GestureDetector(
+              onTap: () async {
+                  await _player.stop();
+                  Get.offNamed('/act1-7');
+              },
+              child: Container(
+                color: Colors.transparent,
+                width: Get.width,
+                height: Get.height,
+              ),
             ),
           ),
         ],

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
@@ -30,22 +31,34 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
   bool _wholeIgnore = false;
   bool _chapterIgnore = true;
 
-  void _initResources() {
-    progressService.isDone.listen((value) {
-      //해당 page의 progress가 끝났을 경우...
-      Future.delayed(const Duration(seconds: 2), () {
-        progressService.resetProgress();
-        Get.log('act1-3 done...');
-        Timer(const Duration(seconds: 1), () {
-          setState(() {
-            _wholeIgnore = true;
-            _chapterIgnore = false;
-            _wholeOpacity = 0.0;
-            _chapterOpacity = 1.0;
+  final _bluehouseSoundPath = 'BGM/bluehouse_sound.mp3';
+  final _chapterSoundPath = 'BGM/chapter_sound.mp3';
+  late AudioPlayer _chapterPlayer;
+  late AudioPlayer _bluehousePlayer;
+
+  Future<void> _initResources() async {
+    await AudioCache().clearAll();
+    progressService.isDone.listen((value) async {
+      if(value) {
+        await _bluehousePlayer.stop();
+        _chapterPlayer = await AudioCache().play(_chapterSoundPath);
+        //해당 page의 progress가 끝났을 경우...
+        Future.delayed(const Duration(seconds: 2), () {
+          progressService.resetProgress();
+          Get.log('act1-3 done...');
+          Timer(const Duration(seconds: 1), () async {
+            setState(() {
+              _wholeIgnore = true;
+              _chapterIgnore = false;
+              _wholeOpacity = 0.0;
+              _chapterOpacity = 1.0;
+            });
           });
         });
-      });
+      }
     });
+
+    _bluehousePlayer = await AudioCache().play(_bluehouseSoundPath);
   }
 
   void _initAnimation() {
@@ -80,10 +93,14 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
     });
   }
 
+
   @override
   void dispose() {
+    Get.log('dispose called...');
+    _chapterPlayer.stop();
     statementContainerController.dispose();
     backgroundController.dispose();
+
     super.dispose();
   }
 
@@ -197,7 +214,7 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
                           leftPerson: 'assets/character/kimjaegyu1.png',
                           rightPerson: 'assets/character/parkjunghee1.png',
                         )),
-                        IndexedStackChild(
+                       IndexedStackChild(
                             child: const StatementSceneWidget(
                           name: '김재규',
                           statement: '제가.. 각하 옆을 지키겠습니다.',
@@ -218,11 +235,13 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
               opacity: _chapterOpacity,
               duration: const Duration(seconds: 2),
               child: GestureDetector(
-                onTap: () {
+                onTap: ()async {
                   setState(() {
                     _chapterOpacity = 0.0;
                   });
-                  Timer(const Duration(seconds: 2), () {
+                  await _chapterPlayer.stop();
+                  Timer(const Duration(seconds: 2), () async {
+                    await _chapterPlayer.stop();
                     progressService.resetProgress();
                     Get.offNamed('/act1-4');
                   });

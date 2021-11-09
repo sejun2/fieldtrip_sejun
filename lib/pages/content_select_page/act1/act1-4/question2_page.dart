@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/services/progress_service.dart';
@@ -13,8 +14,8 @@ class Question2Page extends StatefulWidget {
   _Question2PageState createState() => _Question2PageState();
 }
 
-class _Question2PageState extends State<Question2Page> with TickerProviderStateMixin{
-
+class _Question2PageState extends State<Question2Page>
+    with TickerProviderStateMixin {
   final progressService = Get.put<ProgressService>(ProgressService());
 
   bool _isIgnored = true;
@@ -30,6 +31,9 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
   late AnimationController hintController;
   late Animation hintAnimation;
 
+  final String questionSoundPath = 'BGM/question_sound.mp3';
+  late AudioPlayer _player;
+
   bool isHintClickable = false;
   final hintList = [
     'Hint.1\n매뉴얼은 해석하지 않아도 인물 확인이 가능합니다.',
@@ -39,8 +43,9 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
   ];
   int _hintIndex = 0;
 
-  _initResources() {
+  _initResources() async {
     answerTextController = TextEditingController();
+    _player = await AudioCache().play(questionSoundPath);
   }
 
   _initAnimation() {
@@ -117,10 +122,10 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
     hintController.dispose();
     answerController.dispose();
     notAnswerController.dispose();
+    answerTextController.dispose();
 
     super.dispose();
   }
-
 
   @override
   void initState() {
@@ -128,7 +133,6 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
     _initAnimation();
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +144,8 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
             width: Get.width,
             height: Get.height,
             fit: BoxFit.fill,
-          ), Positioned(
+          ),
+          Positioned(
             child: GestureDetector(
                 onTap: () {
                   hintController.forward();
@@ -224,6 +229,8 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
               return Positioned(
                   top: 0,
                   bottom: 0,
+                  left: 0,
+                  right: 0,
                   child: IgnorePointer(
                     ignoring: _isIgnored,
                     child: GestureDetector(
@@ -238,16 +245,21 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
                           alignment: Alignment.center,
                           children: [
                             Opacity(
-                              opacity: 0.6,
+                              opacity: 0.7,
                               child: Container(
                                 color: Colors.black,
                                 width: Get.width,
                                 height: Get.height * 2 / 5,
                               ),
                             ),
-                            Text(
-                              hintList[_hintIndex],
-                              style: statementTextStyle,
+                            Flexible(
+                              child: Expanded(
+                                child: Text(
+                                  hintList[_hintIndex],
+                                  style: statementTextStyle,
+                                  overflow: TextOverflow.visible,
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -261,6 +273,7 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
       ),
     );
   }
+
   Widget _buildContent() {
     return Positioned(
         left: 0,
@@ -271,15 +284,21 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Align(child: Text('도청장치 실행 메뉴얼\nUSER\'S GUIDE', style: questionTextStyle,), alignment: Alignment.center),
-            const Text('THIS DEVICE CAN BE USED IN A jACKET.', style: questionTextStyle),
-            const Text('IN aDDITION. IT IS mADE SMALL AND CAN Be USED IN', style: questionTextStyle),
+            const Align(
+                child: Text(
+                  '도청장치 실행 메뉴얼\nUSER\'S GUIDE',
+                  style: questionTextStyle,
+                ),
+                alignment: Alignment.center),
+            const Text('THIS DEVICE CAN BE USED IN A jACKET.',
+                style: questionTextStyle),
+            const Text('IN aDDITION. IT IS mADE SMALL AND CAN Be USED IN',
+                style: questionTextStyle),
             const Text(
               "COMBINATION WITH ANY OBJECT.",
               style: questionTextStyle,
             ),
-            const Text('PLEAsE USE IT CArEFULLy.',
-                style: questionTextStyle),
+            const Text('PLEAsE USE IT CArEFULLy.', style: questionTextStyle),
             const Align(
               child: Text(
                 "도청 매뉴얼에 숨겨져 있는 인물은 누구인가?",
@@ -295,17 +314,19 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
                   enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)
-                  ),
+                      borderSide: BorderSide(color: Colors.transparent)),
                   focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)
-                  ),
+                      borderSide: BorderSide(color: Colors.transparent)),
                   suffixIcon: GestureDetector(
                       onTap: () {
                         print('check icon clicked...');
                         checkAnswer();
                       },
-                      child: Image.asset('assets/background/icon_ok.png', width: 34,height: 34,)),
+                      child: Image.asset(
+                        'assets/background/icon_ok.png',
+                        width: 34,
+                        height: 34,
+                      )),
                   fillColor: Colors.black,
                   hintText: '정답을 입력하세요.',
                 ),
@@ -313,19 +334,21 @@ class _Question2PageState extends State<Question2Page> with TickerProviderStateM
             ),
           ].map((e) {
             return Padding(
-              padding: const EdgeInsets.only(left: 18 , bottom: 8, right: 18),
+              padding: const EdgeInsets.only(left: 18, bottom: 8, right: 18),
               child: e,
             );
           }).toList(),
         ));
   }
-  void checkAnswer(){
-    if(answerTextController.text == 'jamesryu'.trim()){
+
+  void checkAnswer() {
+    if (answerTextController.text == 'jamesryu'.trim()) {
       answerController.forward(from: 0.0);
-      Timer(const Duration(milliseconds: 600), (){
+      Timer(const Duration(milliseconds: 600), () {
+        _player.stop();
         Get.offNamed('/act1-5');
       });
-    }else{
+    } else {
       notAnswerController.forward(from: 0.0);
     }
   }

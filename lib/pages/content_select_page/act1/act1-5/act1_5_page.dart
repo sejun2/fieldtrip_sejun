@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/services/progress_service.dart';
@@ -16,12 +17,20 @@ class Act1_5Page extends StatefulWidget {
 class _Act1_5PageState extends State<Act1_5Page> {
   final ProgressService progressService = Get.put(ProgressService());
 
+  late AudioPlayer _player;
+
+  final String soundPath = 'BGM/serious_sound.mp3';
+
   bool _isIgnore = true;
+
+  void initResources() async {
+    _player = await AudioCache().play(soundPath);
+  }
 
   @override
   void initState() {
     super.initState();
-
+    initResources();
     progressService.lastProgress = 5;
 
     Timer(const Duration(milliseconds: 600), () {
@@ -31,7 +40,9 @@ class _Act1_5PageState extends State<Act1_5Page> {
       if (value) {
         //isDone 일경우
         Get.log('isDone : $value');
-        _isIgnore = false;
+        setState(() {
+          _isIgnore = false;
+        });
       }
     });
   }
@@ -101,15 +112,19 @@ class _Act1_5PageState extends State<Act1_5Page> {
                   ),
                 ]),
           ),
-          GestureDetector(
-            onTap: () {
-              if (!_isIgnore) {
+          IgnorePointer(
+            ignoring: _isIgnore,
+            child: GestureDetector(
+              onTap: () async {
+                Get.log('IgnorePointer tapped...');
+                await _player.stop();
                 Get.offNamed('/act1-6');
-              }
-            },
-            child: Container(
-              width: Get.width,
-              height: Get.height,
+              },
+              child: Container(
+                color: Colors.transparent,
+                width: Get.width,
+                height: Get.height,
+              ),
             ),
           ),
         ],

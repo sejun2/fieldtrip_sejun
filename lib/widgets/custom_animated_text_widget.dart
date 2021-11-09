@@ -85,7 +85,7 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
         return GestureDetector(
           onTap: () {
             print('onTap called...');
-            _textAnimationController.value = widget.text.length as double;
+            _textAnimationController.value = widget.text.length.toDouble();
           },
           onLongPress: () {
             print('onLongPress called...');

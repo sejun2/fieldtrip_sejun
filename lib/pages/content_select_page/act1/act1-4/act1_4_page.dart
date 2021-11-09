@@ -1,5 +1,5 @@
-import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/services/progress_service.dart';
@@ -15,8 +15,6 @@ class Act1_4Page extends StatefulWidget {
 }
 
 class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
-  late AnimationController chapterAnimationController;
-  late Animation chapterAnimation;
 
   late AnimationController backgroundController;
   late Animation backgroundAnimation;
@@ -33,8 +31,13 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
 
   bool _isIgnore = true;
 
-  _initResources() {
+  late AudioPlayer _player;
+  final String soundPath = 'BGM/serious_sound.mp3';
+
+  _initResources()async {
     progressService.lastProgress = 1;
+
+   _player= await AudioCache().play(soundPath);
 
     progressService.isDone.listen((value) {
       if (value) {
@@ -173,9 +176,10 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: () {
+              onTap: () async {
                   Get.log('clicked...');
                   progressService.resetProgress();
+                  await _player.stop();
                   Get.offNamed('/act1/question2');
               },
               child: Container(

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/services/progress_service.dart';
@@ -25,8 +26,10 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
 
   double _backgroundOpacity = 0.0;
 
+  late AudioPlayer _player;
+  final bluehouseAudioPath = 'BGM/bluehouse_sound.mp3';
 
-  void _initResources() {
+  void _initResources() async {
     progressService.isDone.listen((value) {
       if(value){
       Future.delayed(const Duration(milliseconds: 2500), () async {
@@ -35,6 +38,8 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
         Get.offNamed('/act1-3');
       });}
     });
+
+    _player = await AudioCache().play(bluehouseAudioPath);
   }
 
   void _initAnimation() {
@@ -70,6 +75,8 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
   void dispose() {
     statementContainerController.dispose();
     backgroundController.dispose();
+    _player.stop();
+
     super.dispose();
   }
 

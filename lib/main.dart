@@ -3,7 +3,11 @@ import 'package:get/get.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-1/act1_1_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-1/question1_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-2/act1_2_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-3/act1_3_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-4/question2_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-5/act1_5_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-6/act1_6_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/intro_page/intro_page.dart';
 import 'package:history_game_project/pages/splash_page.dart';
 
 import 'pages/content_select_page/act1/act1-4/act1_4_page.dart';
@@ -39,7 +43,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(),
         home:
-            const Act1_4Page() //const SplashPage(), //for test... default home is SplashPage()...
+            const Act1_7Page() //const SplashPage(), //for test... default home is SplashPage()...
         );
   }
 }

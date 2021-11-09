@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,17 +18,10 @@ class _IntroPageState extends State<IntroPage> {
   bool _isClickable = false;
   bool _canRun = false;
 
-  var content1 = AnimatedTextKit(
-    isRepeatingAnimation: false,
-    animatedTexts: [
-      TyperAnimatedText(
-          '1977년부터 1979년까지의 대한민국\n역사를 토대로 제작되었으며,\n1980년 광주 민주화 운동이 일어나게\n된 계기가 된 역사적 사건들을\n시나리오로 각색한 것입니다.',
-          textStyle: const TextStyle(color: Colors.white, fontSize: 35))
-    ],
-    onFinished: () {
-      Get.log('onFinished...');
-    },
-  );
+  late AudioPlayer _player;
+  final String _typingSoundPath = 'BGM/typing_sound.mp3';
+
+  late AnimatedTextKit content1;
   var emptyContent = AnimatedTextKit(
       onFinished: () {
         Get.log('onFinished...');
@@ -36,8 +30,25 @@ class _IntroPageState extends State<IntroPage> {
         TyperAnimatedText('', textStyle: const TextStyle(color: Colors.white))
       ]);
 
+  void _initResources() {
+    content1 = AnimatedTextKit(
+      isRepeatingAnimation: false,
+      animatedTexts: [
+        TyperAnimatedText(
+            '1977년부터 1979년까지의 대한민국\n역사를 토대로 제작되었으며,\n1980년 광주 민주화 운동이 일어나게\n된 계기가 된 역사적 사건들을\n시나리오로 각색한 것입니다.',
+            textStyle: const TextStyle(color: Colors.white, fontSize: 35))
+      ],
+      onFinished: () async {
+        Get.log('onFinished...');
+        //타이핑 소리 멈춤
+        await _player.stop();
+      },
+    );
+  }
+
   @override
   void initState() {
+    _initResources();
     Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
         op1 = 1;
@@ -77,6 +88,9 @@ class _IntroPageState extends State<IntroPage> {
                 },
                 child: Image.asset(
                   'assets/background/gun.png',
+                  width: Get.width,
+                  height: Get.height,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
@@ -84,13 +98,14 @@ class _IntroPageState extends State<IntroPage> {
               bottom: 40,
               right: 40,
               child: AnimatedOpacity(
-                onEnd: () {
+                onEnd: () async {
                   if (op2 == 0.00001) {
                     setState(() {
                       if (_canRun != true) {
                         _canRun = true;
                       }
                     });
+                    _player = await AudioCache().play(_typingSoundPath);
                   }
                 },
                 duration: const Duration(seconds: 3),
@@ -108,12 +123,12 @@ class _IntroPageState extends State<IntroPage> {
                 alignment: Alignment.center,
                 child: _canRun
                     ? GestureDetector(
-                        onTap: () {
-                          if (_isClickable) {
-                            Get.toNamed('/act1');
-                          }
-                        },
-                        child: content1)
+                    onTap: () {
+                      if (_isClickable) {
+                        Get.offNamed('/act1');
+                      }
+                    },
+                    child: content1)
                     : Container())
           ],
         ),

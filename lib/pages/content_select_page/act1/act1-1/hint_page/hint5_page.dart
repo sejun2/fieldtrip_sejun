@@ -16,7 +16,7 @@ class _Hint5PageState extends State<Hint5Page> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset('assets/background/gun.png',
+          Image.asset('assets/background/questionbackground.png',
               width: Get.width, height: Get.height, fit: BoxFit.fill),
           _buildContent(),
         ],

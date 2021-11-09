@@ -8,6 +8,8 @@ import 'package:history_game_project/pages/content_select_page/act1/act1-4/hint_
 import 'package:history_game_project/pages/content_select_page/act1/act1-4/question2_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-5/act1_5_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-6/act1_6_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-7/act1_7_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-7/hint_page/hint3_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-7/question3_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-8/act1_8_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/intro_page/intro_page.dart';
@@ -33,5 +35,7 @@ abstract class AppPages {
     GetPage(name: AppRoutes.ACT1_5, page: () => const Act1_5Page()),
     GetPage(name: AppRoutes.Q2_HINT, page: () => const Hint2Page()),
     GetPage(name: AppRoutes.ACT1_8, page: () => const Act1_8Page()),
+    GetPage(name: AppRoutes.ACT1_7, page: () => const Act1_7Page()),
+    GetPage(name: AppRoutes.Q3_hint, page: () => const Hint3Page()),
   ];
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/services/progress_service.dart';
@@ -18,9 +19,19 @@ class _Act1_7PageState extends State<Act1_7Page> {
 
   bool _isIgnore = true;
 
+  final String audioPath = 'BGM/partyroom_sound.mp3';
+
+  late AudioPlayer _player;
+
+  initResources() async{
+      _player = await AudioCache().play(audioPath);
+  }
+
   @override
   void initState() {
     super.initState();
+
+    initResources();
 
     progressService.lastProgress = 6;
 
@@ -114,10 +125,9 @@ class _Act1_7PageState extends State<Act1_7Page> {
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: () {
-                if (!_isIgnore) {
-                  Get.toNamed('/act1/question3');
-                }
+              onTap: ()async {
+                  await _player.stop();
+                  Get.offNamed('/act1/question3');
               },
               child: Container(
                 color: Colors.transparent,

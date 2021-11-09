@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/services/progress_service.dart';
@@ -30,6 +31,9 @@ class _Question3PageState extends State<Question3Page>
   late AnimationController hintController;
   late Animation hintAnimation;
 
+  late AudioPlayer _player;
+  final String questionSoundPath = 'BGM/question_sound.mp3';
+
   bool isHintClickable = false;
   final hintList = [
     'Hint.1\n숫자 키 패드',
@@ -39,8 +43,9 @@ class _Question3PageState extends State<Question3Page>
   ];
   int _hintIndex = 0;
 
-  _initResources() {
+  _initResources() async {
     answerTextController = TextEditingController();
+    _player = await AudioCache().play(questionSoundPath);
   }
 
   _initAnimation() {
@@ -117,7 +122,7 @@ class _Question3PageState extends State<Question3Page>
     hintController.dispose();
     answerController.dispose();
     notAnswerController.dispose();
-
+    answerTextController.dispose();
     super.dispose();
   }
 
@@ -223,6 +228,8 @@ class _Question3PageState extends State<Question3Page>
               return Positioned(
                   top: 0,
                   bottom: 0,
+                  left: 0,
+                  right: 0,
                   child: IgnorePointer(
                     ignoring: _isIgnored,
                     child: GestureDetector(
@@ -237,16 +244,19 @@ class _Question3PageState extends State<Question3Page>
                           alignment: Alignment.center,
                           children: [
                             Opacity(
-                              opacity: 0.6,
+                              opacity: 0.7,
                               child: Container(
                                 color: Colors.black,
                                 width: Get.width,
                                 height: Get.height * 2 / 5,
                               ),
                             ),
-                            Text(
-                              hintList[_hintIndex],
-                              style: statementTextStyle,
+                            Flexible(
+                              child: Text(
+                                hintList[_hintIndex],
+                                style: statementTextStyle,
+                                overflow: TextOverflow.visible,
+                              ),
                             ),
                           ],
                         ),
@@ -347,7 +357,8 @@ class _Question3PageState extends State<Question3Page>
   void checkAnswer() {
     if (answerTextController.text == '유인'.trim()) {
       answerController.forward(from: 0.0);
-      Timer(const Duration(milliseconds: 600), () {
+      Timer(const Duration(milliseconds: 600), () async {
+        await _player.stop();
         Get.offNamed('/act1-8');
       });
     } else {

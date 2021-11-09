@@ -1,4 +1,6 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'dart:async';
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
@@ -19,6 +21,8 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
   final progressService = Get.put<ProgressService>(ProgressService());
 
   double _opacity = 0.0;
+  bool _isIgnore = false;
+  bool _canRun = false;
 
   ///Animation controllers
   late AnimationController introController;
@@ -30,33 +34,47 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
   late AnimationController statementContainerController;
   late Animation statementContainerAnimation;
 
-  late AnimationController animationController;
-  late Animation animation;
+  late AudioPlayer _chapterAudioPlayer;
+  late AudioPlayer _contentAudioPlayer;
 
+  final chapterAudioPath = 'BGM/chapter_sound.mp3';
+  final contentAudioPath = 'BGM/hearing_sound.wav';
   ///대본
 
   @override
   void dispose() {
     Get.log('dispose called...');
-    animationController.dispose();
+    introController.dispose();
+    backgroundController.dispose();
+    statementContainerController.dispose();
+
     super.dispose();
   }
-
 
   @override
   void initState() {
     super.initState();
     _initAnimation();
+    _initResources();
     progressService.lastProgress = 8;
     progressService.isDone.listen((isDone) {
       if (isDone) {
         Future.delayed(const Duration(milliseconds: 2500), () async {
           await progressService.resetProgress();
           Get.log('isDone::true...');
-          Get.offNamed('act1/question1');
+          _canRun = true;
+          statementContainerController.reverse(from: 0.7);
+          backgroundController.reverse(from: 1.0);
+          Timer(const Duration(milliseconds: 500), () {
+            Get.offNamed('act1/question1');
+          });
         });
       }
     });
+  }
+
+  _initResources() async {
+    _chapterAudioPlayer = await AudioCache().play(chapterAudioPath);
   }
 
   _initAnimation() async {
@@ -69,7 +87,7 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
     backgroundAnimation =
         CurvedAnimation(parent: backgroundController, curve: Curves.linear);
     statementContainerController = AnimationController(
-        vsync: this, duration: const Duration(seconds: 3), upperBound: 0.5);
+        vsync: this, duration: const Duration(seconds: 3));
     statementContainerAnimation =
         Tween<double>(begin: 0, end: 0.7).animate(statementContainerController);
 
@@ -81,22 +99,27 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
     introAnimation.addStatusListener((status) async {
       Get.log('introAnimation status : $status');
       if (status == AnimationStatus.completed) {
-        await introController.reverse(from: 1.0);
+        // await introController.reverse(from: 1.0);
       }
       if (status == AnimationStatus.dismissed) {
         backgroundController.forward(from: 0);
         statementContainerController.forward(from: 0);
         setState(() {
           Get.log('setState...');
-          _opacity = 1;
+          _opacity = 0.7;
           _isIntroVisible = false;
           progressService.progress++;
         });
       }
     });
-    backgroundAnimation.addStatusListener((status) {
+    backgroundAnimation.addStatusListener((status) async {
       Get.log('backgroundAnimation status : $status');
-      if (status == AnimationStatus.completed) {}
+      if (status == AnimationStatus.completed) {
+        _contentAudioPlayer = await AudioCache().play(contentAudioPath);
+      }
+      if (status == AnimationStatus.reverse) {
+        await _contentAudioPlayer.stop();
+      }
       if (status == AnimationStatus.dismissed) {}
     });
     await introController.forward(from: 0);
@@ -115,6 +138,8 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                 opacity: _opacity,
                 duration: const Duration(seconds: 3),
                 child: Image.asset('assets/background/hearing2.png',
+                    width: Get.width,
+                    height: Get.height,
                     fit: BoxFit.fill)),
             Positioned(
               bottom: 50,
@@ -212,62 +237,28 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                 ),
               ),
             ),
+            IgnorePointer(
+              ignoring: _isIgnore,
+              child: GestureDetector(
+                onTap: () async {
+                  Get.log('onTap...');
+                  await (_chapterAudioPlayer).stop();
+                  introController.reverse(from: 1.0);
+                  setState(() {
+                    _isIgnore = true;
+                  });
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  width: Get.width,
+                  height: Get.height,
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
-  }
-
-  Widget _buildStatementWidget() {
-    Get.log(
-        '_buildStatementWidget ... progress : ${progressService.progress.value}');
-
-    switch (progressService.progress.value) {
-      case 1:
-        return Positioned(
-          bottom: 50,
-          child: Container(
-            width: Get.width,
-            height: Get.height * 2 / 5,
-            padding: const EdgeInsets.all(8),
-            color: Colors.transparent,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AnimatedTextKit(
-                  displayFullTextOnTap: true,
-                  isRepeatingAnimation: false,
-                  onFinished: () {
-                    progressService.progress++;
-                  },
-                  animatedTexts: [
-                    TyperAnimatedText(
-                        '나레이션\n전 중앙정보부의 부장 김형욱은 미국 프레이저 청문회에 참석해 대통령의 통치와 부정부패 및 비리 등을 폭로한다.',
-                        speed: const Duration(milliseconds: 90),
-                        textStyle: statementTextStyle),
-                    TyperAnimatedText(
-                        '나레이션\n심지어 김형욱은 프레이저 청문회에서 밝히진 않았지만 FBI와 기자들에게 잔뜩 알린 대통령의 치부들, 특히 스위스 비밀계좌에 관한 내용에 상세히 적힌 회고록을 작성하고 있었고,',
-                        speed: const Duration(milliseconds: 90),
-                        textStyle: statementTextStyle),
-                    TyperAnimatedText(
-                        '나레이션\n이것이 세상에 알려지면 가뜩이나 정권 유지가 위기에 놓은 대통령은 궁지에 몰릴 터였다.',
-                        speed: const Duration(milliseconds: 90),
-                        textStyle: statementTextStyle)
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      default:
-        return Container(
-          color: Colors.blue,
-        );
-    }
-  }
-
-  _buildTyperAnimatedText(String content) {
-    return TyperAnimatedText(content, textStyle: statementTextStyle);
   }
 }
 
