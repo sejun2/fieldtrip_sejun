@@ -7,14 +7,14 @@ import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/statement_scene_widget.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
-class Act1_8Page extends StatefulWidget {
-  const Act1_8Page({Key? key}) : super(key: key);
+class Act1_10Page extends StatefulWidget {
+  const Act1_10Page({Key? key}) : super(key: key);
 
   @override
-  _Act1_8PageState createState() => _Act1_8PageState();
+  _Act1_10PageState createState() => _Act1_10PageState();
 }
 
-class _Act1_8PageState extends State<Act1_8Page> {
+class _Act1_10PageState extends State<Act1_10Page> {
   final ProgressService progressService = Get.put(ProgressService());
 
   bool _isIgnore = true;
@@ -27,7 +27,6 @@ class _Act1_8PageState extends State<Act1_8Page> {
   }
   @override
   void dispose() {
-    Get.log('Act1_8page dispose called...');
     super.dispose();
   }
   @override
@@ -36,7 +35,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
 
     initResources();
 
-    progressService.lastProgress = 9;
+    progressService.lastProgress = 7;
 
     Timer(const Duration(milliseconds: 600), () {
       progressService.progress.value = 1;
@@ -45,7 +44,6 @@ class _Act1_8PageState extends State<Act1_8Page> {
       if (value) {
         //isDone 일경우
         Get.log('isDone : $value');
-        Get.log('act 1-8 isdone called...');
         setState(() {
           _isIgnore = false;
         });
@@ -88,30 +86,22 @@ class _Act1_8PageState extends State<Act1_8Page> {
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        statement: '김부장. 오랜만에 한잔 어떠신가?',
-                        name: '박정희'),
+                        statement: '박 대통령과의 관계 회복을 기대하며 대통령 주재 회의 직후 김형욱 암살 성공을 알리는 김재규 부장.',
+                        name: '나레이션'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
-                        '예 각하!',
-                        name: '김재규'),
+                        '김형욱 암살로 인해 이제 박 대통령이 자신을 다시 신망할거라 생각하고 있었다.',
+                        name: '나레이션'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        statement: '참 오래되었어. 우리가 함께 한 세월 말이야. 내가 오래 대통령을 해왔지. 이후에 내가 이 자리를 내려놓게 되면 그땐 김부장이 뒤를 이어 주었으면 해.',
-                        name: '박정희'),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/kimjaegyu1.png',
-                        rightPerson: 'assets/character/parkjunghee1.png',
-                        statement:
-                        '각하! 무슨 말씀이십니까?',
+                        statement: '각하! 제가 이렇게까지 해드렸으니 제발 게엄령만은 거두어 주시고 미국 내 여론은 제가 어떻게든 할 테니 협조를 해주셔야 합니다.',
                         name: '김재규'),
                   ),
                   IndexedStackChild(
@@ -119,7 +109,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
-                        '그나저나, 김형욱은 어떻게 처리를 해야 좋을 거 같나, 김부장',
+                        '김부장! 지금 나 협박해? 그깟 배신자 하나 죽인 게 뭐가 그렇게 중요한가? 김형욱이 숨긴 돈은 어딨니?',
                         name: '박정희'),
                   ),
                   IndexedStackChild(
@@ -127,7 +117,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
-                        '각하, 제가 어떻게 하길 원하십니까?',
+                        '예? 각하! 김형욱이 중정부장 시절 개인적으로 착복한 돈 외에는 찾을 수가 없었습니다.',
                         name: '김재규'),
                   ),
                   IndexedStackChild(
@@ -135,8 +125,16 @@ class _Act1_8PageState extends State<Act1_8Page> {
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
-                        '임자 하고 싶은 대로 해. 임자 곁에는 내가 있잖아.',
+                        '협박을 하려거든 내가 원하는 걸 좀 제대로 가져와! 거 담배나 하나 줘보게.',
                         name: '박정희'),
+                  ),
+                  IndexedStackChild(
+                    child: const StatementSceneWidget(
+                        leftPerson: 'assets/character/kimjaegyu1.png',
+                        rightPerson: 'assets/character/parkjunghee1.png',
+                        statement:
+                        '옆에 있는 탁자 위의 담뱃갑을 쥐지만 순간적으로 박정희에 대한 배신감과 분노에 치를 떨며 담뱃갑을 구겨버린다.',
+                        name: '나레이션'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -160,9 +158,9 @@ class _Act1_8PageState extends State<Act1_8Page> {
             ignoring: _isIgnore,
             child: GestureDetector(
               onTap: ()  {
-                 _player.stop();
-                 progressService.resetProgress();
-                Get.offNamed('/act1-9');
+                _player.stop();
+                progressService.resetProgress();
+                Get.offNamed('/act1-11');
               },
               child: Container(
                 color: Colors.transparent,
