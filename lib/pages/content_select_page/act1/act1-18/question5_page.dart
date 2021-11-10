@@ -82,7 +82,7 @@ class _Question5PageState extends State<Question5Page>
     answerController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         answerController.reverse(from: 1.0);
-        if(mounted) {
+        if (mounted) {
           setState(() {
             _isIgnored = false;
           });
@@ -144,16 +144,7 @@ class _Question5PageState extends State<Question5Page>
             height: Get.height,
             fit: BoxFit.fill,
           ),
-          Positioned(
-            child: GestureDetector(
-              onTap: () {
-                hintController.forward();
-              },
-              child: Image.asset('assets/background/icon_hint.png', width: 60, fit: BoxFit.fitWidth,),
-            ),
-            right: 50,
-            top: 30,
-          ),
+
           _buildContent(),
           //정답입니다 위젯
           AnimatedBuilder(
@@ -258,11 +249,15 @@ class _Question5PageState extends State<Question5Page>
                                   textAlign: TextAlign.center,
                                   overflow: TextOverflow.visible,
                                 ),
-                                if(_hintIndex == 2)
-                                  Image.asset('assets/background/hint3.png', width: 130, height: 130, fit: BoxFit.fitHeight,),
+                                if (_hintIndex == 2)
+                                  Image.asset(
+                                    'assets/background/hint3.png',
+                                    width: 130,
+                                    height: 130,
+                                    fit: BoxFit.fitHeight,
+                                  ),
                               ],
                             ),
-
                           ],
                         ),
                       ),
@@ -278,86 +273,59 @@ class _Question5PageState extends State<Question5Page>
 
   Widget _buildContent() {
     return Positioned(
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        child: Column(
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Align(
                 child: Text(
-                  '밀실 잠입',
+                  '금고 문',
                   style: questionTextStyle,
                 ),
                 alignment: Alignment.center),
             const SizedBox(
-              height: 12,
-            ),
-            Wrap(
-              children: [
-                Image.asset('assets/background/hint15.png', width: 40, height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint24.png', width: 40, height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint33.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint24.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint15.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint6.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint7.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint8.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-              ].map((e) => Padding(padding: const EdgeInsets.all(8), child: e,)).toList(),
+              height: 25,
             ),
             const Align(
                 child: Text(
-                  '밀실에 잠입하기 위한 비밀번호는 무엇인가?',
+                  '금고에는 실탄과 권총이 들어있어 복잡한 암호로 잠겨있다.',
                   style: questionTextStyle,
                 ),
-                alignment: Alignment.center),
-            //정답 입력 위젯
-            SizedBox(
-              width: Get.width,
-              child: TextFormField(
-                controller: answerTextController,
-                style: const TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
-                decoration: InputDecoration(
-                  enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)),
-                  focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)),
-                  suffixIcon: GestureDetector(
-                      onTap: () {
-                        print('check icon clicked...');
-                        checkAnswer();
-                      },
-                      child: Image.asset(
-                        'assets/background/icon_ok.png',
-                        width: 34,
-                        height: 34,
-                      )),
-                  fillColor: Colors.black,
-                  hintText: '정답을 입력하세요.',
-                ),
-              ),
+                alignment: Alignment.centerLeft),
+            const SizedBox(
+              height: 25,
             ),
-          ].map((e) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
-              child: e,
-            );
-          }).toList(),
-        ));
+            const Align(
+                child: Text(
+                  '금고의 비번 : ◆ ● ■',
+                  style: questionTextStyle,
+                ),
+                alignment: Alignment.centerLeft),
+            const SizedBox(
+              height: 25,
+            ),
+            const Align(
+                child: Text(
+                  '총 3개의 문제를 통해 금고의 비밀번호를 획득하세요.',
+                  style: questionTextStyle,
+                ),
+                alignment: Alignment.centerLeft),
+            const SizedBox(
+              height: 25,
+            ),
+            Align(
+              child: GestureDetector(onTap: (){
+                Get.offNamed('act1/question5_2');
+              },child: Image.asset('assets/background/icon_ok.png', width: 45, alignment: Alignment.center,)),
+              alignment: Alignment.center,
+            )
+          ].map((e) => Padding(padding: const EdgeInsets.only(left: 30, right: 30), child: e,)).toList()),
+    );
   }
 
-  void checkAnswer() {
-    if (answerTextController.text == '19791526'.trim()) {
-      answerController.forward(from: 0.0);
-      Timer(const Duration(milliseconds: 600), () async {
-        await _player.stop();
-        Get.offNamed('/act1-12');
-      });
-    } else {
-      notAnswerController.forward(from: 0.0);
-    }
-  }
+
 }
