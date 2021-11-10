@@ -39,21 +39,21 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
   Future<void> _initResources() async {
     await AudioCache().clearAll();
     progressService.isDone.listen((value) async {
-      if(value) {
+      if (value) {
         await _bluehousePlayer.stop();
         _chapterPlayer = await AudioCache().play(_chapterSoundPath);
         //해당 page의 progress가 끝났을 경우...
-        Future.delayed(const Duration(seconds: 2), () {
-          progressService.resetProgress();
-          Get.log('act1-3 done...');
-          Timer(const Duration(seconds: 1), () async {
+        progressService.resetProgress();
+        Get.log('act1-3 done...');
+        Timer(const Duration(seconds: 1), () async {
+          if (mounted) {
             setState(() {
               _wholeIgnore = true;
               _chapterIgnore = false;
               _wholeOpacity = 0.0;
               _chapterOpacity = 1.0;
             });
-          });
+          }
         });
       }
     });
@@ -92,7 +92,6 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
       statementContainerController.forward(from: 0.0);
     });
   }
-
 
   @override
   void dispose() {
@@ -214,7 +213,7 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
                           leftPerson: 'assets/character/kimjaegyu1.png',
                           rightPerson: 'assets/character/parkjunghee1.png',
                         )),
-                       IndexedStackChild(
+                        IndexedStackChild(
                             child: const StatementSceneWidget(
                           name: '김재규',
                           statement: '제가.. 각하 옆을 지키겠습니다.',
@@ -235,7 +234,7 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
               opacity: _chapterOpacity,
               duration: const Duration(seconds: 2),
               child: GestureDetector(
-                onTap: ()async {
+                onTap: () async {
                   setState(() {
                     _chapterOpacity = 0.0;
                   });

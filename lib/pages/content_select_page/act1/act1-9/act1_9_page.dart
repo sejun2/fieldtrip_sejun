@@ -45,12 +45,14 @@ class _Act1_9PageState extends State<Act1_9Page> with TickerProviderStateMixin {
         Get.log('if ....');
         _player.stop();
         AudioCache().play(_chapterPath).then((value) => _chapterPlayer = value);
-        setState(() {
-          _wholeIgnore = true;
-          _chapterIgnore = false;
-          _wholeOpacity = 0.0;
-          _chapterOpacity = 1.0;
-        });
+        if(mounted) {
+          setState(() {
+            _wholeIgnore = true;
+            _chapterIgnore = false;
+            _wholeOpacity = 0.0;
+            _chapterOpacity = 1.0;
+          });
+        }
       }
     });
   }

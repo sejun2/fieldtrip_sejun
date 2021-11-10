@@ -7,14 +7,14 @@ import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/statement_scene_widget.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
-class Act1_11Page extends StatefulWidget {
-  const Act1_11Page({Key? key}) : super(key: key);
+class Act1_13Page extends StatefulWidget {
+  const Act1_13Page({Key? key}) : super(key: key);
 
   @override
-  _Act1_11PageState createState() => _Act1_11PageState();
+  _Act1_13PageState createState() => _Act1_13PageState();
 }
 
-class _Act1_11PageState extends State<Act1_11Page> {
+class _Act1_13PageState extends State<Act1_13Page> {
   final ProgressService progressService = Get.put(ProgressService());
 
   bool _isIgnore = true;
@@ -84,13 +84,14 @@ class _Act1_11PageState extends State<Act1_11Page> {
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '이대로라면 박정희로부터 버림받을 위기에 놓였다고 생각한 김재규는 비가 억수같이 쏟아지는 밤,',
+                        statement: '박 대통령과 차 실장의 대화 내용을 도청한 김재규 부장은 그 내용에 소스라치게 놀라며 결심을 하게 된다.',
                         name: '나레이션'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '차 실장과 박 대통령이 술을 나누는 술자리로 잠입해 옆방의 옷장에서 둘이 나누는 이야기를 도청한다.',
-                        name: '나레이션'),
+                        rightPerson: 'assets/character/kimjaegyu1.png',
+                        statement: '가만히 앉아서 당하느니 내가 먼저 친다!',
+                        name: '김재규'),
                   ),
                 ]),
           ),
@@ -100,7 +101,7 @@ class _Act1_11PageState extends State<Act1_11Page> {
               onTap: ()  {
                 _player.stop();
                 progressService.resetProgress();
-                Get.offNamed('/act1/question4');
+                Get.offNamed('/act1-14');
               },
               child: Container(
                 color: Colors.transparent,

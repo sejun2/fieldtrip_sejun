@@ -81,12 +81,12 @@ class _Question2PageState extends State<Question2Page>
     });
     answerController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Timer(const Duration(milliseconds: 600), () {
           answerController.reverse(from: 1.0);
-          setState(() {
-            _isIgnored = false;
-          });
-        });
+          if(mounted) {
+            setState(() {
+              _isIgnored = false;
+            });
+          }
       }
       if (status == AnimationStatus.dismissed) {
         setState(() {

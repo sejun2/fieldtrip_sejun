@@ -41,9 +41,11 @@ class _Act1_6PageState extends State<Act1_6Page> {
       if (value) {
         //isDone 일경우
         Get.log('isDone : $value');
-      setState(() {
-        _isIgnore = false;
-      });
+        if(mounted) {
+          setState(() {
+            _isIgnore = false;
+          });
+        }
       }
     });
   }

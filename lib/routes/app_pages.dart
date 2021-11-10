@@ -3,7 +3,18 @@ import 'package:history_game_project/pages/content_select_page/act1/act1-1/act1_
 import 'package:history_game_project/pages/content_select_page/act1/act1-1/hint_page/hint5_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-10/act1_10_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-11/act1_11_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-11/hint4_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-11/question4_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-12/act1_12_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-13/act1_13_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-14/act1_14_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-15/act1_15_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-16/act1_16_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-17/act1_17_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-18/Question5Page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_18_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_19_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_20_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-2/act1_2_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-3/act1_3_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-4/act1_4_page.dart';
@@ -45,5 +56,16 @@ abstract class AppPages {
     GetPage(name: AppRoutes.ACT1_10, page: () => const Act1_10Page()),
     GetPage(name: AppRoutes.ACT1_11, page: () => const Act1_11Page()),
     GetPage(name: AppRoutes.Q4, page: () => const Question4Page()),
+    GetPage(name: AppRoutes.Q4_HINT, page:() => Hint4Page()),
+  GetPage(name: AppRoutes.ACT1_12, page: () => const Act1_12Page()),
+    GetPage(name: AppRoutes.ACT1_13, page: () => const Act1_13Page()),
+    GetPage(name: AppRoutes.ACT1_14, page: () => const Act1_14Page()),
+    GetPage(name: AppRoutes.ACT1_15, page: () => const Act1_15Page()),
+    GetPage(name: AppRoutes.ACT1_16, page: () => const Act1_16Page()),
+    GetPage(name: AppRoutes.ACT1_17, page: () => const Act1_17Page()),
+    GetPage(name: AppRoutes.ACT1_18, page: () => const Act1_18Page()),
+    GetPage(name: AppRoutes.ACT1_19, page: () => const Act1_19Page()),
+    GetPage(name: AppRoutes.ACT1_20, page: () => const Act1_20Page()),
+    GetPage(name: AppRoutes.Q5, page: () => const Question5Page()),
   ];
 }

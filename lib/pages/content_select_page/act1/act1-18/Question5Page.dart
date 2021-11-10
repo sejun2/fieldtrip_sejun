@@ -7,14 +7,14 @@ import 'package:history_game_project/services/progress_service.dart';
 
 import '../../../../constant.dart';
 
-class Question3Page extends StatefulWidget {
-  const Question3Page({Key? key}) : super(key: key);
+class Question5Page extends StatefulWidget {
+  const Question5Page({Key? key}) : super(key: key);
 
   @override
-  _Question3PageState createState() => _Question3PageState();
+  _Question5PageState createState() => _Question5PageState();
 }
 
-class _Question3PageState extends State<Question3Page>
+class _Question5PageState extends State<Question5Page>
     with TickerProviderStateMixin {
   final progressService = Get.put<ProgressService>(ProgressService());
 
@@ -37,8 +37,8 @@ class _Question3PageState extends State<Question3Page>
   bool isHintClickable = false;
   final hintList = [
     'Hint.1\n숫자 키 패드',
-    'Hint.2\n숫자 한 묶음씩 컴퓨터 숫자 키패드로 확인 후 조합하세요.',
-    'Hint.3\n2486 = ㅇ',
+    'Hint.2\n숫자 키 패드의 1~9 테두리 선 내에 존재하는 숫자를 확인',
+    'Hint.3\n',
     'Hint.4\n정답 확인'
   ];
   int _hintIndex = 0;
@@ -81,12 +81,12 @@ class _Question3PageState extends State<Question3Page>
     });
     answerController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-          answerController.reverse(from: 1.0);
-          if(mounted) {
-            setState(() {
-              _isIgnored = false;
-            });
-          }
+        answerController.reverse(from: 1.0);
+        if(mounted) {
+          setState(() {
+            _isIgnored = false;
+          });
+        }
       }
       if (status == AnimationStatus.dismissed) {
         setState(() {
@@ -99,7 +99,7 @@ class _Question3PageState extends State<Question3Page>
         if (_hintIndex != 3) {
           _hintIndex++;
         } else {
-          Get.toNamed('act1/hint3');
+          Get.toNamed('act1/hint4');
         }
       }
       if (status == AnimationStatus.forward) {
@@ -251,13 +251,21 @@ class _Question3PageState extends State<Question3Page>
                                 height: Get.height * 2 / 5,
                               ),
                             ),
-                            Text(
-                              hintList[_hintIndex],
-                              style: statementTextStyle,
-                              softWrap: true,
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.visible,
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  hintList[_hintIndex],
+                                  style: statementTextStyle,
+                                  softWrap: true,
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.visible,
+                                ),
+                                if(_hintIndex == 2)
+                                  Image.asset('assets/background/hint3.png', width: 130, height: 130, fit: BoxFit.fitHeight,),
+                              ],
                             ),
+
                           ],
                         ),
                       ),
@@ -283,41 +291,31 @@ class _Question3PageState extends State<Question3Page>
           children: [
             const Align(
                 child: Text(
-                  '수지 박 톰슨 포섭',
+                  '밀실 잠입',
                   style: questionTextStyle,
                 ),
                 alignment: Alignment.center),
             const SizedBox(
               height: 12,
             ),
-            const Align(
-              child: Text('2486', style: questionTextStyle),
-              alignment: Alignment.center,
+            Wrap(
+              children: [
+                Image.asset('assets/background/hint15.png', width: 40, height:40 , fit: BoxFit.fitWidth,),
+                Image.asset('assets/background/hint24.png', width: 40, height:40 , fit: BoxFit.fitWidth,),
+                Image.asset('assets/background/hint33.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                Image.asset('assets/background/hint24.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                Image.asset('assets/background/hint15.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                Image.asset('assets/background/hint6.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                Image.asset('assets/background/hint7.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                Image.asset('assets/background/hint8.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+              ].map((e) => Padding(padding: const EdgeInsets.all(8), child: e,)).toList(),
             ),
             const Align(
-                child: Text('7894163', style: questionTextStyle),
+                child: Text(
+                  '밀실에 잠입하기 위한 비밀번호는 무엇인가?',
+                  style: questionTextStyle,
+                ),
                 alignment: Alignment.center),
-            const Align(
-              child: Text(
-                '2486',
-                style: questionTextStyle,
-              ),
-              alignment: Alignment.center,
-            ),
-            const Align(
-              child: Text(
-                '963',
-                style: questionTextStyle,
-              ),
-              alignment: Alignment.center,
-            ),
-            const Align(
-              child: Text(
-                '74123',
-                style: questionTextStyle,
-              ),
-              alignment: Alignment.center,
-            ),
             //정답 입력 위젯
             SizedBox(
               width: Get.width,
@@ -355,11 +353,11 @@ class _Question3PageState extends State<Question3Page>
   }
 
   void checkAnswer() {
-    if (answerTextController.text == '유인'.trim()) {
+    if (answerTextController.text == '19791526'.trim()) {
       answerController.forward(from: 0.0);
       Timer(const Duration(milliseconds: 600), () async {
         await _player.stop();
-        Get.offNamed('/act1-8');
+        Get.offNamed('/act1-12');
       });
     } else {
       notAnswerController.forward(from: 0.0);

@@ -42,9 +42,11 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
     progressService.isDone.listen((value) {
       if (value) {
         Get.log('isDone : $value');
-        setState(() {
-          _isIgnore = false;
-        });
+        if(mounted) {
+          setState(() {
+            _isIgnore = false;
+          });
+        }
       }
     });
   }

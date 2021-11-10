@@ -46,9 +46,11 @@ class _Act1_8PageState extends State<Act1_8Page> {
         //isDone 일경우
         Get.log('isDone : $value');
         Get.log('act 1-8 isdone called...');
-        setState(() {
-          _isIgnore = false;
-        });
+        if(mounted) {
+          setState(() {
+            _isIgnore = false;
+          });
+        }
       }
     });
   }

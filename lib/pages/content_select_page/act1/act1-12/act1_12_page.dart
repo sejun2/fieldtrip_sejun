@@ -7,32 +7,34 @@ import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/statement_scene_widget.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
-class Act1_5Page extends StatefulWidget {
-  const Act1_5Page({Key? key}) : super(key: key);
+class Act1_12Page extends StatefulWidget {
+  const Act1_12Page({Key? key}) : super(key: key);
 
   @override
-  _Act1_5PageState createState() => _Act1_5PageState();
+  _Act1_12PageState createState() => _Act1_12PageState();
 }
 
-class _Act1_5PageState extends State<Act1_5Page> {
+class _Act1_12PageState extends State<Act1_12Page> {
   final ProgressService progressService = Get.put(ProgressService());
-
-  late AudioPlayer _player;
-
-  final String soundPath = 'BGM/serious_sound.mp3';
 
   bool _isIgnore = true;
 
-  void initResources() async {
-    _player = await AudioCache().play(soundPath);
-  }
+  late AudioPlayer _player;
+  final String audioPath = 'BGM/closet_sound.mp3';
 
+  initResources() async{
+    _player = await AudioCache().play(audioPath);
+  }
+  @override
+  void dispose() {
+    super.dispose();
+  }
   @override
   void initState() {
     super.initState();
+
     initResources();
     progressService.lastProgress = 5;
-
     Timer(const Duration(milliseconds: 600), () {
       progressService.progress.value = 1;
     });
@@ -57,7 +59,7 @@ class _Act1_5PageState extends State<Act1_5Page> {
           GestureDetector(
             onTap: () {},
             child: Image.asset(
-              'assets/background/tortureroom.png',
+              'assets/background/food.png',
               width: Get.width,
               height: Get.height,
               fit: BoxFit.fill,
@@ -76,51 +78,54 @@ class _Act1_5PageState extends State<Act1_5Page> {
             ),
           ),
           Obx(
-            () => ProsteIndexedStack(
+                () => ProsteIndexedStack(
                 index: progressService.progress.value,
                 children: [
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        rightPerson: 'assets/character/kimjaegyu1.png',
-                        leftPerson: 'assets/character/professor.png',
-                        statement: '제임스 류에 대해 확인되었다. 알고 있는 모든 사실을 실토해라.',
-                        name: '김재규'),
+                      leftPerson: 'assets/character/chajichul.png',
+                        rightPerson: 'assets/character/parkjunghee1.png',
+                        statement: '차실장 덕분에 미 대사관에서 김부장의 속내를 알 수 있었어.',
+                        name: '박정희'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/kimjaegyu1.png',
-                        rightPerson: 'assets/character/professor.png',
-                        statement:
-                            '미국에서 제임스 류 라는 중앙정보부 요원의 의뢰로 강형욱을 도청했고, 한국으로 돌아온 후에는 김재규에 대한 도청을 의뢰받았소.',
-                        name: '교수'),
+                        leftPerson: 'assets/character/chajichul.png',
+                        rightPerson: 'assets/character/parkjunghee1.png',
+                        statement: '아닙니다 각하. 당연한 일을 했을 뿐입니다.',
+                        name: '차지철'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '김재규 부장이 찾아본 결과 제임스 류의 한국 이름은 유동훈.',
-                        name: '나레이션'),
+                        leftPerson: 'assets/character/chajichul.png',
+                        rightPerson: 'assets/character/parkjunghee1.png',
+                        statement: '나를 몰아내겠다고 하는 주한대사나 김재규 부장. 그 새끼나 다 똑같은 새끼들이다. 미국에게 붙어먹고 친구나 죽인 교활한 백정같은 배신자 새끼일 뿐이야!',
+                        name: '박정희'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement:
-                            '그는 차지철 실장이 군인이었던 시절 그의 밑에서 복무한 부대원 출신이었으며, 차지철 실장의 추천으로 중앙정보부에 들어온 차지철 실장의 세작이었다는 것을 알게 된다.',
-                        name: '나레이션'),
+                        leftPerson: 'assets/character/chajichul.png',
+                        rightPerson: 'assets/character/parkjunghee1.png',
+                        statement: '김재규를 어떻게 하면 좋겠습니까?',
+                        name: '차지철'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement:
-                            '유동훈의 목적은 프랑스 주재 한국대사와 짜고 프랑스로 강형욱을 유인하여 현지에서 암살하는 것이었다.',
-                        name: '나레이션'),
+                        leftPerson: 'assets/character/chajichul.png',
+                        rightPerson: 'assets/character/parkjunghee1.png',
+                        statement: '임자 하고 싶은 대로 해. 임자 곁에는 내가 있잖아!',
+                        name: '박정희'),
                   ),
                 ]),
           ),
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: () async {
-                Get.log('IgnorePointer tapped...');
-                await _player.stop();
-                Get.offNamed('/act1-6');
+              onTap: ()  {
+                _player.stop();
+                progressService.resetProgress();
+                Get.offNamed('/act1-13');
               },
               child: Container(
                 color: Colors.transparent,

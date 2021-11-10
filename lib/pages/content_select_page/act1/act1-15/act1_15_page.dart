@@ -7,20 +7,20 @@ import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/statement_scene_widget.dart';
 import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
-class Act1_11Page extends StatefulWidget {
-  const Act1_11Page({Key? key}) : super(key: key);
+class Act1_15Page extends StatefulWidget {
+  const Act1_15Page({Key? key}) : super(key: key);
 
   @override
-  _Act1_11PageState createState() => _Act1_11PageState();
+  _Act1_15PageState createState() => _Act1_15PageState();
 }
 
-class _Act1_11PageState extends State<Act1_11Page> {
+class _Act1_15PageState extends State<Act1_15Page> {
   final ProgressService progressService = Get.put(ProgressService());
 
   bool _isIgnore = true;
 
   late AudioPlayer _player;
-  final String audioPath = 'BGM/closet_sound.mp3';
+  final String audioPath = 'BGM/goongjungdong_sound.mp3';
 
   initResources() async{
     _player = await AudioCache().play(audioPath);
@@ -34,7 +34,7 @@ class _Act1_11PageState extends State<Act1_11Page> {
     super.initState();
 
     initResources();
-    progressService.lastProgress = 2;
+    progressService.lastProgress = 1;
     Timer(const Duration(milliseconds: 600), () {
       progressService.progress.value = 1;
     });
@@ -59,7 +59,7 @@ class _Act1_11PageState extends State<Act1_11Page> {
           GestureDetector(
             onTap: () {},
             child: Image.asset(
-              'assets/background/closet.png',
+              'assets/background/home.png',
               width: Get.width,
               height: Get.height,
               fit: BoxFit.fill,
@@ -84,12 +84,7 @@ class _Act1_11PageState extends State<Act1_11Page> {
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '이대로라면 박정희로부터 버림받을 위기에 놓였다고 생각한 김재규는 비가 억수같이 쏟아지는 밤,',
-                        name: '나레이션'),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        statement: '차 실장과 박 대통령이 술을 나누는 술자리로 잠입해 옆방의 옷장에서 둘이 나누는 이야기를 도청한다.',
+                        statement: '김재규 부장은 비밀 금고에서 권총을 챙겨 주머니에 찔러 넣고 궁정동 안가의 만찬 장소로 향한다.',
                         name: '나레이션'),
                   ),
                 ]),
@@ -100,7 +95,7 @@ class _Act1_11PageState extends State<Act1_11Page> {
               onTap: ()  {
                 _player.stop();
                 progressService.resetProgress();
-                Get.offNamed('/act1/question4');
+                Get.offNamed('/act1-16');
               },
               child: Container(
                 color: Colors.transparent,

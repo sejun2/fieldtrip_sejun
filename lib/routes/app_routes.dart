@@ -1,4 +1,4 @@
-abstract class AppRoutes{
+abstract class AppRoutes {
   static String SPLASH = '/splash';
   static String ACT1 = '/act1';
   static String SELECTION = '/select';
@@ -15,9 +15,20 @@ abstract class AppRoutes{
   static String ACT1_7 = '/act1-7';
   static String Q3 = '/act1/question3';
   static String ACT1_8 = '/act1-8';
-  static String Q3_hint= '/act1/hint3';
+  static String Q3_hint = '/act1/hint3';
   static String ACT1_9 = '/act1-9';
   static String ACT1_11 = '/act1-11';
+  static String Q4_HINT = '/act1/hint4';
   static String Q4 = '/act1/question4';
   static String ACT1_10 = '/act1-10';
+  static String ACT1_12 = '/act1-12';
+  static String ACT1_13 = '/act1-13';
+  static String ACT1_14 = '/act1-14';
+  static String ACT1_15 = '/act1-15';
+  static String ACT1_16 = '/act1-16';
+  static String ACT1_17 = '/act1-17';
+  static String ACT1_18 = '/act1-18';
+  static String ACT1_19 = '/act1-19';
+  static String ACT1_20 = '/act1-20';
+  static String Q5 = '/act1/question5';
 }
