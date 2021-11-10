@@ -11,7 +11,7 @@ import 'package:history_game_project/pages/content_select_page/act1/act1-14/act1
 import 'package:history_game_project/pages/content_select_page/act1/act1-15/act1_15_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-16/act1_16_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-17/act1_17_page.dart';
-import 'package:history_game_project/pages/content_select_page/act1/act1-18/Question5Page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-18/question5_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_18_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_19_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_20_page.dart';

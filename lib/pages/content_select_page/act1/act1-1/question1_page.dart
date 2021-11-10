@@ -155,12 +155,9 @@ class _Question1PageState extends State<Question1Page>
                   onTap: () {
                     hintController.forward();
                   },
-                  child: const Icon(
-                    Icons.highlight,
-                    size: 40,
-                    color: Colors.white,
-                  )),
-              right: 20,
+                  child: Image.asset('assets/background/icon_hint.png', width: 60, fit: BoxFit.fitWidth,),
+              ),
+              right: 50,
               top: 30,
             ),
             _buildContent(),
@@ -365,7 +362,7 @@ class _Question1PageState extends State<Question1Page>
             ),
           ].map((e) {
             return Padding(
-              padding: const EdgeInsets.only(left: 18, bottom: 8, right: 18),
+              padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
               child: e,
             );
           }).toList(),

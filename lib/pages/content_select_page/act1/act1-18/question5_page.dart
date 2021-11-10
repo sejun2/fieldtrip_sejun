@@ -8,7 +8,7 @@ import 'package:history_game_project/services/progress_service.dart';
 import '../../../../constant.dart';
 
 class Question5Page extends StatefulWidget {
-  const Question5Page({Key? key}) : super(key: key);
+  const Question5Page({key}) : super(key: key);
 
   @override
   _Question5PageState createState() => _Question5PageState();
@@ -146,15 +146,12 @@ class _Question5PageState extends State<Question5Page>
           ),
           Positioned(
             child: GestureDetector(
-                onTap: () {
-                  hintController.forward();
-                },
-                child: const Icon(
-                  Icons.highlight,
-                  size: 40,
-                  color: Colors.white,
-                )),
-            right: 20,
+              onTap: () {
+                hintController.forward();
+              },
+              child: Image.asset('assets/background/icon_hint.png', width: 60, fit: BoxFit.fitWidth,),
+            ),
+            right: 50,
             top: 30,
           ),
           _buildContent(),
@@ -345,7 +342,7 @@ class _Question5PageState extends State<Question5Page>
             ),
           ].map((e) {
             return Padding(
-              padding: const EdgeInsets.only(left: 18, bottom: 8, right: 18),
+              padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
               child: e,
             );
           }).toList(),
