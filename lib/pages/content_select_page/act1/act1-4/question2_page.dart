@@ -252,14 +252,12 @@ class _Question2PageState extends State<Question2Page>
                                 height: Get.height * 2 / 5,
                               ),
                             ),
-                            Flexible(
-                              child: Expanded(
-                                child: Text(
-                                  hintList[_hintIndex],
-                                  style: statementTextStyle,
-                                  overflow: TextOverflow.visible,
-                                ),
-                              ),
+                            Text(
+                              hintList[_hintIndex],
+                              style: statementTextStyle,
+                              softWrap: true,
+                              textAlign: TextAlign.center,
+                              overflow: TextOverflow.visible,
                             ),
                           ],
                         ),

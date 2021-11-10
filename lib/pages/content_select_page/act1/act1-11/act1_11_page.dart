@@ -34,9 +34,7 @@ class _Act1_11PageState extends State<Act1_11Page> {
     super.initState();
 
     initResources();
-
     progressService.lastProgress = 2;
-
     Timer(const Duration(milliseconds: 600), () {
       progressService.progress.value = 1;
     });
@@ -92,7 +90,6 @@ class _Act1_11PageState extends State<Act1_11Page> {
                         statement: '차 실장과 박 대통령이 술을 나누는 술자리로 잠입해 옆방의 옷장에서 둘이 나누는 이야기를 도청한다.',
                         name: '나레이션'),
                   ),
-
                 ]),
           ),
           IgnorePointer(
