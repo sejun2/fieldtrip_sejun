@@ -25,7 +25,7 @@ class ContentSelectListItem extends StatelessWidget {
             Expanded(
                 flex: 2,
                 child: Container(
-                    color: Colors.blue,
+                    color: Colors.white,
                     padding: const EdgeInsets.all(12),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
@@ -33,18 +33,18 @@ class ContentSelectListItem extends StatelessWidget {
             Expanded(
               flex:3,
               child: Container(
-                color: Colors.red,
+                color: Colors.white,
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      mainTitle,
+                      mainTitle,style: const TextStyle(color: Colors.black45, fontSize: 14),
                     ),
-                    Text(subTitle),
-                    Text(isFree == true ? '무료' : '유료'),
-                    Text(content)
+                    Text(subTitle, style: const TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),),
+                    Text(isFree == true ? '무료' : '유료', style: const TextStyle(color: Colors.black45, fontSize: 14)),
+                    Text(content, softWrap: true,style: const TextStyle(color: Colors.black45, fontSize: 14))
                   ]
                 )
               ),

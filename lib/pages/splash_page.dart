@@ -43,10 +43,12 @@ class _SplashPageState extends State<SplashPage> {
           Positioned(
               child: Image.asset('assets/background/startbackground.png',
                   width: Get.width, height: Get.height, fit: BoxFit.fill)),
+
           Positioned(child: Padding(
             padding: const EdgeInsets.only(left: 28),
             child: Image.asset('assets/background/logo.png', width: Get.width/2, ),
           ),top : Get.height * 1 / 11,),
+
           Positioned(
               bottom: Get.height / 5,
               child: const TextButton(
@@ -56,6 +58,7 @@ class _SplashPageState extends State<SplashPage> {
                   style: TextStyle(color: Colors.brown),
                 ),
               )),
+
           Positioned(
               bottom: Get.height / 3,
               child: GetBuilder<SplashController>(

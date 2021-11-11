@@ -19,15 +19,12 @@ class _ContentSelectPageState extends State<ContentSelectPage> {
         width: Get.width,
         padding: defaultPadding,
         child: ListView.separated(
-          itemCount: 2,
+          itemCount: 1,
           itemBuilder: (context, index) {
             switch (index) {
               case 0:
                 return const ContentSelectListItem('assets/background/gun.png',
-                    'MainTitle', 'subTitle', true, 'content');
-              case 1:
-                return const ContentSelectListItem('assets/background/gun.png',
-                    'MainTitle', 'subTitle', true, 'content');
+                    '전국(온라인)', '그날의 총성', true, '5.18 민주화 운동의 시작이 된 사건을 체험하라.');
               default:
                 return const ContentSelectListItem('assets/background/gun.png',
                     'MainTitle', 'subTitle', true, 'content');

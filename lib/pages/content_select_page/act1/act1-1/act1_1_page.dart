@@ -176,7 +176,7 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                       statement:
-                          '이것이 세상에 알려지면 가뜩이나 정권 유지가 위기에 놓은 대통령은 궁지에 몰릴 터였다.',
+                          '이것이 세상에 알려지면 가뜩이나 정권 유지가 위기에 놓인 대통령은 궁지에 몰릴 터였다.',
                       name: '나레이션',
                     ),
                   ),

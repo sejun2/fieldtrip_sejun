@@ -15,6 +15,8 @@ class _IntroPageState extends State<IntroPage> {
   double op2 = 0;
   double op3 = 0;
 
+  bool _isFirst = true;
+
   bool _isClickable = false;
   bool _canRun = false;
 
@@ -105,7 +107,10 @@ class _IntroPageState extends State<IntroPage> {
                         _canRun = true;
                       }
                     });
-                    _player = await AudioCache().play(_typingSoundPath);
+                    if (_isFirst) {
+                      _player = await AudioCache().play(_typingSoundPath);
+                      _isFirst = false;
+                    }
                   }
                 },
                 duration: const Duration(seconds: 3),
