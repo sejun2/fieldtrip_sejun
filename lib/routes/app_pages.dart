@@ -11,6 +11,8 @@ import 'package:history_game_project/pages/content_select_page/act1/act1-14/act1
 import 'package:history_game_project/pages/content_select_page/act1/act1-15/act1_15_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-16/act1_16_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-17/act1_17_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_21_page.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_ending_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-18/question5_2_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-18/question5_page.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_18_page.dart';
@@ -69,5 +71,7 @@ abstract class AppPages {
     GetPage(name: AppRoutes.ACT1_20, page: () => const Act1_20Page()),
     GetPage(name: AppRoutes.Q5, page: () => const Question5Page()),
     GetPage(name: AppRoutes.Q5_2, page: () => const Question5_2Page()),
+    GetPage(name: AppRoutes.ACT1_21, page: () => const Act1_21Page()),
+    GetPage(name: AppRoutes.ACT1_ENDING, page: () => const Act1EndingPage()),
   ];
 }

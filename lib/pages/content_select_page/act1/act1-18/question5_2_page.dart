@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/services/progress_service.dart';
 
@@ -220,8 +221,6 @@ class _Question5_2PageState extends State<Question5_2Page>
             height: Get.height,
             fit: BoxFit.fill,
           ),
-
-
           _buildContent(),
           //정답입니다 위젯
           AnimatedBuilder(
@@ -426,159 +425,188 @@ class _Question5_2PageState extends State<Question5_2Page>
   }
 
   Widget _buildContent() {
-    return Positioned(
+    return SingleChildScrollView(
+      child: Positioned(
         left: 0,
         right: 0,
-        top: 0,
-        bottom: 0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Align(
-                child: Text(
-                  '금고 문제',
-                  style: questionTextStyle,
-                ),
-                alignment: Alignment.center),
-            const SizedBox(
-              height: 20,
-            ),
-            const Align(
-              child: Text('금고의 비번 : ◆ ● ■', style: questionTextStyle),
-              alignment: Alignment.center,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50, bottom : 50),
+          child: Center(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //첫 칼럼
-                Column(
-                  children:  [
-                    const Text(
-                      '5 ★ 2 = 11',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-                    const Text(
-                        '2 ★ 4 = 14',   style: TextStyle(fontSize: 30, color: Colors.black, height: 2),
+                const Align(
+                    child: Text(
+                      '금고 문제',
+                      style: questionTextStyle,
                     ),
-                    const Text(
-                      '3 ★ 2 = 7',   style: TextStyle(fontSize: 30, color: Colors.black, height: 2),
-                    ),
-                    const Text(
-                      '4 ★ 5 = 30',   style: TextStyle(fontSize: 30, color: Colors.black, height: 2),
-                    ),
-                    const Text(
-                      '8 ★ 4 = ◆' ,  style: TextStyle(fontSize: 30, color: Colors.black, height: 2),
-                    ),
-                    GestureDetector(onTap: (){hintController.forward();},child: Image.asset('assets/background/icon_hint.png', width: 50,)),
-                  ],
+                    alignment: Alignment.center),
+                const SizedBox(
+                  height: 20,
                 ),
-                Column(
+                const Align(
+                  child: Text('금고의 비번 : ◆ ● ■', style: questionTextStyle),
+                  alignment: Alignment.center,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                Wrap(
                   children: [
-                    Container(
-                      color: Colors.black,
-                      width: 2,
-                      height: Get.height* 3/7,
-                    )
+                    //첫 칼럼
+                    Wrap(
+                      direction: Axis.vertical,
+                      children: [
+                        const Text(
+                          '5 ★ 2 = 11',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+                        const Text(
+                          '2 ★ 4 = 14', style: TextStyle(
+                            fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        const Text(
+                          '3 ★ 2 = 7', style: TextStyle(
+                            fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        const Text(
+                          '4 ★ 5 = 30', style: TextStyle(
+                            fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        const Text(
+                          '8 ★ 4 = ◆', style: TextStyle(
+                            fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        GestureDetector(onTap: () {
+                          hintController.forward();
+                        },
+                            child: Image.asset(
+                              'assets/background/icon_hint.png', width: 50,)),
+                      ],
+                    ),
+                    Wrap(direction: Axis.vertical,
+                      children: [
+                        Container(
+                          color: Colors.black,
+                          width: 2,
+                          height: Get.height * 3 / 7,
+                        )
+                      ],
+                    ),
+                    Wrap(direction: Axis.vertical,
+                      children: [
+                        const Text(
+                          '5 + 1 = 46',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+
+                        const Text(
+                          '6 + 4 = 210',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+
+                        const Text(
+                          '8 + 7 = 115',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+
+                        const Text(
+                          '7 + 1 = ●',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+
+                        const Text(
+                          '',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+
+                        GestureDetector(onTap: () {
+                          hint2Controller.forward();
+                        },
+                            child: Image.asset(
+                              'assets/background/icon_hint.png', width: 50,)),
+                      ],
+                    ),
+                    Wrap(
+                      direction: Axis.vertical,
+                      children: [
+                        Container(
+                          color: Colors.black,
+                          width: 2,
+                          height: Get.height * 3 / 7,
+                        )
+                      ],
+                    ),
+                    Wrap(direction: Axis.vertical,
+                      children: [
+                        const Text(
+                          '1 – 3 + 4 = 100',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+                        const Text(
+                          '4 – 6 + 9 = 999',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+                        const Text(
+                          '2 – 6 + 7 = 879',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+                        const Text(
+                          '3– 3 + 6 = ■',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+                        const Text(
+                          '',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),),
+
+                        GestureDetector(onTap: () {
+                          hint3Controller.forward();
+                        },
+                            child: Image.asset(
+                              'assets/background/icon_hint.png', width: 50,)),
+                      ],
+                    ),
                   ],
                 ),
-                Column(
-                  children:  [
-                    const Text(
-                      '5 + 1 = 46',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-
-                    const Text(
-                      '6 + 4 = 210',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-
-                    const Text(
-                      '8 + 7 = 115',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-
-                    const Text(
-                      '7 + 1 = ●',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-
-                    const Text(
-                      '',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-
-                    GestureDetector(onTap: (){
-                      hint2Controller.forward();
-                    },child: Image.asset('assets/background/icon_hint.png', width: 50,)),
-                  ],
+                //정답 입력 위젯
+                SizedBox(
+                  width: Get.width,
+                  child: TextFormField(
+                    controller: answerTextController,
+                    style: const TextStyle(color: Colors.white),
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent)),
+                      focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent)),
+                      suffixIcon: GestureDetector(
+                          onTap: () {
+                            print('check icon clicked...');
+                            checkAnswer();
+                          },
+                          child: Image.asset(
+                            'assets/background/icon_ok.png',
+                            width: 34,
+                            height: 34,
+                          )),
+                      fillColor: Colors.black,
+                      hintText: '정답을 입력하세요.',
+                    ),
+                  ),
                 ),
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.black,
-                      width: 2,
-                      height: Get.height* 3/7,
-                    )
-                  ],
-                ),
-                Column(
-                  children:  [
-                    const Text(
-                      '1 – 3 + 4 = 100',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-                    const Text(
-                      '4 – 6 + 9 = 999',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-                    const Text(
-                      '2 – 6 + 7 = 879',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-                    const Text(
-                      '3– 3 + 6 = ■',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-                    const Text(
-                      '',
-                      style: TextStyle(fontSize: 30, color: Colors.black, height: 2),),
-
-                    GestureDetector(onTap: (){
-                      hint3Controller.forward();
-                    },child: Image.asset('assets/background/icon_hint.png', width: 50,)),
-                  ],
-                ),
-              ],
+              ].map((e) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
+                  child: e,
+                );
+              }).toList(),
             ),
-            //정답 입력 위젯
-            SizedBox(
-              width: Get.width,
-              child: TextFormField(
-                controller: answerTextController,
-                style: const TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
-                decoration: InputDecoration(
-                  enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)),
-                  focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)),
-                  suffixIcon: GestureDetector(
-                      onTap: () {
-                        print('check icon clicked...');
-                        checkAnswer();
-                      },
-                      child: Image.asset(
-                        'assets/background/icon_ok.png',
-                        width: 34,
-                        height: 34,
-                      )),
-                  fillColor: Colors.black,
-                  hintText: '정답을 입력하세요.',
-                ),
-              ),
-            ),
-          ].map((e) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
-              child: e,
-            );
-          }).toList(),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 
   void checkAnswer() {
