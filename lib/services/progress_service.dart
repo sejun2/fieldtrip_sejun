@@ -10,8 +10,8 @@ class ProgressService extends GetxService{
     Get.log('init progressController...');
     await 2.delay();
     return this;
-
   }
+
   incrementProgress() async{
     Get.log('incrementProgress called...');
     Get.log('current lastProcess : $lastProgress');
@@ -21,6 +21,7 @@ class ProgressService extends GetxService{
     }
     progress.value++;
   }
+
   resetProgress() async {
     Get.log('resetProgress called...');
     progress.value = 0;
@@ -28,4 +29,3 @@ class ProgressService extends GetxService{
     isDone.value = false;
   }
 }
-

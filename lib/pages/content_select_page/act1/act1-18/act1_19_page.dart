@@ -24,7 +24,6 @@ class _Act1_19PageState extends State<Act1_19Page> {
     _initResources();
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
