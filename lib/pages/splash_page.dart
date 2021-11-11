@@ -62,15 +62,6 @@ class _SplashPageState extends State<SplashPage> {
                 builder: (controller) {
                   ///Show only play icon for fast testing
                   if (controller.currentStep != 8) {
-                    return GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/select');
-                        },
-                        child: const Icon(
-                          Icons.play_circle_filled_rounded,
-                          size: 45,
-                          color: Colors.brown,
-                        ));
                     return CircularStepProgressIndicator(
                       totalSteps: 8,
                       currentStep: controller.currentStep,
