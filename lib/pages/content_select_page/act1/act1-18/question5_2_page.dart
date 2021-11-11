@@ -614,6 +614,7 @@ class _Question5_2PageState extends State<Question5_2Page>
       answerController.forward(from: 0.0);
       Timer(const Duration(milliseconds: 600), () async {
         await _player.stop();
+        Get.offNamed('/act1-21');
       });
     } else {
       notAnswerController.forward(from: 0.0);
