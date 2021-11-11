@@ -74,10 +74,9 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
     print('didChangeDependencies called...');
   }
 
-  //TODO : 1. Tap 할 경우 문자 전부 표시 2. LongPress 할 경우 문자가 나타나는 속도 빠르게 -> intervalDuration 조절 필요
-
   @override
   Widget build(BuildContext context) {
+
     return AnimatedBuilder(
       builder: (context, child) {
         String currentText = widget.text.substring(0, _textAnimation.value);
@@ -87,6 +86,7 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
             print('onTap called...');
             _textAnimationController.value = widget.text.length.toDouble();
           },
+
           onLongPress: () {
             print('onLongPress called...');
             _textAnimationController.duration =
@@ -95,6 +95,7 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
               _textAnimationController.forward();
             }
           },
+
           onLongPressEnd: (_) {
             print('onLongPressEnd called...');
             _textAnimationController.duration = widget.originIntervalDuration;
@@ -102,10 +103,12 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
               _textAnimationController.forward();
             }
           },
+
           child: Text(
             currentText,
             style: widget.textStyle,
           ),
+
         );
       },
       animation: _textAnimation,

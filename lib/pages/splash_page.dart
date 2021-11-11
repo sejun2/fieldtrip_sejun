@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/controllers/splash_controller.dart';
+import 'package:history_game_project/services/progress_service.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class SplashPage extends StatefulWidget {
@@ -43,12 +44,16 @@ class _SplashPageState extends State<SplashPage> {
           Positioned(
               child: Image.asset('assets/background/startbackground.png',
                   width: Get.width, height: Get.height, fit: BoxFit.fill)),
-
-          Positioned(child: Padding(
-            padding: const EdgeInsets.only(left: 28),
-            child: Image.asset('assets/background/logo.png', width: Get.width/2, ),
-          ),top : Get.height * 1 / 11,),
-
+          Positioned(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 28),
+              child: Image.asset(
+                'assets/background/logo.png',
+                width: Get.width / 2,
+              ),
+            ),
+            top: Get.height * 1 / 11,
+          ),
           Positioned(
               bottom: Get.height / 5,
               child: const TextButton(
@@ -58,7 +63,6 @@ class _SplashPageState extends State<SplashPage> {
                   style: TextStyle(color: Colors.brown),
                 ),
               )),
-
           Positioned(
               bottom: Get.height / 3,
               child: GetBuilder<SplashController>(

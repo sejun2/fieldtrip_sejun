@@ -48,7 +48,7 @@ class _StatementSceneWidgetState extends State<StatementSceneWidget> {
               ? Positioned(
                   child: Image.asset(
                     '${widget.leftPerson}',
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.fitHeight,
                     height: (Get.height - Get.height * 2 / 5) *3/5 ,
                     width: (Get.width) * 2/5,
                   ),
@@ -65,7 +65,7 @@ class _StatementSceneWidgetState extends State<StatementSceneWidget> {
                   child: Image.asset(
                     '${widget.rightPerson}',
                     width: Get.width * 2/5,
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.fitHeight,
                     height: (Get.height - Get.height * 2 / 5)*3/5 ,
                   ))
               : Container(),
