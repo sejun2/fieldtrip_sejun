@@ -372,8 +372,8 @@ class _Question1PageState extends State<Question1Page>
   void checkAnswer() {
     if (answerTextController.text.trim() == '희망은대통령을끌어내리는것') {
       answerController.forward();
-      Timer(const Duration(milliseconds: 800), () {
-        _player.stop();
+      Timer(const Duration(milliseconds: 800), () async {
+        await _player.stop();
         Get.offNamed('/act1-2');
       });
     } else {
