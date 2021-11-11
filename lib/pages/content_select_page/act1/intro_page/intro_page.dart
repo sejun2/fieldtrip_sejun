@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +13,10 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
+
   double op1 = 0;
   double op2 = 0;
   double op3 = 0;
-
-  bool _isFirst = true;
 
   bool _isClickable = false;
   bool _canRun = false;
@@ -32,7 +33,7 @@ class _IntroPageState extends State<IntroPage> {
         TyperAnimatedText('', textStyle: const TextStyle(color: Colors.white))
       ]);
 
-  void _initResources() {
+  void _initResources() async {
     content1 = AnimatedTextKit(
       isRepeatingAnimation: false,
       animatedTexts: [
@@ -42,10 +43,20 @@ class _IntroPageState extends State<IntroPage> {
       ],
       onFinished: () async {
         Get.log('onFinished...');
+        _isClickable = true;
         //타이핑 소리 멈춤
         await _player.stop();
       },
     );
+
+    Timer(const Duration(seconds: 6) , () async {
+      _player = (await AudioCache().play(_typingSoundPath));
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -66,7 +77,6 @@ class _IntroPageState extends State<IntroPage> {
         op1 = 0;
         op2 = 0.00001;
         op3 = 1;
-        _isClickable = true;
       });
     });
     super.initState();
@@ -107,10 +117,6 @@ class _IntroPageState extends State<IntroPage> {
                         _canRun = true;
                       }
                     });
-                    if (_isFirst) {
-                      _player = await AudioCache().play(_typingSoundPath);
-                      _isFirst = false;
-                    }
                   }
                 },
                 duration: const Duration(seconds: 3),
