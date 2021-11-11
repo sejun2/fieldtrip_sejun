@@ -295,18 +295,21 @@ class _Question4PageState extends State<Question4Page>
             const SizedBox(
               height: 12,
             ),
-            Wrap(
-              alignment: WrapAlignment.center,
-              children: [
-                Image.asset('assets/background/hint15.png', width: 40, height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint24.png', width: 40, height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint33.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint24.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint15.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint6.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint7.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-                Image.asset('assets/background/hint8.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
-              ].map((e) => Padding(padding: const EdgeInsets.all(8), child: e,)).toList(),
+            Align(
+              alignment: Alignment.center,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  Image.asset('assets/background/hint15.png', width: 40, height:40 , fit: BoxFit.fitWidth,),
+                  Image.asset('assets/background/hint24.png', width: 40, height:40 , fit: BoxFit.fitWidth,),
+                  Image.asset('assets/background/hint33.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                  Image.asset('assets/background/hint24.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                  Image.asset('assets/background/hint15.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                  Image.asset('assets/background/hint6.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                  Image.asset('assets/background/hint7.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                  Image.asset('assets/background/hint8.png', width:40 , height:40 , fit: BoxFit.fitWidth,),
+                ].map((e) => Padding(padding: const EdgeInsets.all(8), child: e,)).toList(),
+              ),
             ),
             const Align(
                 child: Text(
