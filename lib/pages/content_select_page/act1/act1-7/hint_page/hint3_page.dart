@@ -24,80 +24,81 @@ class Hint3Page extends StatelessWidget {
 
   Widget _buildContent() {
     return Positioned(
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Align(
-                child: RichText(
-                  text: const TextSpan(children: [
-                    TextSpan(text: '수지 박 톰슨 포섭', style: TextStyle(color: Colors.black,fontSize: 35 )),
-                    TextSpan(
-                      text: '2486 = ',
-                      style: questionTextStyle,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Align(
+                    child: RichText(
+                      text: const TextSpan(children: [
+                        TextSpan(text: '수지 박 톰슨 포섭', style: TextStyle(color: Colors.black,fontSize: 35 )),
+                        TextSpan(
+                          text: '2486 = ',
+                          style: questionTextStyle,
+                        ),
+                        TextSpan(
+                          text: 'ㅇ\n',
+                          style: hintTextStyle,
+                        ),
+                        TextSpan(
+                          text: '7894163 = ',
+                          style: questionTextStyle,
+                        ),
+                        TextSpan(
+                          text: 'ㅠ\n',
+                          style: hintTextStyle,
+                        ),
+                        TextSpan(
+                          text: '2486 = ',
+                          style: questionTextStyle,
+                        ),
+                        TextSpan(
+                          text: 'ㅇ\n',
+                          style: hintTextStyle,
+                        ),
+                        TextSpan(
+                          text: '963 = ',
+                          style: questionTextStyle,
+                        ),
+                        TextSpan(
+                          text: 'ㅣ\n',
+                          style: hintTextStyle,
+                        ),
+                        TextSpan(
+                          text: '74123 = ',
+                          style: questionTextStyle,
+                        ),
+                        TextSpan(
+                          text: 'ㄴ\n',
+                          style: hintTextStyle,
+                        ),
+                      ]),
                     ),
-                    TextSpan(
-                      text: 'ㅇ\n',
-                      style: hintTextStyle,
+                    alignment: Alignment.center),
+                Align(
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Image.asset(
+                      'assets/background/icon_ok.png',
+                      width: 50,
+                      height: 50,
                     ),
-                    TextSpan(
-                      text: '7894163 = ',
-                      style: questionTextStyle,
-                    ),
-                    TextSpan(
-                      text: 'ㅠ\n',
-                      style: hintTextStyle,
-                    ),
-                    TextSpan(
-                      text: '2486 = ',
-                      style: questionTextStyle,
-                    ),
-                    TextSpan(
-                      text: 'ㅇ\n',
-                      style: hintTextStyle,
-                    ),
-                    TextSpan(
-                      text: '963 = ',
-                      style: questionTextStyle,
-                    ),
-                    TextSpan(
-                      text: 'ㅣ\n',
-                      style: hintTextStyle,
-                    ),
-                    TextSpan(
-                      text: '74123 = ',
-                      style: questionTextStyle,
-                    ),
-                    TextSpan(
-                      text: 'ㄴ\n',
-                      style: hintTextStyle,
-                    ),
-                  ]),
+                  ),
                 ),
-                alignment: Alignment.center),
-            Align(
-              child: GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Image.asset(
-                  'assets/background/icon_ok.png',
-                  width: 50,
-                  height: 50,
-                ),
-              ),
+                //정답 입력 위젯
+              ].map((e) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 18, bottom: 8, right: 18),
+                  child: e,
+                );
+              }).toList(),
             ),
-            //정답 입력 위젯
-          ].map((e) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 18, bottom: 8, right: 18),
-              child: e,
-            );
-          }).toList(),
+          ),
         ));
   }
 }

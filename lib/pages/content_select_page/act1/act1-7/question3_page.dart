@@ -270,84 +270,85 @@ class _Question3PageState extends State<Question3Page>
 
   Widget _buildContent() {
     return Positioned(
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Align(
-                child: Text(
-                  '수지 박 톰슨 포섭',
-                  style: questionTextStyle,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Align(
+                    child: Text(
+                      '수지 박 톰슨 포섭',
+                      style: questionTextStyle,
+                    ),
+                    alignment: Alignment.center),
+                const SizedBox(
+                  height: 12,
                 ),
-                alignment: Alignment.center),
-            const SizedBox(
-              height: 12,
-            ),
-            const Align(
-              child: Text('2486', style: questionTextStyle),
-              alignment: Alignment.center,
-            ),
-            const Align(
-                child: Text('7894163', style: questionTextStyle),
-                alignment: Alignment.center),
-            const Align(
-              child: Text(
-                '2486',
-                style: questionTextStyle,
-              ),
-              alignment: Alignment.center,
-            ),
-            const Align(
-              child: Text(
-                '963',
-                style: questionTextStyle,
-              ),
-              alignment: Alignment.center,
-            ),
-            const Align(
-              child: Text(
-                '74123',
-                style: questionTextStyle,
-              ),
-              alignment: Alignment.center,
-            ),
-            //정답 입력 위젯
-            SizedBox(
-              width: Get.width,
-              child: TextFormField(
-                controller: answerTextController,
-                style: const TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
-                decoration: InputDecoration(
-                  enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)),
-                  focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)),
-                  suffixIcon: GestureDetector(
-                      onTap: () {
-                        print('check icon clicked...');
-                        checkAnswer();
-                      },
-                      child: Image.asset(
-                        'assets/background/icon_ok.png',
-                        width: 34,
-                        height: 34,
-                      )),
-                  fillColor: Colors.black,
-                  hintText: '정답을 입력하세요.',
+                const Align(
+                  child: Text('2486', style: questionTextStyle),
+                  alignment: Alignment.center,
                 ),
-              ),
+                const Align(
+                    child: Text('7894163', style: questionTextStyle),
+                    alignment: Alignment.center),
+                const Align(
+                  child: Text(
+                    '2486',
+                    style: questionTextStyle,
+                  ),
+                  alignment: Alignment.center,
+                ),
+                const Align(
+                  child: Text(
+                    '963',
+                    style: questionTextStyle,
+                  ),
+                  alignment: Alignment.center,
+                ),
+                const Align(
+                  child: Text(
+                    '74123',
+                    style: questionTextStyle,
+                  ),
+                  alignment: Alignment.center,
+                ),
+                //정답 입력 위젯
+                SizedBox(
+                  width: Get.width,
+                  child: TextFormField(
+                    controller: answerTextController,
+                    style: const TextStyle(color: Colors.white),
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent)),
+                      focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent)),
+                      suffixIcon: GestureDetector(
+                          onTap: () {
+                            print('check icon clicked...');
+                            checkAnswer();
+                          },
+                          child: Image.asset(
+                            'assets/background/icon_ok.png',
+                            width: 34,
+                            height: 34,
+                          )),
+                      fillColor: Colors.black,
+                      hintText: '정답을 입력하세요.',
+                    ),
+                  ),
+                ),
+              ].map((e) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
+                  child: e,
+                );
+              }).toList(),
             ),
-          ].map((e) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
-              child: e,
-            );
-          }).toList(),
+          ),
         ));
   }
 

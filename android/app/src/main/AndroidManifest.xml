@@ -4,6 +4,7 @@
         android:label="history_game_project"
         android:icon="@mipmap/ic_launcher">
         <activity
+            android:screenOrientation="landscape"
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

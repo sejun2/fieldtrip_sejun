@@ -26,116 +26,117 @@ class Hint4Page extends StatelessWidget {
 
   Widget _buildContent() {
     return Positioned(
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Align(
-                child: Text(
-                  '밀실 잠입',
-                  style: questionTextStyle,
-                ),
-                alignment: Alignment.center),
-            const SizedBox(
-              height: 12,
-            ),
-            Wrap(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/background/hint15.png',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.fitWidth,
+                const Align(
+                    child: Text(
+                      '밀실 잠입',
+                      style: questionTextStyle,
+                    ),
+                    alignment: Alignment.center),
+                const SizedBox(
+                  height: 12,
                 ),
-                Image.asset(
-                  'assets/background/hint24.png',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.fitWidth,
-                ),
-                Image.asset(
-                  'assets/background/hint33.png',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.fitWidth,
-                ),
-                Image.asset(
-                  'assets/background/hint24.png',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.fitWidth,
-                ),
-                Image.asset(
-                  'assets/background/hint15.png',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.fitWidth,
-                ),
-                Image.asset(
-                  'assets/background/hint6.png',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.fitWidth,
-                ),
-                Image.asset(
-                  'assets/background/hint7.png',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.fitWidth,
-                ),
-                Image.asset(
-                  'assets/background/hint8.png',
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.fitWidth,
-                ),
-              ]
-                  .map((e) => Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Stack(
-                          children: [
-                            Align(
-                              alignment: Alignment.center,
-                              child: e,
+                Wrap(
+                  children: [
+                    Image.asset(
+                      'assets/background/hint15.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    Image.asset(
+                      'assets/background/hint24.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    Image.asset(
+                      'assets/background/hint33.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    Image.asset(
+                      'assets/background/hint24.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    Image.asset(
+                      'assets/background/hint15.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    Image.asset(
+                      'assets/background/hint6.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    Image.asset(
+                      'assets/background/hint7.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    Image.asset(
+                      'assets/background/hint8.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ]
+                      .map((e) => Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Stack(
+                              children: [
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: e,
+                                ),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    '${getNumber(index++)}',
+                                    style: const TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30),
+                                  ),
+                                )
+                              ],
                             ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                '${getNumber(index++)}',
-                                style: const TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30),
-                              ),
-                            )
-                          ],
-                        ),
-                      ))
-                  .toList(),
-            ),
-            Align(
-              child: GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Image.asset(
-                  'assets/background/icon_ok.png',
-                  width: 50,
-                  height: 50,
+                          ))
+                      .toList(),
                 ),
-              ),
+                Align(
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Image.asset(
+                      'assets/background/icon_ok.png',
+                      width: 50,
+                      height: 50,
+                    ),
+                  ),
+                ),
+                //정답 입력 위젯
+              ].map((e) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 18, bottom: 8, right: 18),
+                  child: e,
+                );
+              }).toList(),
             ),
-            //정답 입력 위젯
-          ].map((e) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 18, bottom: 8, right: 18),
-              child: e,
-            );
-          }).toList(),
+          ),
         ));
   }
 

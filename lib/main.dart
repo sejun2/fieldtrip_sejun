@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/pages/splash_page.dart';
 
@@ -10,8 +11,14 @@ void main() async {
   runApp(const MyApp());
 }
 
+_initApp() async {
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.landscapeLeft]);
+}
+
 initServices() async {
   print('starting services ...');
+
   /// Here is where you put get_storage, hive, shared_pref initialization.
   /// or moor connection, or whatever that's async.
   //await Get.putAsync(SettingsService()).init();
@@ -22,8 +29,7 @@ initServices() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
-  @override
+  // This widget is the root of your application@override
   Widget build(BuildContext context) {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -31,8 +37,7 @@ class MyApp extends StatelessWidget {
         getPages: AppPages.pages,
         title: 'Flutter Demo',
         theme: ThemeData(),
-        home:
-            const SplashPage() //const SplashPage// (), //for test... default home is SplashPage()...
+        home: const SplashPage() //const SplashPage// (), //for test...
         );
   }
 }

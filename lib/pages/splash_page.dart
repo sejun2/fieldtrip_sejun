@@ -49,7 +49,7 @@ class _SplashPageState extends State<SplashPage> {
               padding: const EdgeInsets.only(left: 28),
               child: Image.asset(
                 'assets/background/logo.png',
-                width: Get.width / 2,
+                width: Get.width / 4,
               ),
             ),
             top: Get.height * 1 / 11,

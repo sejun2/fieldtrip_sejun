@@ -141,18 +141,23 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                     width: Get.width,
                     height: Get.height,
                     fit: BoxFit.fill)),
-            Positioned(
-              bottom: 50,
-              child: AnimatedOpacity(
-                duration: const Duration(seconds: 3),
-                opacity: _opacity,
-                child: Container(
-                  width: Get.width,
-                  height: Get.height * 2 / 5,
-                  padding: const EdgeInsets.all(8),
-                  color: Colors.black,
-                ),
-              ),
+            AnimatedBuilder(
+              animation: statementContainerAnimation,
+              builder: (BuildContext context, Widget? child) {
+                return Positioned(
+                  bottom: 50,
+                  child: AnimatedOpacity(
+                    duration: const Duration(seconds: 3),
+                    opacity: statementContainerAnimation.value,
+                    child: Container(
+                      width: Get.width,
+                      height: Get.height * 2 / 5,
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.black,
+                    ),
+                  ),
+                );
+              },
             ),
             Obx(
               () => ProsteIndexedStack(

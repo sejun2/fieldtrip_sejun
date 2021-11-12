@@ -156,6 +156,16 @@ class _Question2PageState extends State<Question2Page>
             top: 30,
           ),
           _buildContent(),
+          Positioned(
+            child: GestureDetector(
+              onTap: () {
+                hintController.forward();
+              },
+              child: Image.asset('assets/background/icon_hint.png', width: 60, fit: BoxFit.fitWidth,),
+            ),
+            right: 50,
+            top: 30,
+          ),
           //정답입니다 위젯
           AnimatedBuilder(
             builder: (BuildContext context, Widget? child) {
@@ -271,68 +281,69 @@ class _Question2PageState extends State<Question2Page>
 
   Widget _buildContent() {
     return Positioned(
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Align(
-                child: Text(
-                  '도청장치 실행 메뉴얼\nUSER\'S GUIDE',
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Align(
+                    child: Text(
+                      '도청장치 실행 메뉴얼\nUSER\'S GUIDE',
+                      style: questionTextStyle,
+                    ),
+                    alignment: Alignment.center),
+                const Text('THIS DEVICE CAN BE USED IN A jACKET.',
+                    style: questionTextStyle),
+                const Text('IN aDDITION. IT IS mADE SMALL AND CAN Be USED IN',
+                    style: questionTextStyle),
+                const Text(
+                  "COMBINATION WITH ANY OBJECT.",
                   style: questionTextStyle,
                 ),
-                alignment: Alignment.center),
-            const Text('THIS DEVICE CAN BE USED IN A jACKET.',
-                style: questionTextStyle),
-            const Text('IN aDDITION. IT IS mADE SMALL AND CAN Be USED IN',
-                style: questionTextStyle),
-            const Text(
-              "COMBINATION WITH ANY OBJECT.",
-              style: questionTextStyle,
-            ),
-            const Text('PLEAsE USE IT CArEFULLy.', style: questionTextStyle),
-            const Align(
-              child: Text(
-                "도청 매뉴얼에 숨겨져 있는 인물은 누구인가?",
-                style: TextStyle(fontSize: 22, color: Colors.black),
-              ),
-            ),
-            //정답 입력 위젯
-            SizedBox(
-              width: Get.width,
-              child: TextFormField(
-                controller: answerTextController,
-                style: const TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
-                decoration: InputDecoration(
-                  enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)),
-                  focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.transparent)),
-                  suffixIcon: GestureDetector(
-                      onTap: () {
-                        print('check icon clicked...');
-                        checkAnswer();
-                      },
-                      child: Image.asset(
-                        'assets/background/icon_ok.png',
-                        width: 34,
-                        height: 34,
-                      )),
-                  fillColor: Colors.black,
-                  hintText: '정답을 입력하세요.',
+                const Text('PLEAsE USE IT CArEFULLy.', style: questionTextStyle),
+                const Align(
+                  child: Text(
+                    "도청 매뉴얼에 숨겨져 있는 인물은 누구인가?",
+                    style: TextStyle(fontSize: 22, color: Colors.black),
+                  ),
                 ),
-              ),
+                //정답 입력 위젯
+                SizedBox(
+                  width: Get.width,
+                  child: TextFormField(
+                    controller: answerTextController,
+                    style: const TextStyle(color: Colors.white),
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent)),
+                      focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent)),
+                      suffixIcon: GestureDetector(
+                          onTap: () {
+                            print('check icon clicked...');
+                            checkAnswer();
+                          },
+                          child: Image.asset(
+                            'assets/background/icon_ok.png',
+                            width: 34,
+                            height: 34,
+                          )),
+                      fillColor: Colors.black,
+                      hintText: '정답을 입력하세요.',
+                    ),
+                  ),
+                ),
+              ].map((e) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
+                  child: e,
+                );
+              }).toList(),
             ),
-          ].map((e) {
-            return Padding(
-              padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
-              child: e,
-            );
-          }).toList(),
+          ),
         ));
   }
 

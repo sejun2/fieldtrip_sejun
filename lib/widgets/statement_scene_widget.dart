@@ -52,16 +52,16 @@ class _StatementSceneWidgetState extends State<StatementSceneWidget> {
                     height: (Get.height - Get.height * 2 / 5) *3/5 ,
                     width: (Get.width) * 2/5,
                   ),
-                  top: 70,
                   left: 20,
+            bottom: Get.height* 5 / 7 - 65,
                 )
               : Container(),
 
           ///오른쪽 인물 Widget
           widget.rightPerson != null
               ? Positioned(
-                  top: 70,
-                  right: 20,
+              bottom: Get.height* 5 / 7 - 65,
+              right: 20,
                   child: Image.asset(
                     '${widget.rightPerson}',
                     width: Get.width * 2/5,
@@ -71,13 +71,12 @@ class _StatementSceneWidgetState extends State<StatementSceneWidget> {
               : Container(),
 
           Positioned(
-            bottom: 50,
+            top: Get.height * 3/ 7,
             child: Container(
+              padding: const EdgeInsets.only(top: 14, right: 8, left: 8, bottom: 8),
               width: Get.width,
-              height: Get.height * 2 / 5,
-              padding: const EdgeInsets.all(8),
-              color: Colors.transparent,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(

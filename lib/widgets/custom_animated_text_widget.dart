@@ -104,9 +104,11 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
             }
           },
 
-          child: Text(
-            currentText,
-            style: widget.textStyle,
+          child: SingleChildScrollView(
+            child: Text(
+              currentText,
+              style: widget.textStyle,
+            ),
           ),
 
         );
