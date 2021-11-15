@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
 
 class CustomAnimatedTextWidget extends StatefulWidget {
@@ -104,10 +105,15 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
             }
           },
 
-          child: SingleChildScrollView(
-            child: Text(
-              currentText,
-              style: widget.textStyle,
+          child: Container(
+            color: Colors.transparent,
+            height: Get.height*1/2,
+            width: Get.width,
+            child: SingleChildScrollView(
+              child: Text(
+                currentText,
+                style: widget.textStyle,
+              ),
             ),
           ),
 

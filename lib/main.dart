@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:history_game_project/pages/content_select_page/act1/act1-4/act1_4_page.dart';
 import 'package:history_game_project/pages/splash_page.dart';
 
 import 'pages/content_select_page/act1/act1-1/question1_page.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         getPages: AppPages.pages,
         title: 'Flutter Demo',
         theme: ThemeData(),
-        home: const Question1Page() //const SplashPage// (), //for test...
+        home: const SplashPage() //const SplashPage// (), //for test...
         );
   }
 }

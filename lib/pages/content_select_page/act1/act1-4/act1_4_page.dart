@@ -34,6 +34,8 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
   late AudioPlayer _player;
   final String soundPath = 'BGM/serious_sound.mp3';
 
+  var _isBackgroundIgnore = false;
+
   _initResources()async {
     progressService.lastProgress = 1;
 
@@ -106,15 +108,7 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
               builder: (context, widget) {
                 return GestureDetector(
                   onTap: () {
-                    Get.log('onTap...');
-                    if (!isTitleDisappear) {
-                      Get.log('isTitleDisappear : $isTitleDisappear');
-                      isTitleDisappear = true;
-                      titleController.reverse(from: 1.0);
-                      statementController.forward(from: 0.0);
-                      progressService.progress.value = 1;
-                    }
-                    if (progressService.isDone.value) {}
+
                   },
                   child: Opacity(
                       opacity: backgroundAnimation.value,
@@ -175,6 +169,35 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
                   ),
                 ]),
           ),
+          //background ignore pointer
+          IgnorePointer(
+           ignoring: _isBackgroundIgnore,
+           child: GestureDetector(
+             onTap: (){
+               Get.log('onTap...');
+               if (!isTitleDisappear) {
+                 setState(() {
+                   if(mounted){
+                     _isBackgroundIgnore = true;
+                   }
+                 });
+                 Get.log('isTitleDisappear : $isTitleDisappear');
+                 isTitleDisappear = true;
+                 titleController.reverse(from: 1.0);
+                 statementController.forward(from: 0.0);
+                 progressService.progress.value = 1;
+               }
+               if (progressService.isDone.value) {}
+             },
+             child:Container(
+               width: Get.width,
+               height: Get.height,
+               color: Colors.transparent,
+             )
+
+           ),
+          ),
+          //whole page ignorepointer
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(

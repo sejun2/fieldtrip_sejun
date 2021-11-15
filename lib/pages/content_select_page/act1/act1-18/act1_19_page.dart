@@ -34,7 +34,7 @@ class _Act1_19PageState extends State<Act1_19Page> {
             child: Align(
               alignment: Alignment.center,
               child: CustomAnimatedTextWidget(
-                textStyle: TextStyle(color: Colors.white, fontSize: 35),
+                textStyle: const TextStyle(color: Colors.white, fontSize: 35, ),
                   text: '김재규는 육군본부에서 체포되어\n대통령 시해 사건의 범인으로\n교수형이 처해졌다.',
                   onFinished: () {
                     setState(() {
