@@ -350,7 +350,7 @@ class _Question2PageState extends State<Question2Page>
   }
 
   void checkAnswer() {
-    if (answerTextController.text == 'jamesryu'.trim()) {
+    if (answerTextController.text.replaceAll(' ', '').trim()== 'jamesryu'.trim()) {
       answerController.forward(from: 0.0);
       Timer(const Duration(milliseconds: 600), () async {
         await _player.stop();

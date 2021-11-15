@@ -49,29 +49,29 @@ class _StatementSceneWidgetState extends State<StatementSceneWidget> {
                   child: Image.asset(
                     '${widget.leftPerson}',
                     fit: BoxFit.fitHeight,
-                    height: (Get.height - Get.height * 2 / 5) *3/5 ,
+                    height: (Get.height - Get.height * 2 / 5) ,
                     width: (Get.width) * 2/5,
                   ),
                   left: 20,
-            bottom: Get.height* 5 / 7 - 65,
+            bottom: Get.height* 5 / 7 - 110,
                 )
               : Container(),
 
           ///오른쪽 인물 Widget
           widget.rightPerson != null
               ? Positioned(
-              bottom: Get.height* 5 / 7 - 65,
+              bottom: Get.height* 5 / 7 - 110,
               right: 20,
                   child: Image.asset(
                     '${widget.rightPerson}',
                     width: Get.width * 2/5,
                     fit: BoxFit.fitHeight,
-                    height: (Get.height - Get.height * 2 / 5)*3/5 ,
+                    height: (Get.height - Get.height * 2 / 5) ,
                   ))
               : Container(),
 
           Positioned(
-            top: Get.height * 3/ 7,
+            top: Get.height * 4/ 7,
             child: Container(
               padding: const EdgeInsets.only(top: 14, right: 8, left: 8, bottom: 8),
               width: Get.width,

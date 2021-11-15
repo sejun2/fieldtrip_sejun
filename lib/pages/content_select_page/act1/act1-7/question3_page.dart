@@ -355,7 +355,7 @@ class _Question3PageState extends State<Question3Page>
   }
 
   void checkAnswer() {
-    if (answerTextController.text == '유인'.trim()) {
+    if (answerTextController.text.replaceAll(' ', '').trim() == '유인'.trim()) {
       answerController.forward(from: 0.0);
       Timer(const Duration(milliseconds: 600), () async {
         await _player.stop();

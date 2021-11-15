@@ -261,7 +261,7 @@ class _Question4PageState extends State<Question4Page>
                                   overflow: TextOverflow.visible,
                                 ),
                                 if(_hintIndex == 2)
-                                Image.asset('assets/background/hint3.png', width: 130, height: 130, fit: BoxFit.fitHeight,),
+                                Image.asset('assets/background/hint3.png', width: 90, height: 90, fit: BoxFit.fitHeight,),
                               ],
                             ),
 
@@ -357,7 +357,7 @@ class _Question4PageState extends State<Question4Page>
   }
 
   void checkAnswer() {
-    if (answerTextController.text == '19791526'.trim()) {
+    if (answerTextController.text.replaceAll(' ', '').trim() == '19791526'.trim()) {
       answerController.forward(from: 0.0);
       Timer(const Duration(milliseconds: 600), () async {
         await _player.stop();

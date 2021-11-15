@@ -145,7 +145,9 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
               animation: statementContainerAnimation,
               builder: (BuildContext context, Widget? child) {
                 return Positioned(
-                  bottom: 50,
+                  left: 0,
+                  right: 0,
+                  bottom: 7,
                   child: AnimatedOpacity(
                     duration: const Duration(seconds: 3),
                     opacity: statementContainerAnimation.value,

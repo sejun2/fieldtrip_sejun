@@ -59,7 +59,7 @@ class _Act1_14PageState extends State<Act1_14Page> {
               color: Colors.black,
               child: const Center(
                 child: Text(
-                  'CHAPTER. 2\n그날 밤,',
+                  'CHAPTER. 4\n그날 밤,',
                   style: chapterTextStyle,
                   textAlign: TextAlign.center,
                 ),

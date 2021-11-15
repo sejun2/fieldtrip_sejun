@@ -68,7 +68,7 @@ class _Act1_17PageState extends State<Act1_17Page> {
             ),
           ),
           Positioned(
-            bottom: 50,
+            bottom: 7,
             child: Opacity(
               opacity: 0.7,
               child: Container(

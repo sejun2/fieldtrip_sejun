@@ -612,7 +612,7 @@ class _Question5_2PageState extends State<Question5_2Page>
   }
 
   void checkAnswer() {
-    if (answerTextController.text == '3868220'.trim()) {
+    if (answerTextController.text.replaceAll(' ', '').trim() == '3868220'.trim()) {
       answerController.forward(from: 0.0);
       Timer(const Duration(milliseconds: 600), () async {
         await _player.stop();

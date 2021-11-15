@@ -140,7 +140,7 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
             animation: statementAnimation,
             builder: (BuildContext context, Widget? child) {
               return Positioned(
-                bottom: 50,
+                bottom: 7,
                 child: IgnorePointer(
                   ignoring: !_isIgnore,
                   child: Opacity(

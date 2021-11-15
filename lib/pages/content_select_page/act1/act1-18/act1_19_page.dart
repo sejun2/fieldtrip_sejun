@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,37 +16,46 @@ class _Act1_19PageState extends State<Act1_19Page> {
   final String _typingSoundPath = 'BGM/typing_sound.mp3';
   late AudioPlayer _player;
 
-
-  _initResources() async{
+  _initResources() async {
     _player = await AudioCache().play(_typingSoundPath);
   }
+
   @override
   void initState() {
     _initResources();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: Get.width,
+        height: Get.height,
         color: Colors.black,
         child: Stack(children: [
-          Expanded(
-            child: Align(
-              alignment: Alignment.center,
-              child: CustomAnimatedTextWidget(
-                textStyle: const TextStyle(color: Colors.white, fontSize: 35, ),
-                  text: '김재규는 육군본부에서 체포되어\n대통령 시해 사건의 범인으로\n교수형이 처해졌다.',
-                  onFinished: () {
-                    setState(() {
-                      _isIgnore = false;
-                    });
-                  }),
+          Align(
+            alignment: Alignment.center,
+            child: AnimatedTextKit(
+              isRepeatingAnimation: false,
+              animatedTexts: [
+                TyperAnimatedText(
+                    '김재규는 육군본부에서 체포되어\n대통령 시해 사건의 범인으로\n교수형이 처해졌다.',
+                    textStyle:
+                        const TextStyle(color: Colors.white, fontSize: 35))
+              ],
+              onFinished: (){
+                setState(() {
+                  if(mounted){
+                    _isIgnore = false;
+                  }
+                });
+              },
             ),
           ),
           IgnorePointer(
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 _player.stop();
                 Get.offNamed('/act1-20');
               },

@@ -42,79 +42,79 @@ class Hint4Page extends StatelessWidget {
                 const SizedBox(
                   height: 12,
                 ),
-                Wrap(
-                  children: [
-                    Image.asset(
-                      'assets/background/hint15.png',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    Image.asset(
-                      'assets/background/hint24.png',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    Image.asset(
-                      'assets/background/hint33.png',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    Image.asset(
-                      'assets/background/hint24.png',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    Image.asset(
-                      'assets/background/hint15.png',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    Image.asset(
-                      'assets/background/hint6.png',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    Image.asset(
-                      'assets/background/hint7.png',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.fitWidth,
-                    ),
-                    Image.asset(
-                      'assets/background/hint8.png',
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ]
-                      .map((e) => Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Stack(
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: e,
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    '${getNumber(index++)}',
-                                    style: const TextStyle(
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 30),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ))
-                      .toList(),
+                Align(
+                  alignment: Alignment.center,
+                  child: Wrap(
+                    children: [
+                      Image.asset(
+                        'assets/background/hint15.png',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        'assets/background/hint24.png',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        'assets/background/hint33.png',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        'assets/background/hint24.png',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        'assets/background/hint15.png',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        'assets/background/hint6.png',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        'assets/background/hint7.png',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      Image.asset(
+                        'assets/background/hint8.png',
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ]
+                        .map((e) => Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Stack(
+                                children: [
+                                  e,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8),
+                                    child: Text(
+                                      '${getNumber(index++)}',
+                                      style: const TextStyle(
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 30),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ))
+                        .toList(),
+                  ),
                 ),
                 Align(
                   child: GestureDetector(
