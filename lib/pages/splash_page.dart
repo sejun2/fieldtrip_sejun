@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/controllers/splash_controller.dart';
-import 'package:history_game_project/services/progress_service.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class SplashPage extends StatefulWidget {

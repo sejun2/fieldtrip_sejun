@@ -13,7 +13,6 @@ class IntroPage extends StatefulWidget {
 }
 
 class _IntroPageState extends State<IntroPage> {
-
   double op1 = 0;
   double op2 = 0;
   double op3 = 0;
@@ -33,6 +32,8 @@ class _IntroPageState extends State<IntroPage> {
         TyperAnimatedText('', textStyle: const TextStyle(color: Colors.white))
       ]);
 
+  var _isIgnore = true;
+
   void _initResources() async {
     content1 = AnimatedTextKit(
       isRepeatingAnimation: false,
@@ -43,13 +44,20 @@ class _IntroPageState extends State<IntroPage> {
       ],
       onFinished: () async {
         Get.log('onFinished...');
-        _isClickable = true;
+        setState(() {
+          Get.log('setState...');
+          if (mounted) {
+            Get.log('mounted...');
+            _isIgnore = false;
+            _isClickable = true;
+          }
+        });
         //타이핑 소리 멈춤
         await _player.stop();
       },
     );
 
-    Timer(const Duration(seconds: 6) , () async {
+    Timer(const Duration(seconds: 6), () async {
       _player = (await AudioCache().play(_typingSoundPath));
     });
   }
@@ -132,15 +140,20 @@ class _IntroPageState extends State<IntroPage> {
             ),
             Align(
                 alignment: Alignment.center,
-                child: _canRun
-                    ? GestureDetector(
-                    onTap: () {
-                      if (_isClickable) {
-                        Get.offNamed('/act1');
-                      }
-                    },
-                    child: content1)
-                    : Container())
+                child: _canRun ? content1 : Container()),
+            IgnorePointer(
+              ignoring: _isIgnore,
+              child: GestureDetector(
+                onTap: () {
+                  Get.offNamed('/act1');
+                },
+                child: Container(
+                  width: Get.width,
+                  height: Get.height,
+                  color: Colors.transparent,
+                ),
+              ),
+            )
           ],
         ),
       ),

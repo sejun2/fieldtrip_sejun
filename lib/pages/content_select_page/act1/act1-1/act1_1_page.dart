@@ -231,15 +231,12 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                 ],
               ),
             ),
-            Visibility(
-              visible: _isIntroVisible,
-              child: Align(
-                alignment: Alignment.center,
-                child: Opacity(
-                  opacity: introAnimation.value as double,
-                  child: const Text('CHAPTER. 1\n폭로',
-                      textAlign: TextAlign.center, style: chapterTextStyle),
-                ),
+            Align(
+              alignment: Alignment.center,
+              child: Opacity(
+                opacity: introAnimation.value as double,
+                child: const Text('CHAPTER. 1\n폭로',
+                    textAlign: TextAlign.center, style: chapterTextStyle),
               ),
             ),
             IgnorePointer(
