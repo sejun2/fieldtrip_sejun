@@ -138,11 +138,13 @@ class _Question4PageState extends State<Question4Page>
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            'assets/background/questionbackground.png',
-            width: Get.width,
-            height: Get.height,
-            fit: BoxFit.fill,
+          Positioned.fill(
+            child: Image.asset(
+              'assets/background/questionbackground.png',
+              width: Get.width,
+              height: Get.height,
+              fit: BoxFit.fill,
+            ),
           ),
           Positioned(
             child: GestureDetector(

@@ -144,12 +144,14 @@ class _Question1PageState extends State<Question1Page>
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Image.asset(
-              'assets/background/questionbackground.png',
-              fit: BoxFit.fill,
-              width: Get.width,
-              height: Get.height,
-            ),
+                Positioned.fill(
+                  child: Image.asset(
+                    'assets/background/questionbackground.png',
+                    fit: BoxFit.fill,
+                    width: Get.width,
+                    height: Get.height,
+                  ),
+                ),
 
             _buildContent(),
             /*   Positioned(

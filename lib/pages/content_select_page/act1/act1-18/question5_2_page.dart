@@ -215,11 +215,13 @@ class _Question5_2PageState extends State<Question5_2Page>
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            'assets/background/questionbackground.png',
-            width: Get.width,
-            height: Get.height,
-            fit: BoxFit.fill,
+          Positioned.fill(
+            child: Image.asset(
+              'assets/background/questionbackground.png',
+              width: Get.width,
+              height: Get.height,
+              fit: BoxFit.fill,
+            ),
           ),
           _buildContent(),
           //정답입니다 위젯
