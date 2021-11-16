@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         getPages: AppPages.pages,
         title: 'Flutter Demo',
         theme: ThemeData(),
-        home: const Question5_2Page() //const SplashPage// (), //for test...
+        home: const SplashPage() //const SplashPage// (), //for test...
         );
   }
 }

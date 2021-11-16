@@ -53,14 +53,14 @@ class _StatementSceneWidgetState extends State<StatementSceneWidget> {
                     width: (Get.width) * 2/5,
                   ),
                   left: 20,
-            bottom: Get.height* 5 / 7 - 110,
+            bottom: 7 + Get.height * 2/ 5,
                 )
               : Container(),
 
           ///오른쪽 인물 Widget
           widget.rightPerson != null
               ? Positioned(
-              bottom: Get.height* 5 / 7 - 110,
+              bottom: 7 + Get.height * 2/ 5,
               right: 20,
                   child: Image.asset(
                     '${widget.rightPerson}',
