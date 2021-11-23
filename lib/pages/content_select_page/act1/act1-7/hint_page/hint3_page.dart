@@ -33,8 +33,9 @@ class Hint3Page extends StatelessWidget {
               children: [
                 Align(
                     child: RichText(
+                      textAlign: TextAlign.center,
                       text: const TextSpan(children: [
-                        TextSpan(text: '수지 박 톰슨 포섭', style: TextStyle(color: Colors.black,fontSize: 35 )),
+                        TextSpan(text: '수지 박 톰슨 포섭\n', style: TextStyle(color: Colors.black,fontSize: 35 )),
                         TextSpan(
                           text: '2486 = ',
                           style: questionTextStyle,
