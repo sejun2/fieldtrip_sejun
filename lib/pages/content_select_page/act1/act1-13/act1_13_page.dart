@@ -85,7 +85,7 @@ class _Act1_13PageState extends State<Act1_13Page> {
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '박 대통령과 차 실장의 대화 내용을 도청한 김재규 부장은 그 내용에 소스라치게 놀라며 결심을 하게 된다.',
+                        statement: '<b>박 대통령과 차 실장</b>의 대화 내용을 도청한 <b>김재규</b> 부장은 그 내용에 소스라치게 놀라며 결심을 하게 된다.',
                         name: ''),
                   ),
                   IndexedStackChild(

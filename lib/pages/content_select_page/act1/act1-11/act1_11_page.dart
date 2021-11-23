@@ -85,12 +85,12 @@ class _Act1_11PageState extends State<Act1_11Page> {
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '이대로라면 박정희로부터 버림받을 위기에 놓였다고 생각한 김재규는 비가 억수같이 쏟아지는 밤,',
+                        statement: '이대로라면 박정희로부터 버림받을 위기에 놓였다고 생각한 <b>김재규</b>는 비가 억수같이 쏟아지는 밤,',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '차 실장과 박 대통령이 술을 나누는 술자리로 잠입해 옆방의 옷장에서 둘이 나누는 이야기를 도청한다.',
+                        statement: '<b>차 실장과 박 대통령</b>이 술을 나누는 술자리로 <r>잠입</r>해 옆방의 옷장에서 둘이 나누는 이야기를 도청한다.',
                         name: ''),
                   ),
                 ]),

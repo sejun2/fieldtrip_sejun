@@ -153,19 +153,19 @@ class _Act1_9PageState extends State<Act1_9Page> with TickerProviderStateMixin {
                         IndexedStackChild(
                             child: const StatementSceneWidget(
                           name: '',
-                          statement: '김재규 부장이 김형욱을 처리하기 위해 수를 쓰게 되는데,',
+                          statement: '<b>김재규</b> 부장이 <b>김형욱</b>을 처리하기 위해 수를 쓰게 되는데,',
                         )),
                         IndexedStackChild(
                             child: const StatementSceneWidget(
                           name: '',
                           statement:
-                              '미리 파견을 보낸 김재규 부장의 요원을 통해 수지 박을 거짓말로 속여내어 프랑스로 부른 뒤 차에 태워 \'고국땅을 밟고 싶으면 김형욱을 유인하라 \'며 그녀를 포섭하는 방법이었다.',
+                              '미리 파견을 보낸 <b>김재규</b> 부장의 요원을 통해 <b>수지 박</b>을 거짓말로 속여내어 프랑스로 부른 뒤 차에 태워 \'고국땅을 밟고 싶으면 <b>김형욱</b>을 <r>유인</r>하라 \'며 그녀를 포섭하는 방법이었다.',
                         )),
                         IndexedStackChild(
                             child: const StatementSceneWidget(
                           name: '',
                           statement:
-                              '납치되어 차를 타고 끌려가던 김형욱은 차량 내부에서 사고를 낸뒤 도망가지만 이내 김재규 부장의 요원들에게 잡혀 현장에서 살해된다.',
+                              '납치되어 차를 타고 끌려가던 <b>김형욱</b>은 차량 내부에서 사고를 낸뒤 도망가지만 이내 <b>김재규</b> 부장의 요원들에게 잡혀 현장에서 <r>살해</r>된다.',
                         )),
                       ],
                     );

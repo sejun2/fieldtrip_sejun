@@ -98,32 +98,32 @@ class _Act1_7PageState extends State<Act1_7Page> {
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/sujiparktomson.png',
                         statement:
-                            '파티에 참여한 김재규 부장은 수지 박 톰슨을 만나 김형욱의 의향을 전해 듣게 되는데,',
+                            '파티에 참여한 <b>김재규</b> 부장은 <b>수지 박 톰슨</b>을 만나 <b>김형욱</b>의 의향을 전해 듣게 되는데,',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/sujiparktomson.png',
-                        statement: '김형욱은 김부장의 혁명에 대해 이야기하더군요.',
+                        statement: '<b>김형욱</b>은 <b>김부장</b>의 <r>혁명</r>에 대해 이야기하더군요.',
                         name: '수지 박'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/sujiparktomson.png',
-                        statement: '혁명 이라니.. 그 무슨!!',
+                        statement: '<r>혁명</r> 이라니.. 그 무슨!!',
                         name: '김재규'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '그토록 존경하고 가까이 지내던 박 대통령이긴 하나,',
+                        statement: '그토록 존경하고 가까이 지내던 <b>박 대통령</b>이긴 하나,',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
-                            '그를 몰아내고 정권을 차지하라는 김형욱의 권유는 너무나 고민되면서 매혹적인 것이었다.',
+                            '그를 몰아내고 정권을 차지하라는 <b>김형욱</b>의 권유는 너무나 고민되면서 매혹적인 것이었다.',
                         name: ''),
                   ),
                 ]),

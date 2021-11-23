@@ -88,13 +88,13 @@ class _Act1_20PageState extends State<Act1_20Page> {
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
-                        '박정희가 죽은 지 6개월 후, 누군가 주인 잃은 청와대 집무실에 몰래 들어오는데,',
+                        '<b>박정희</b>가 죽은 지 6개월 후, 누군가 주인 잃은 청와대 집무실에 몰래 들어오는데,',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
-                        '무엇을 찾는 것인지 조심스럽게 들어와서 뒤적거리다가, 이내 금고를 찾아내고는 해제를 시도한다.',
+                        '무엇을 찾는 것인지 조심스럽게 들어와서 뒤적거리다가, 이내 <r>금고</r>를 찾아내고는 해제를 시도한다.',
                         name: ''),
                   ),
                 ]),

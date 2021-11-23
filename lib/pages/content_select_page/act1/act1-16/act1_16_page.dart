@@ -94,40 +94,40 @@ class _Act1_16PageState extends State<Act1_16Page> {
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        statement: '요새 김부장이 좀 기운이 빠진 것 같아 위로 차 불렀어. 여긴 김 부장을 위한 자리다.',
+                        statement: '요새 <b>김부장</b>이 좀 기운이 빠진 것 같아 위로 차 불렀어. 여긴 <b>김 부장</b>을 위한 자리다.',
                         name: '박정희'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '박정희가 직접 술을 따라 주지만 김재규 부장의 표정은 밝지 않다.',
+                        statement: '<b>박정희</b>가 직접 술을 따라 주지만 <b>김재규</b> 부장의 표정은 밝지 않다.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '우리 김부장이 술은 잘 알아.',
+                        statement: '우리 <b>김부장</b>이 술은 잘 알아.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         name: '박정희'),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '분위기가 무르익자 박 대통령도 기분이 좋은 듯 흥얼거리는 와중.',
+                        statement: '분위기가 무르익자 <b>박 대통령</b>도 기분이 좋은 듯 흥얼거리는 와중.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '김재규 부장은 반 쯤 취해서 박 대통령에게 술잔을 따라주는데, 양주를 크리스탈 잔 가득 채우고도 멈추지 않아서 잔이 넘친다.',
+                        statement: '<b>김재규</b> 부장은 반 쯤 취해서 <b>박 대통령</b>에게 술잔을 따라주는데, 양주를 크리스탈 잔 가득 채우고도 멈추지 않아서 잔이 넘친다.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '박 대통령과 차지철 실장이 당혹한 표정을 짓는 사이, 김재규 부장은 5.16 군사정변 당시의 추억을 얘기한다.',
+                        statement: '<b>박 대통령</b>과 <b>차지철</b> 실장이 당혹한 표정을 짓는 사이, <b>김재규</b> 부장은 5.16 군사정변 당시의 추억을 얘기한다.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         name: ''),
@@ -148,13 +148,13 @@ class _Act1_16PageState extends State<Act1_16Page> {
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '그때 각하가 제게 물으셨죠. \'김 대령, 어떻게할까?\'',
+                        statement: '그때 각하가 제게 물으셨죠. \'<b>김 대령</b>, 어떻게할까?\'',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         name: '김재규'),
                   ), IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '\'사나이 가는 길 앞에 웃음만이 있을쏘냐, 결심하고 가는 길 가로막는 폭풍우, 어이 없으라. 각하! 가시지요!\' 라고 김부장이 그랬지.',
+                        statement: '\'사나이 가는 길 앞에 웃음만이 있을쏘냐, 결심하고 가는 길 가로막는 폭풍우, 어이 없으라. 각하! 가시지요!\' 라고 <b>김부장</b>이 그랬지.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         name: '박정희'),
@@ -174,7 +174,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '이 때부터 이야기를 받아주던 박 대통령의 표정은 미묘하게 바뀌고, 김재규 부장은 모든 것을 내려놓은 듯 행동에 거리낌이 없어진다.',
+                        statement: '이 때부터 이야기를 받아주던 <b>박 대통령</b>의 표정은 미묘하게 바뀌고, <b>김재규</b> 부장은 모든 것을 내려놓은 듯 행동에 거리낌이 없어진다.',
 
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
@@ -183,7 +183,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '양주를 자기가 가져가 한 잔을 가득 채워 김형욱을 위한 음복주라며 놓아 두고, 한 잔 더 스스로 따라 한입에 털어 넣어 버린다.',
+                        statement: '양주를 자기가 가져가 한 잔을 가득 채워 <b>김형욱</b>을 위한 음복주라며 놓아 두고, 한 잔 더 스스로 따라 한입에 털어 넣어 버린다.',
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         name: ''),
@@ -217,7 +217,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
                         name: '김재규'),
                   ), IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '아니, 김부장! 왜 이래?',
+                        statement: '아니, <b>김부장</b>! 왜 이래?',
                         leftPerson: 'assets/character/kimgyewon.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         name: '김계원'),
@@ -251,13 +251,13 @@ class _Act1_16PageState extends State<Act1_16Page> {
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '(일어서서 김재규의 멱살을 잡으며) 이 새끼가..!',
+                        statement: '(일어서서 <b>김재규</b>의 멱살을 잡으며) 이 새끼가..!',
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         name: '차지철'),
                   ), IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '가만히 있어!! (담배를 꺼내며) 야 김부장! 내가 너를 왜 그 자리에 앉힌 줄 알아? 지 친구도 죽인 놈이! 어디서 고고한 척을 하고 있어? 제발, 네 일이나 똑바로 해!',
+                        statement: '가만히 있어!! (담배를 꺼내며) 야 <b>김부장</b>! 내가 너를 왜 그 자리에 앉힌 줄 알아? 지 친구도 죽인 놈이! 어디서 고고한 척을 하고 있어? 제발, 네 일이나 똑바로 해!',
                         leftPerson: 'assets/character/parkjunghee1.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         name: '박정'),
@@ -277,7 +277,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '(호주머니에서 총을 꺼내며) 넌 너무 건방져. 이 새끼야!',
+                        statement: '(호주머니에서 <r>총</r>을 꺼내며) 넌 너무 건방져. 이 새끼야!',
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         name: '김재규'),
@@ -289,7 +289,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
                         name: '차지철'),
                   ), IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '김재규가 차지철을 향해 총을 쏘고, 팔꿈치를 맞은 차지철이 피를 흘리며 쓰러진다.',
+                        statement: '<b>김재규</b>가 <b>차지철</b>을 향해 총을 쏘고, 팔꿈치를 맞은 <b>차지철</b>이 피를 흘리며 쓰러진다.',
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         name: ''),
@@ -297,7 +297,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
 
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '김재규가 곧바로 총구를 박 대통령에게 돌린다.',
+                        statement: '<b>김재규</b>가 곧바로 <r>총구</r>를 <b>박 대통령</b>에게 돌린다.',
                         leftPerson: 'assets/character/parkjunghee1.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         name: ''),

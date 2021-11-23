@@ -90,7 +90,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
-                        '이 후 김재규 부장의 심복들이 궁정동의 인원들을 제압하는데 성공하고 김재규 부장은 그 모습들을 확인한 후,',
+                        '이 후 <b>김재규</b> 부장의 심복들이 궁정동의 인원들을 제압하는데 성공하고 <b>김재규</b> 부장은 그 모습들을 확인한 후,',
                         name: ''),
                   ),
                   IndexedStackChild(
@@ -106,7 +106,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
-                        '각하가 저격당하셨다. 조치를 취해야 한다. 남산으로 가자!',
+                        '각하가 저격당하셨다. 조치를 취해야 한다. <r>남산</r>으로 가자!',
                         name: '김재규'),
                   ),
                   IndexedStackChild(
@@ -114,7 +114,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
-                        '김재규 부장은 심하게 긴장한 듯 평정심을 되찾지 못하고, 차량에 구비된 사탕을 씹어먹으면서 육군참모총장에게도 사탕을 권유한다.',
+                        '<b>김재규</b> 부장은 심하게 긴장한 듯 평정심을 되찾지 못하고, 차량에 구비된 사탕을 씹어먹으면서 육군참모총장에게도 사탕을 권유한다.',
                         name: ''),
                   ),
                   IndexedStackChild(
@@ -130,7 +130,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
-                        '그 때, 겨우 정신이 든 김재규 부장은 무언가 이물감에 아래를 바라보는데, 난리통에 구두를 신지도 않고 나와 젖어있는 양말 차림의 발을 보게 된다.',
+                        '그 때, 겨우 정신이 든 <b>김재규</b> 부장은 무언가 이물감에 아래를 바라보는데, 난리통에 구두를 신지도 않고 나와 젖어있는 양말 차림의 발을 보게 된다.',
                         name: ''),
                   ),
                   IndexedStackChild(
@@ -138,7 +138,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
-                        '상념에 빠졌는지 김재규 부장은 잠시 멍하게 있고,',
+                        '상념에 빠졌는지 <b>김재규</b> 부장은 잠시 멍하게 있고,',
                         name: ''),
                   ),
                   IndexedStackChild(
@@ -146,7 +146,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
-                        '병력 동원의 수월성 등도 있고 하니, 남산이 아니라 차라리 육군본부에 가는게 어떠십니까?',
+                        '병력 동원의 수월성 등도 있고 하니, <r>남산</r>이 아니라 차라리 <r>육군본부</r>에 가는게 어떠십니까?',
                         name: '육군참모총장'),
                   ),
                   IndexedStackChild(
@@ -158,11 +158,10 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         name: '김재규'),
                   ), IndexedStackChild(
                     child: const StatementSceneWidget(
-                      //TODO : 대사 수정
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
-                        '결국 그들을 태운 차량은 비참한 운명이 기다리고 있는 육군본부로 향하게 된다.',
+                        '결국 그들을 태운 차량은 비참한 운명이 기다리고 있는 <r>육군본부</r>로 향하게 된다.',
                         name: ''),
                   ),
                 ]),

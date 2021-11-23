@@ -89,28 +89,28 @@ class _Act1_21PageState extends State<Act1_21Page> {
                     child: const StatementSceneWidget(
                       rightPerson: 'assets/character/jundohwan.png',
                         statement:
-                        '바로 보안사령관 전두환.',
+                        '바로 보안사령관 <r>전두환</r>.',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         rightPerson: 'assets/character/jundohwan.png',
                         statement:
-                        '스위스 은행 비밀 계좌 서류들을 보며 대통령의 금고를 뒤져 돈과 금괴를 모조리 자신이 들고 온 더플백에 챙겨서 대통령 집무실을 나가려다',
+                        '스위스 은행 비밀 계좌 서류들을 보며 대통령의 <r>금고</r>를 뒤져 돈과 금괴를 모조리 자신이 들고 온 더플백에 챙겨서 대통령 집무실을 나가려다',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         rightPerson: 'assets/character/jundohwan.png',
                         statement:
-                        '그 순간, 아직 불이 켜져 있는 청와대 집무실의 옥좌 책상을 의미심장하게 바라본다.',
+                        '그 순간, 아직 불이 켜져 있는 청와대 집무실의 <r>옥좌</r> 책상을 의미심장하게 바라본다.',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         rightPerson: 'assets/character/jundohwan.png',
                         statement:
-                        '이 후, 신 군부 독재가 시행되고, 이는 광주 5.18 민주화 운동 의 시발점이 되게 되는데..',
+                        '이 후, 신 군부 독재가 시행되고, 이는 <r>광주 5.18 민주화 운동</r> 의 시발점이 되게 되는데..',
                         name: ''),
                   ),
                 ]),

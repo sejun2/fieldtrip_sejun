@@ -85,7 +85,7 @@ class _Act1_15PageState extends State<Act1_15Page> {
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '김재규 부장은 비밀 금고에서 권총을 챙겨 주머니에 찔러 넣고 궁정동 안가의 만찬 장소로 향한다.',
+                        statement: '<b>김재규</b> 부장은 비밀 금고에서 <r>권총</r>을 챙겨 주머니에 찔러 넣고 궁정동 안가의 만찬 장소로 향한다.',
                         name: ''),
                   ),
                 ]),

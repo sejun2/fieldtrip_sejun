@@ -130,7 +130,7 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
                 IndexedStackChild(
                     child: const StatementSceneWidget(
                   name: '',
-                  statement: '미국의 소식을 듣게 된 김재규는 대통령을 만나기 위해 청와대로 향한다 .',
+                  statement: '미국의 소식을 듣게 된 <b>김재규</b>는 대통령을 만나기 위해 청와대로 향한다 .',
                   leftPerson: null,
                   rightPerson: null,
                 )),
