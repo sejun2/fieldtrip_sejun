@@ -17,6 +17,7 @@ class _SplashPageState extends State<SplashPage> {
 
 
   void doAnimationWork() {
+    controller.currentStep = 0;
     Timer.periodic(const Duration(milliseconds: 300), (t) {
       controller.incrementCurrentStep();
       Get.log('${controller.currentStep}');
