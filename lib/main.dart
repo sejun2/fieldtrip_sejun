@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/pages/content_select_page/act1/act1-1/act1_1_page.dart';
-import 'package:history_game_project/pages/content_select_page/act1/act1-11/question4_page.dart';
-import 'package:history_game_project/pages/content_select_page/act1/act1-18/act1_19_page.dart';
-import 'package:history_game_project/pages/content_select_page/act1/act1-18/question5_2_page.dart';
 import 'package:history_game_project/pages/splash_page.dart';
 
 import 'routes/app_pages.dart';
 import 'services/progress_service.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initServices();
+  await _initApp();
   runApp(const MyApp());
 }
 
 _initApp() async {
-  await SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.landscapeLeft]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 }
 
 initServices() async {

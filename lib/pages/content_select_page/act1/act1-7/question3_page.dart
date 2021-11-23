@@ -43,6 +43,8 @@ class _Question3PageState extends State<Question3Page>
   ];
   int _hintIndex = 0;
 
+  bool _checkAnswerMutex = true;
+
   _initResources() async {
     answerTextController = TextEditingController();
     _player = await AudioCache().play(questionSoundPath);
@@ -123,6 +125,7 @@ class _Question3PageState extends State<Question3Page>
     answerController.dispose();
     notAnswerController.dispose();
     answerTextController.dispose();
+    progressService.isDone.close();
     super.dispose();
   }
 
@@ -330,8 +333,14 @@ class _Question3PageState extends State<Question3Page>
                           borderSide: BorderSide(color: Colors.transparent)),
                       suffixIcon: GestureDetector(
                           onTap: () {
-                            print('check icon clicked...');
-                            checkAnswer();
+                            if(_checkAnswerMutex){
+                              _checkAnswerMutex = false;
+                              Future.delayed(const Duration(milliseconds: 2500), (){
+                                _checkAnswerMutex = true;
+                              });
+                              print('check icon clicked...');
+                              checkAnswer();
+                            }
                           },
                           child: Image.asset(
                             'assets/background/icon_ok.png',

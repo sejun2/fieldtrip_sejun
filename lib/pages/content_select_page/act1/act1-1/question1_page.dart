@@ -19,6 +19,7 @@ class _Question1PageState extends State<Question1Page>
   final progressService = Get.put<ProgressService>(ProgressService());
 
   bool _isIgnored = true;
+  bool _checkAnswerMutex = true;
 
   late TextEditingController answerTextController;
 
@@ -127,6 +128,7 @@ class _Question1PageState extends State<Question1Page>
     answerController.dispose();
     notAnswerController.dispose();
     answerTextController.dispose();
+    progressService.isDone.close();
     _stopAudioPlayer();
     super.dispose();
   }
@@ -350,8 +352,14 @@ class _Question1PageState extends State<Question1Page>
                             borderSide: BorderSide(color: Colors.transparent)),
                         suffixIcon: GestureDetector(
                             onTap: () {
-                              print('check icon clicked...');
-                              checkAnswer();
+                              if(_checkAnswerMutex){
+                                _checkAnswerMutex = false;
+                                Future.delayed(const Duration(milliseconds: 2500),(){
+                                  _checkAnswerMutex = true;
+                                });
+                                print('check icon clicked...');
+                                checkAnswer();
+                              }
                             },
                             child: Image.asset(
                               'assets/background/icon_ok.png',

@@ -67,6 +67,8 @@ class _Question5_2PageState extends State<Question5_2Page>
   int _hint2Index = 0;
   int _hint3Index = 0;
 
+  bool _checkAnswerMutex = true;
+
   _initResources() async {
     answerTextController = TextEditingController();
     _player = await AudioCache().play(questionSoundPath);
@@ -130,7 +132,7 @@ class _Question5_2PageState extends State<Question5_2Page>
         if (_hintIndex != 3) {
           _hintIndex++;
         } else {
-          _hintIndex = 0;
+          // _hintIndex = 0;
         }
       }
       if (status == AnimationStatus.forward) {
@@ -152,7 +154,7 @@ class _Question5_2PageState extends State<Question5_2Page>
         if (_hint2Index != 3) {
           _hint2Index++;
         } else {
-          _hint2Index = 0;
+          // _hint2Index = 0;
         }
       }
       if (status == AnimationStatus.forward) {
@@ -174,7 +176,7 @@ class _Question5_2PageState extends State<Question5_2Page>
         if (_hint3Index != 3) {
           _hint3Index++;
         } else {
-          _hint3Index = 0;
+          // _hint3Index = 0;
         }
       }
       if (status == AnimationStatus.forward) {
@@ -200,6 +202,7 @@ class _Question5_2PageState extends State<Question5_2Page>
     answerTextController.dispose();
     hint2Controller.dispose();
     hint3Controller.dispose();
+    progressService.isDone.close();
     super.dispose();
   }
 
@@ -431,7 +434,7 @@ class _Question5_2PageState extends State<Question5_2Page>
       child: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 50, bottom : 50),
+            padding: const EdgeInsets.only(top: 50, bottom: 50),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -460,71 +463,36 @@ class _Question5_2PageState extends State<Question5_2Page>
                         const Text(
                           '5 ★ 2 = 11',
                           style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
-                        const Text(
-                          '2 ★ 4 = 14', style: TextStyle(
-                            fontSize: 30, color: Colors.black, height: 2),
+                              fontSize: 30, color: Colors.black, height: 2),
                         ),
                         const Text(
-                          '3 ★ 2 = 7', style: TextStyle(
-                            fontSize: 30, color: Colors.black, height: 2),
+                          '2 ★ 4 = 14',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),
                         ),
                         const Text(
-                          '4 ★ 5 = 30', style: TextStyle(
-                            fontSize: 30, color: Colors.black, height: 2),
+                          '3 ★ 2 = 7',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),
                         ),
                         const Text(
-                          '8 ★ 4 = ◆', style: TextStyle(
-                            fontSize: 30, color: Colors.black, height: 2),
+                          '4 ★ 5 = 30',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),
                         ),
-                        GestureDetector(onTap: () {
-                          hintController.forward();
-                        },
+                        const Text(
+                          '8 ★ 4 = ◆',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              hintController.forward();
+                            },
                             child: Image.asset(
-                              'assets/background/icon_hint.png', width: 50,)),
-                      ],
-                    ),
-                    Wrap(direction: Axis.vertical,
-                      children: [
-                        Container(
-                          color: Colors.black,
-                          width: 2,
-                          height: Get.height * 6/7,
-                        )
-                      ],
-                    ),
-                    Wrap(direction: Axis.vertical,
-                      children: [
-                        const Text(
-                          '5 + 1 = 46',
-                          style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
-
-                        const Text(
-                          '6 + 4 = 210',
-                          style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
-
-                        const Text(
-                          '8 + 7 = 115',
-                          style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
-
-                        const Text(
-                          '7 + 1 = ●',
-                          style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
-
-                        const Text(
-                          '',
-                          style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
-
-                        GestureDetector(onTap: () {
-                          hint2Controller.forward();
-                        },
-                            child: Image.asset(
-                              'assets/background/icon_hint.png', width: 50,)),
+                              'assets/background/icon_hint.png',
+                              width: 50,
+                            )),
                       ],
                     ),
                     Wrap(
@@ -537,34 +505,90 @@ class _Question5_2PageState extends State<Question5_2Page>
                         )
                       ],
                     ),
-                    Wrap(direction: Axis.vertical,
+                    Wrap(
+                      direction: Axis.vertical,
+                      children: [
+                        const Text(
+                          '5 + 1 = 46',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        const Text(
+                          '6 + 4 = 210',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        const Text(
+                          '8 + 7 = 115',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        const Text(
+                          '7 + 1 = ●',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        const Text(
+                          '',
+                          style: TextStyle(
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              hint2Controller.forward();
+                            },
+                            child: Image.asset(
+                              'assets/background/icon_hint.png',
+                              width: 50,
+                            )),
+                      ],
+                    ),
+                    Wrap(
+                      direction: Axis.vertical,
+                      children: [
+                        Container(
+                          color: Colors.black,
+                          width: 2,
+                          height: Get.height * 6 / 7,
+                        )
+                      ],
+                    ),
+                    Wrap(
+                      direction: Axis.vertical,
                       children: [
                         const Text(
                           '1 – 3 + 4 = 100',
                           style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
                         const Text(
                           '4 – 6 + 9 = 999',
                           style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
                         const Text(
                           '2 – 6 + 7 = 879',
                           style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
                         const Text(
                           '3– 3 + 6 = ■',
                           style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
                         const Text(
                           '',
                           style: TextStyle(
-                              fontSize: 30, color: Colors.black, height: 2),),
-
-                        GestureDetector(onTap: () {
-                          hint3Controller.forward();
-                        },
+                              fontSize: 30, color: Colors.black, height: 2),
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              hint3Controller.forward();
+                            },
                             child: Image.asset(
-                              'assets/background/icon_hint.png', width: 50,)),
+                              'assets/background/icon_hint.png',
+                              width: 50,
+                            )),
                       ],
                     ),
                   ],
@@ -583,8 +607,14 @@ class _Question5_2PageState extends State<Question5_2Page>
                           borderSide: BorderSide(color: Colors.transparent)),
                       suffixIcon: GestureDetector(
                           onTap: () {
-                            print('check icon clicked...');
-                            checkAnswer();
+                            if (_checkAnswerMutex) {
+                              _checkAnswerMutex = false;
+                              Future.delayed(const Duration(milliseconds: 2500), () {
+                                _checkAnswerMutex = true;
+                              });
+                              print('check icon clicked...');
+                              checkAnswer();
+                            }
                           },
                           child: Image.asset(
                             'assets/background/icon_ok.png',
@@ -598,7 +628,8 @@ class _Question5_2PageState extends State<Question5_2Page>
                 ),
               ].map((e) {
                 return Padding(
-                  padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
+                  padding:
+                      const EdgeInsets.only(left: 45, bottom: 8, right: 45),
                   child: e,
                 );
               }).toList(),
@@ -610,7 +641,8 @@ class _Question5_2PageState extends State<Question5_2Page>
   }
 
   void checkAnswer() {
-    if (answerTextController.text.replaceAll(' ', '').trim() == '3868220'.trim()) {
+    if (answerTextController.text.replaceAll(' ', '').trim() ==
+        '3868220'.trim()) {
       answerController.forward(from: 0.0);
       Timer(const Duration(milliseconds: 600), () async {
         await _player.stop();

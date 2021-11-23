@@ -87,6 +87,7 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
     statementController.dispose();
     backgroundController.dispose();
     titleController.dispose();
+    progressService.isDone.close();
   }
 
   @override
@@ -164,8 +165,8 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
-                            '김재규는 수행 비서를 시켜 자신을 도청하던 어떤 대학 교수를 중앙정보부로 끌고 와 심문하게 된다.',
-                        name: '나레이션'),
+                            '김재규는 수행 비서를 시켜 자신을 <r>도청</r>하던 어떤 대학 교수를 중앙정보부로 끌고 와 심문하게 된다.',
+                        name: ''),
                   ),
                 ]),
           ),

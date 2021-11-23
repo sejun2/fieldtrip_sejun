@@ -40,6 +40,8 @@ dependencies:
   delayed_display: ^2.0.0
   proste_indexed_stack: ^0.2.4
   audioplayers: ^0.20.1
+  css_text: ^2.1.0
+  styled_text: ^3.0.4+1
   
 dev_dependencies:
   flutter_test:

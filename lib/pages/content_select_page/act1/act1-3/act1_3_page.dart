@@ -93,13 +93,16 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
     });
   }
 
+  releaseResources() async{
+    await _chapterPlayer.stop();
+  }
   @override
   void dispose() {
     Get.log('dispose called...');
-    _chapterPlayer.stop();
     statementContainerController.dispose();
+    releaseResources();
     backgroundController.dispose();
-
+    progressService.isDone.close();
     super.dispose();
   }
 
@@ -158,7 +161,7 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
                             child: const StatementSceneWidget(
                           name: '김재규',
                           statement:
-                              '각하, 미국 프레이저 청문회에서 김형욱이 폭로를 하고 있습니다. 횡령이나 박동선이라는 자와의 일을 밝혔으며, FBI와 기자들에게, 각하에 대해 안좋은 이야기를 퍼뜨리고 있다고 합니다.',
+                              '각하, 미국 프레이저 청문회에서 <b>김형욱</b>이 폭로를 하고 있습니다. 횡령이나 박동선이라는 자와의 일을 밝혔으며, FBI와 기자들에게, 각하에 대해 안좋은 이야기를 퍼뜨리고 있다고 합니다.',
                           leftPerson: 'assets/character/chajichul.png',
                           rightPerson: 'assets/character/kimjaegyu2.png',
                         )),
@@ -166,7 +169,7 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
                             child: const StatementSceneWidget(
                           name: '차지철',
                           statement:
-                              '아니, 중정부장씩이나 되는 사람이 그거 하나 못 막고 뭘 하고 있었던거요?',
+                              '아니, <b>중정부장</b>씩이나 되는 사람이 그거 하나 못 막고 뭘 하고 있었던거요?',
                           leftPerson: 'assets/character/chajichul.png',
                           rightPerson: 'assets/character/kimjaegyu2.png',
                         )),
@@ -202,14 +205,14 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
                             child: const StatementSceneWidget(
                           name: '김재규',
                           statement:
-                              '각하 현재 미국의 시선이 김형욱에게 집중되어 있습니다. 제가 미국으로 넘어가 직접 만나서 회고록부터 회수하도록 하겠습니다.',
+                              '각하 현재 미국의 시선이 <b>김형욱</b>에게 집중되어 있습니다. 제가 미국으로 넘어가 직접 만나서 <r>회고록</r>부터 회수하도록 하겠습니다.',
                           leftPerson: 'assets/character/kimjaegyu1.png',
                           rightPerson: 'assets/character/parkjunghee1.png',
                         )),
                         IndexedStackChild(
                             child: const StatementSceneWidget(
                           name: '박정희',
-                          statement: '김부장도 내가 그만두기를 바라나?',
+                          statement: '<b>김부장</b>도 내가 그만두기를 바라나?',
                           leftPerson: 'assets/character/kimjaegyu1.png',
                           rightPerson: 'assets/character/parkjunghee1.png',
                         )),

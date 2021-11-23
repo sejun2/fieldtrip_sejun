@@ -28,6 +28,7 @@ class _Act1_17PageState extends State<Act1_17Page> {
 
   @override
   void dispose() {
+    progressService.isDone.close();
     super.dispose();
   }
 
@@ -87,28 +88,28 @@ class _Act1_17PageState extends State<Act1_17Page> {
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
-                            '박 대통령의 오른쪽 가슴팍에 총탄이 꽂히고, 만찬장은 순식간에 아수라장이 되어버렸다.',
-                        name: '나레이션'),
+                            '<b>박 대통령</b>의 오른쪽 가슴팍에 총탄이 꽂히고, 만찬장은 순식간에 아수라장이 되어버렸다.',
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
-                            '그 사이에 김재규 부장의 부하들은 대통령의 경호원들을 모두 쓰러트리고',
-                        name: '나레이션'),
+                            '그 사이에 <b>김재규</b> 부장의 부하들은 대통령의 경호원들을 모두 쓰러트리고',
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
-                            '김재규 부장은 차지철 실장을 끝장내기 위해 총을 겨누는데, 순간적으로 건물이 정전되어 버린다.',
-                        name: '나레이션'),
+                            '<b>김재규</b> 부장은 <b>차지철</b> 실장을 끝장내기 위해 총을 겨누는데, 순간적으로 건물이 정전되어 버린다.',
+                        name: ''),
                   ),
                 ]),
           ),
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: () {
-                _player.stop();
+              onTap: ()async {
+                await _player.stop();
                 progressService.resetProgress();
                 Get.offNamed('/act1-18');
               },

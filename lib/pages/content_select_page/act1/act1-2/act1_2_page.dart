@@ -58,6 +58,9 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
       }
     });
   }
+  _releaseResources()async{
+    await _player.stop();
+  }
 
   @override
   void initState() {
@@ -75,8 +78,8 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
   void dispose() {
     statementContainerController.dispose();
     backgroundController.dispose();
-    _player.stop();
-
+    _releaseResources();
+    progressService.isDone.close();
     super.dispose();
   }
 
@@ -126,8 +129,8 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
                 ),
                 IndexedStackChild(
                     child: const StatementSceneWidget(
-                  name: '나레이션',
-                  statement: '미국의 소식을 듣게 된 김재규는 대통령을 만나기 위해 청와대로 향한다 .',
+                  name: '',
+                  statement: '미국의 소식을 듣게 된 <b>김재규</b>는 대통령을 만나기 위해 청와대로 향한다 .',
                   leftPerson: null,
                   rightPerson: null,
                 )),

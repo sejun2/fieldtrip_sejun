@@ -48,6 +48,8 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
     backgroundController.dispose();
     statementContainerController.dispose();
 
+    progressService.isDone.close();
+
     super.dispose();
   }
 
@@ -169,22 +171,22 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                       statement:
-                          '전 중앙정보부의 부장 김형욱은 미국 프레이저 청문회에 참석해 대통령의 통치와 부정부패 및 비리 등을 폭로한다.',
-                      name: '나레이션',
+                          '전 중앙정보부의 부장 <b>김형욱</b>은 미국 프레이저 청문회에 참석해 대통령의 통치와 부정부패 및 비리 등을 폭로한다.',
+                      name: '',
                     ),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                       statement:
-                          '심지어 김형욱은 프레이저 청문회에서 밝히진 않았지만 FBI와 기자들에게 잔뜩 알린 대통령의 치부들, 특히 스위스 비밀계좌에 관한 내용에 상세히 적힌 회고록을 작성하고 있었고,',
-                      name: '나레이션',
+                          '심지어 <b>김형욱</b>은 프레이저 청문회에서 밝히진 않았지만 FBI와 기자들에게 잔뜩 알린 대통령의 치부들, 특히 스위스 비밀계좌에 관한 내용에 상세히 적힌 <r>회고록</r>을 작성하고 있었고,',
+                      name: '',
                     ),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                       statement:
                           '이것이 세상에 알려지면 가뜩이나 정권 유지가 위기에 놓인 대통령은 궁지에 몰릴 터였다.',
-                      name: '나레이션',
+                      name: '',
                     ),
                   ),
                   IndexedStackChild(
@@ -224,7 +226,7 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                      statement: '작성 중인 회고록이 있으며, 회고록에 상세한 내용을 담아 공개할 예정입니다.',
+                      statement: '작성 중인 <r>회고록</r>이 있으며, <r>회고록</r>에 상세한 내용을 담아 공개할 예정입니다.',
                       name: '김형욱',
                       leftPerson: 'assets/character/american2.png',
                       rightPerson: 'assets/character/kimhyungwook3.png',

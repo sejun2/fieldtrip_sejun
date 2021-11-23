@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:history_game_project/constant.dart';
+import 'package:styled_text/styled_text.dart';
 
 class CustomAnimatedTextWidget extends StatefulWidget {
   CustomAnimatedTextWidget(
@@ -110,9 +111,13 @@ class _CustomAnimatedTextWidgetState extends State<CustomAnimatedTextWidget>
             height: Get.height*1/2,
             width: Get.width,
             child: SingleChildScrollView(
-              child: Text(
-                currentText,
+              child: StyledText(
+                text: currentText,
                 style: widget.textStyle,
+                tags: {
+                  'b' : StyledTextTag(style: statementTextStyleBold),
+                  'r' : StyledTextTag(style: statementTextStyleRedBold)
+                },
               ),
             ),
           ),

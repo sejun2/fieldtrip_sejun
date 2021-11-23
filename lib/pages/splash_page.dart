@@ -15,6 +15,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   final controller = Get.put(SplashController());
 
+
   void doAnimationWork() {
     Timer.periodic(const Duration(milliseconds: 300), (t) {
       controller.incrementCurrentStep();
@@ -33,6 +34,10 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    return _buildAndroid();
+  }
+
+  Container _buildAndroid() {
     return Container(
       color: Colors.white,
       width: Get.width,

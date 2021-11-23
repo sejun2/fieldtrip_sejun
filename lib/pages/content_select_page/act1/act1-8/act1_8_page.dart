@@ -28,6 +28,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
   @override
   void dispose() {
     Get.log('Act1_8page dispose called...');
+    progressService.isDone.close();
     super.dispose();
   }
   @override
@@ -90,7 +91,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        statement: '김부장. 오랜만에 한잔 어떠신가?',
+                        statement: '<b>김부장.</b> 오랜만에 한잔 어떠신가?',
                         name: '박정희'),
                   ),
                   IndexedStackChild(
@@ -121,7 +122,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
-                        '그나저나, 김형욱은 어떻게 처리를 해야 좋을 거 같나, 김부장',
+                        '그나저나, <b>김형욱</b>은 어떻게 <r>처리</r>를 해야 좋을 거 같나, 김부장',
                         name: '박정희'),
                   ),
                   IndexedStackChild(
@@ -145,7 +146,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
-                        '김형욱을 살릴지 먼저 나서서 죽일지 고심하던 김재규 부장은 이에 결심을 굳히게 된다.',
+                        '김형욱을 살릴지 먼저 나서서 죽일지 고심하던 <b>김재규</b> 부장은 이에 결심을 굳히게 된다.',
                         name: '박정희'),
                   ),
                   IndexedStackChild(
@@ -153,16 +154,16 @@ class _Act1_8PageState extends State<Act1_8Page> {
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
-                        '바로 박 대통령에게서 자신이 잃어버린 신뢰와 신임을 다시 되찾아 관계를 회복하기 위해서, 친구이자 혁명의 동지였던 김형욱을 차지철 실장보다 먼저 제거하기로 결정하게 되었다.',
-                        name: '나레이션'),
+                        '바로 <b>박 대통령</b>에게서 자신이 잃어버린 신뢰와 신임을 다시 되찾아 관계를 회복하기 위해서, 친구이자 혁명의 동지였던 <b>김형욱</b>을 <b>차지철</b> 실장보다 먼저 <r>제거</r>하기로 결정하게 되었다.',
+                        name: ''),
                   ),
                 ]),
           ),
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: ()  {
-                 _player.stop();
+              onTap: () async {
+                 await _player.stop();
                  progressService.resetProgress();
                 Get.offNamed('/act1-9');
               },

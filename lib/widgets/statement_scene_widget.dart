@@ -34,9 +34,15 @@ class StatementSceneWidget extends StatefulWidget {
 
 class _StatementSceneWidgetState extends State<StatementSceneWidget> {
   final progressService = Get.put(ProgressService());
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    //test
+
     return Container(
       width: Get.width,
       color: Colors.transparent,
@@ -49,40 +55,46 @@ class _StatementSceneWidgetState extends State<StatementSceneWidget> {
                   child: Image.asset(
                     '${widget.leftPerson}',
                     fit: BoxFit.fitHeight,
-                    height: (Get.height - Get.height * 2 / 5) ,
-                    width: (Get.width) * 2/5,
+                    height: (Get.height - Get.height * 2 / 5),
+                    width: (Get.width) * 2 / 5,
                   ),
                   left: 20,
-            bottom: 7 + Get.height * 2/ 5,
+                  bottom: 7 + Get.height * 2 / 5,
                 )
               : Container(),
 
           ///오른쪽 인물 Widget
           widget.rightPerson != null
               ? Positioned(
-              bottom: 7 + Get.height * 2/ 5,
-              right: 20,
+                  bottom: 7 + Get.height * 2 / 5,
+                  right: 20,
                   child: Image.asset(
                     '${widget.rightPerson}',
-                    width: Get.width * 2/5,
+                    width: Get.width * 2 / 5,
                     fit: BoxFit.fitHeight,
-                    height: (Get.height - Get.height * 2 / 5) ,
+                    height: (Get.height - Get.height * 2 / 5),
                   ))
               : Container(),
 
           Positioned(
-            top: Get.height * 4/ 7,
+            top: Get.height * 4 / 7,
             child: Container(
-              padding: const EdgeInsets.only(top: 14, right: 8, left: 8, bottom: 8),
+              padding: GetPlatform.isIOS
+                  ? const EdgeInsets.only(
+                      top: 14, left: 8, right: 36, bottom: 8)
+                  : const EdgeInsets.only(
+                      top: 14, right: 8, left: 8, bottom: 8),
               width: Get.width,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.name,
-                    style: statementTextStyle,
-                  ),
+                  widget.name == ''
+                      ? const SizedBox()
+                      : Text(
+                          widget.name,
+                          style: nameTextStyle,
+                        ),
                   CustomAnimatedTextWidget(
                       text: widget.statement,
                       onFinished: () {

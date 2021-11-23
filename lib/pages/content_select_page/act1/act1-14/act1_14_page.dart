@@ -14,32 +14,31 @@ class Act1_14Page extends StatefulWidget {
 }
 
 class _Act1_14PageState extends State<Act1_14Page> {
-
   double _chapterOpacity = 0;
   final _chapterSoundPath = 'BGM/chapter_sound.mp3';
   late AudioPlayer _chapterPlayer;
 
-  void _initResources() async{
+
+
+  void _initResources() async {
     _chapterPlayer = await AudioCache().play(_chapterSoundPath);
-      setState(() {
-        _chapterOpacity =1.0;
-      });
+    setState(() {
+      _chapterOpacity = 1.0;
+    });
   }
 
   @override
   void initState() {
     _initResources();
     super.initState();
-
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child:   //chapter 화면
-        AnimatedOpacity(
+        child: //chapter 화면
+            AnimatedOpacity(
           opacity: _chapterOpacity,
           duration: const Duration(seconds: 2),
           child: GestureDetector(

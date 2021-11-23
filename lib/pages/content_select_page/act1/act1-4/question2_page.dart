@@ -18,6 +18,7 @@ class _Question2PageState extends State<Question2Page>
     with TickerProviderStateMixin {
   final progressService = Get.put<ProgressService>(ProgressService());
 
+  bool _checkAnswerMutex = true;
   bool _isIgnored = true;
 
   late TextEditingController answerTextController;
@@ -66,32 +67,39 @@ class _Question2PageState extends State<Question2Page>
 
     notAnswerController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
+        print('notAnswerController completed');
         Timer(const Duration(milliseconds: 600), () {
           notAnswerController.reverse(from: 1.0);
-          setState(() {
-            _isIgnored = false;
-          });
-        });
-      }
-      if (status == AnimationStatus.dismissed) {
-        setState(() {
-          _isIgnored = true;
-        });
-      }
-    });
-    answerController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-          answerController.reverse(from: 1.0);
-          if(mounted) {
+          if (mounted) {
             setState(() {
               _isIgnored = false;
             });
           }
+        });
       }
       if (status == AnimationStatus.dismissed) {
-        setState(() {
-          _isIgnored = true;
-        });
+        if (mounted) {
+          setState(() {
+            _isIgnored = true;
+          });
+        };
+      }
+    });
+    answerController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        answerController.reverse(from: 1.0);
+        if (mounted) {
+          setState(() {
+            _isIgnored = false;
+          });
+        }
+      }
+      if (status == AnimationStatus.dismissed) {
+        if (mounted) {
+          setState(() {
+            _isIgnored = true;
+          });
+        }
       }
     });
     hintAnimation.addStatusListener((status) {
@@ -104,15 +112,19 @@ class _Question2PageState extends State<Question2Page>
       }
       if (status == AnimationStatus.forward) {
         isHintClickable = true;
-        setState(() {
-          _isIgnored = false;
-        });
+        if (mounted) {
+          setState(() {
+            _isIgnored = false;
+          });
+        }
       }
       if (status == AnimationStatus.reverse) {
         isHintClickable = false;
-        setState(() {
-          _isIgnored = true;
-        });
+        if (mounted) {
+          setState(() {
+            _isIgnored = true;
+          });
+        }
       }
     });
   }
@@ -123,7 +135,7 @@ class _Question2PageState extends State<Question2Page>
     answerController.dispose();
     notAnswerController.dispose();
     answerTextController.dispose();
-
+    progressService.isDone.close();
     super.dispose();
   }
 
@@ -152,7 +164,8 @@ class _Question2PageState extends State<Question2Page>
               onTap: () {
                 hintController.forward();
               },
-              child: Image.asset('assets/background/icon_hint.png', width: 60, fit: BoxFit.fitWidth,),
+              child: Image.asset('assets/background/icon_hint.png', width: 60,
+                fit: BoxFit.fitWidth,),
             ),
             right: 50,
             top: 30,
@@ -163,7 +176,8 @@ class _Question2PageState extends State<Question2Page>
               onTap: () {
                 hintController.forward();
               },
-              child: Image.asset('assets/background/icon_hint.png', width: 60, fit: BoxFit.fitWidth,),
+              child: Image.asset('assets/background/icon_hint.png', width: 60,
+                fit: BoxFit.fitWidth,),
             ),
             right: 50,
             top: 30,
@@ -304,7 +318,8 @@ class _Question2PageState extends State<Question2Page>
                   "COMBINATION WITH ANY OBJECT.",
                   style: questionTextStyle,
                 ),
-                const Text('PLEAsE USE IT CArEFULLy.', style: questionTextStyle),
+                const Text(
+                    'PLEAsE USE IT CArEFULLy.', style: questionTextStyle),
                 const Align(
                   child: Text(
                     "도청 매뉴얼에 숨겨져 있는 인물은 누구인가?",
@@ -325,8 +340,14 @@ class _Question2PageState extends State<Question2Page>
                           borderSide: BorderSide(color: Colors.transparent)),
                       suffixIcon: GestureDetector(
                           onTap: () {
-                            print('check icon clicked...');
-                            checkAnswer();
+                            if (_checkAnswerMutex) {
+                              _checkAnswerMutex = false;
+                              Timer(const Duration(milliseconds: 2500), () {
+                                _checkAnswerMutex = true;
+                              });
+                              print('check icon clicked...');
+                              checkAnswer();
+                            }
                           },
                           child: Image.asset(
                             'assets/background/icon_ok.png',
@@ -340,7 +361,8 @@ class _Question2PageState extends State<Question2Page>
                 ),
               ].map((e) {
                 return Padding(
-                  padding: const EdgeInsets.only(left: 45, bottom: 8, right: 45),
+                  padding: const EdgeInsets.only(
+                      left: 45, bottom: 8, right: 45),
                   child: e,
                 );
               }).toList(),
@@ -350,7 +372,8 @@ class _Question2PageState extends State<Question2Page>
   }
 
   void checkAnswer() {
-    if (answerTextController.text.replaceAll(' ', '').trim()== 'jamesryu'.trim()) {
+    if (answerTextController.text.replaceAll(' ', '').trim() ==
+        'jamesryu'.trim()) {
       answerController.forward(from: 0.0);
       Timer(const Duration(milliseconds: 600), () async {
         await _player.stop();
