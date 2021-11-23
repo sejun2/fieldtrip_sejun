@@ -87,8 +87,6 @@ class _Act1_6PageState extends State<Act1_6Page> {
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        rightPerson: 'assets/character/kimjaegyu1.png',
-                        leftPerson: 'assets/character/parkjunghee1.png',
                         statement: '<r>도청</r> 사실을 알게 된 <b>김재규</b> 부장은 <b>박정희</b>에게 보고하러 대통령 집무실로 향한다.',
                         name: ''),
                   ),
