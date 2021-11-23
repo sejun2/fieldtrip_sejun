@@ -147,7 +147,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
                         '김형욱을 살릴지 먼저 나서서 죽일지 고심하던 <b>김재규</b> 부장은 이에 결심을 굳히게 된다.',
-                        name: '박정희'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
