@@ -28,6 +28,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
 
   @override
   void dispose() {
+    progressService.isDone.close();
     super.dispose();
   }
 
@@ -90,7 +91,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
                         '이 후 김재규 부장의 심복들이 궁정동의 인원들을 제압하는데 성공하고 김재규 부장은 그 모습들을 확인한 후,',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -98,7 +99,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
                         '난리통에 당황한 육군참모총장과 자신의 심복들과 함께 차에 타 엄지 손가락을 들어올리는 제스처를 취하려다 버벅거리면서',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -114,7 +115,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
                         '김재규 부장은 심하게 긴장한 듯 평정심을 되찾지 못하고, 차량에 구비된 사탕을 씹어먹으면서 육군참모총장에게도 사탕을 권유한다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -122,7 +123,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
                         '참모총장은 얼떨떨해하는 와중에 사탕을 몰래 차 바닥에 버려 버린다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -130,7 +131,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
                         '그 때, 겨우 정신이 든 김재규 부장은 무언가 이물감에 아래를 바라보는데, 난리통에 구두를 신지도 않고 나와 젖어있는 양말 차림의 발을 보게 된다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -138,7 +139,7 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
                         '상념에 빠졌는지 김재규 부장은 잠시 멍하게 있고,',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -162,15 +163,15 @@ class _Act1_18PageState extends State<Act1_18Page> {
                         leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
                         '결국 그들을 태운 차량은 비참한 운명이 기다리고 있는 육군본부로 향하게 된다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                 ]),
           ),
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: () {
-                _player.stop();
+              onTap: ()async {
+                await _player.stop();
                 progressService.resetProgress();
                 Get.offNamed('/act1-19');
               },

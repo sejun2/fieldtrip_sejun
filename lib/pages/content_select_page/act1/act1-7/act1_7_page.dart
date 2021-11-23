@@ -50,7 +50,11 @@ class _Act1_7PageState extends State<Act1_7Page> {
       }
     });
   }
-
+  @override
+  void dispose() {
+    progressService.isDone.close();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +91,7 @@ class _Act1_7PageState extends State<Act1_7Page> {
                         rightPerson: 'assets/character/sujiparktomson.png',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         statement: '그 즈음 한미 친선 연회가 열리게 되었고,',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -95,7 +99,7 @@ class _Act1_7PageState extends State<Act1_7Page> {
                         rightPerson: 'assets/character/sujiparktomson.png',
                         statement:
                             '파티에 참여한 김재규 부장은 수지 박 톰슨을 만나 김형욱의 의향을 전해 듣게 되는데,',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -114,13 +118,13 @@ class _Act1_7PageState extends State<Act1_7Page> {
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement: '그토록 존경하고 가까이 지내던 박 대통령이긴 하나,',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
                             '그를 몰아내고 정권을 차지하라는 김형욱의 권유는 너무나 고민되면서 매혹적인 것이었다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                 ]),
           ),

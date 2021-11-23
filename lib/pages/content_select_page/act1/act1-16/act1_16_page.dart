@@ -27,6 +27,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
   }
   @override
   void dispose() {
+    progressService.isDone.close();
     super.dispose();
   }
   @override
@@ -87,7 +88,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
                       leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement: '분위기가 무르익어 가는 만찬장.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -101,7 +102,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
                         statement: '박정희가 직접 술을 따라 주지만 김재규 부장의 표정은 밝지 않다.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -115,21 +116,21 @@ class _Act1_16PageState extends State<Act1_16Page> {
                         statement: '분위기가 무르익자 박 대통령도 기분이 좋은 듯 흥얼거리는 와중.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement: '김재규 부장은 반 쯤 취해서 박 대통령에게 술잔을 따라주는데, 양주를 크리스탈 잔 가득 채우고도 멈추지 않아서 잔이 넘친다.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement: '박 대통령과 차지철 실장이 당혹한 표정을 짓는 사이, 김재규 부장은 5.16 군사정변 당시의 추억을 얘기한다.',
                         leftPerson: 'assets/character/kimjaegyu1.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -178,21 +179,21 @@ class _Act1_16PageState extends State<Act1_16Page> {
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
 
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement: '양주를 자기가 가져가 한 잔을 가득 채워 김형욱을 위한 음복주라며 놓아 두고, 한 잔 더 스스로 따라 한입에 털어 넣어 버린다.',
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement: '주도 상으로는 윗사람에게 엄청나게 실례되는 행동들 투성이다.',
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -291,7 +292,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
                         statement: '김재규가 차지철을 향해 총을 쏘고, 팔꿈치를 맞은 차지철이 피를 흘리며 쓰러진다.',
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
-                        name: '나레이션'),
+                        name: ''),
                   ),
 
                   IndexedStackChild(
@@ -299,7 +300,7 @@ class _Act1_16PageState extends State<Act1_16Page> {
                         statement: '김재규가 곧바로 총구를 박 대통령에게 돌린다.',
                         leftPerson: 'assets/character/parkjunghee1.png',
                         rightPerson: 'assets/character/kimjaegyu1.png',
-                        name: '나레이'),
+                        name: ''),
                   ), IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement: '뭐 하는 짓이야!!',
@@ -318,8 +319,8 @@ class _Act1_16PageState extends State<Act1_16Page> {
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: ()  {
-                _player.stop();
+              onTap: () async {
+                await _player.stop();
                 progressService.resetProgress();
                 Get.offNamed('/act1-17');
               },

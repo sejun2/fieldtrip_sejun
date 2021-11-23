@@ -28,6 +28,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
   @override
   void dispose() {
     Get.log('Act1_8page dispose called...');
+    progressService.isDone.close();
     super.dispose();
   }
   @override
@@ -154,15 +155,15 @@ class _Act1_8PageState extends State<Act1_8Page> {
                         rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
                         '바로 박 대통령에게서 자신이 잃어버린 신뢰와 신임을 다시 되찾아 관계를 회복하기 위해서, 친구이자 혁명의 동지였던 김형욱을 차지철 실장보다 먼저 제거하기로 결정하게 되었다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                 ]),
           ),
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: ()  {
-                 _player.stop();
+              onTap: () async {
+                 await _player.stop();
                  progressService.resetProgress();
                 Get.offNamed('/act1-9');
               },

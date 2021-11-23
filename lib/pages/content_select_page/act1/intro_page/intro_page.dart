@@ -130,7 +130,7 @@ class _IntroPageState extends State<IntroPage> {
                 duration: const Duration(seconds: 3),
                 opacity: op2,
                 child: const Text(
-                  '그 날의\n총성',
+                  '그 날의 총성',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 45,

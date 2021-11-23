@@ -117,12 +117,18 @@ class _Question5PageState extends State<Question5Page>
     });
   }
 
+  releaseResources() async {
+    await _player.stop();
+  }
+
   @override
   void dispose() {
+    releaseResources();
     hintController.dispose();
     answerController.dispose();
     notAnswerController.dispose();
     answerTextController.dispose();
+    progressService.isDone.close();
     super.dispose();
   }
 
@@ -318,14 +324,23 @@ class _Question5PageState extends State<Question5Page>
               height: 25,
             ),
             Align(
-              child: GestureDetector(onTap: (){
-                Get.offNamed('act1/question5_2');
-              },child: Image.asset('assets/background/icon_ok.png', width: 45, alignment: Alignment.center,)),
+              child: GestureDetector(
+                  onTap: () {
+                    Get.offNamed('act1/question5_2');
+                  },
+                  child: Image.asset(
+                    'assets/background/icon_ok.png',
+                    width: 45,
+                    alignment: Alignment.center,
+                  )),
               alignment: Alignment.center,
             )
-          ].map((e) => Padding(padding: const EdgeInsets.only(left: 30, right: 30), child: e,)).toList()),
+          ]
+              .map((e) => Padding(
+                    padding: const EdgeInsets.only(left: 30, right: 30),
+                    child: e,
+                  ))
+              .toList()),
     );
   }
-
-
 }

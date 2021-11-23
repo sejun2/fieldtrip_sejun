@@ -2,7 +2,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:history_game_project/widgets/custom_animated_text_widget.dart';
 
 class Act1_19Page extends StatefulWidget {
   const Act1_19Page({Key? key}) : super(key: key);
@@ -19,7 +18,10 @@ class _Act1_19PageState extends State<Act1_19Page> {
   _initResources() async {
     _player = await AudioCache().play(_typingSoundPath);
   }
-
+  @override
+  void dispose() {
+    super.dispose();
+  }
   @override
   void initState() {
     _initResources();
@@ -55,8 +57,8 @@ class _Act1_19PageState extends State<Act1_19Page> {
           ),
           IgnorePointer(
             child: GestureDetector(
-              onTap: () {
-                _player.stop();
+              onTap: ()async {
+                await _player.stop();
                 Get.offNamed('/act1-20');
               },
             ),

@@ -93,13 +93,16 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
     });
   }
 
+  releaseResources() async{
+    await _chapterPlayer.stop();
+  }
   @override
   void dispose() {
     Get.log('dispose called...');
-    _chapterPlayer.stop();
     statementContainerController.dispose();
+    releaseResources();
     backgroundController.dispose();
-
+    progressService.isDone.close();
     super.dispose();
   }
 

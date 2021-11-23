@@ -27,6 +27,7 @@ class _Act1_12PageState extends State<Act1_12Page> {
   }
   @override
   void dispose() {
+    progressService.isDone.close();
     super.dispose();
   }
   @override
@@ -122,8 +123,8 @@ class _Act1_12PageState extends State<Act1_12Page> {
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: ()  {
-                _player.stop();
+              onTap: () async {
+                await _player.stop();
                 progressService.resetProgress();
                 Get.offNamed('/act1-13');
               },

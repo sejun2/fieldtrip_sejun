@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:history_game_project/services/progress_service.dart';
 
 class Act1EndingPage extends StatefulWidget {
   const Act1EndingPage({Key? key}) : super(key: key);
@@ -9,11 +10,18 @@ class Act1EndingPage extends StatefulWidget {
 }
 
 class _Act1EndingPageState extends State<Act1EndingPage> {
+
+  _resetAllResources() async{
+    final progressServcie = Get.find<ProgressService>();
+    progressServcie.resetProgress();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
         onTap: (){
+          _resetAllResources();
           Get.offAllNamed('/splash');
         },
         child: Container(

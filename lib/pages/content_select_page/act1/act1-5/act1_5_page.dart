@@ -48,7 +48,11 @@ class _Act1_5PageState extends State<Act1_5Page> {
       }
     });
   }
-
+@override
+  void dispose() {
+  progressService.isDone.close();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,8 +93,8 @@ class _Act1_5PageState extends State<Act1_5Page> {
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/kimjaegyu1.png',
-                        rightPerson: 'assets/character/professor.png',
+                        rightPerson: 'assets/character/kimjaegyu1.png',
+                        leftPerson: 'assets/character/professor.png',
                         statement:
                             '미국에서 제임스 류 라는 중앙정보부 요원의 의뢰로 강형욱을 도청했고, 한국으로 돌아온 후에는 김재규에 대한 도청을 의뢰받았소.',
                         name: '교수'),
@@ -98,19 +102,19 @@ class _Act1_5PageState extends State<Act1_5Page> {
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement: '김재규 부장이 찾아본 결과 제임스 류의 한국 이름은 유동훈.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
                             '그는 차지철 실장이 군인이었던 시절 그의 밑에서 복무한 부대원 출신이었으며, 차지철 실장의 추천으로 중앙정보부에 들어온 차지철 실장의 세작이었다는 것을 알게 된다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
                             '유동훈의 목적은 프랑스 주재 한국대사와 짜고 프랑스로 강형욱을 유인하여 현지에서 암살하는 것이었다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                 ]),
           ),

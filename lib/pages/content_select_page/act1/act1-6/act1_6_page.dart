@@ -25,7 +25,11 @@ class _Act1_6PageState extends State<Act1_6Page> {
   initResources() async{
     _player = await AudioCache().play(audioPath);
   }
-
+@override
+  void dispose() {
+  progressService.isDone.close();
+    super.dispose();
+  }
   @override
   void initState() {
     super.initState();
@@ -86,7 +90,7 @@ class _Act1_6PageState extends State<Act1_6Page> {
                         rightPerson: 'assets/character/kimjaegyu1.png',
                         leftPerson: 'assets/character/parkjunghee1.png',
                         statement: '도청 사실을 알게 된 김재규 부장은 박정희에게 보고하러 대통령 집무실로 향한다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
@@ -107,13 +111,13 @@ class _Act1_6PageState extends State<Act1_6Page> {
                     child: const StatementSceneWidget(
                         statement:
                         '김재규 부장이 고깝게 보이는 박 대통령은 측근들을 데리고 김재규 부장을 대놓고 무시한 채 지나가 버린다.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
                         statement:
                         '차지철 실장이 김형욱을 암살할 의도를 가지고 있음을 알게 되었고, 이를 저지하고 싶지만 김형욱에 대한 분노가 머리 끝까지 치달은 박 대통령을 설득하기란 거의 불가능에 가까운 상황.',
-                        name: '나레이션'),
+                        name: ''),
                   ),
                 ]),
           ),
