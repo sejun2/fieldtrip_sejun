@@ -47,8 +47,12 @@ class _SplashPageState extends State<SplashPage> {
         alignment: Alignment.center,
         children: [
           Positioned(
-              child: Image.asset('assets/background/startbackground.png',
-                  width: Get.width, height: Get.height, fit: BoxFit.fill)),
+              child: LayoutBuilder(
+                builder: (context, constraints){
+                  return Image.asset('assets/background/startbackground.png', width: constraints.maxWidth,
+                      fit: BoxFit.fill);
+                },
+              )),
           Positioned(
             child: Padding(
               padding: const EdgeInsets.only(left: 28),

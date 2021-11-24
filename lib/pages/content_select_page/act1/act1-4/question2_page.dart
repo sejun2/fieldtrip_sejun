@@ -371,12 +371,12 @@ class _Question2PageState extends State<Question2Page>
         ));
   }
 
-  void checkAnswer() {
+  void checkAnswer() async {
     if (answerTextController.text.replaceAll(' ', '').trim() ==
         'jamesryu'.trim()) {
       answerController.forward(from: 0.0);
-      Timer(const Duration(milliseconds: 600), () async {
-        await _player.stop();
+      await _player.stop();
+      Timer(const Duration(milliseconds: 600), ()  {
         Get.offNamed('/act1-5');
       });
     } else {

@@ -363,11 +363,11 @@ class _Question3PageState extends State<Question3Page>
         ));
   }
 
-  void checkAnswer() {
+  void checkAnswer() async {
     if (answerTextController.text.replaceAll(' ', '').trim() == '유인'.trim()) {
       answerController.forward(from: 0.0);
-      Timer(const Duration(milliseconds: 600), () async {
-        await _player.stop();
+      await _player.stop();
+      Timer(const Duration(milliseconds: 600), ()  {
         Get.offNamed('/act1-8');
       });
     } else {

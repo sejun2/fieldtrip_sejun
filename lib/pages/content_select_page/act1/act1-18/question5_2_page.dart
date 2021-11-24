@@ -609,7 +609,8 @@ class _Question5_2PageState extends State<Question5_2Page>
                           onTap: () {
                             if (_checkAnswerMutex) {
                               _checkAnswerMutex = false;
-                              Future.delayed(const Duration(milliseconds: 2500), () {
+                              Future.delayed(const Duration(milliseconds: 2500),
+                                  () {
                                 _checkAnswerMutex = true;
                               });
                               print('check icon clicked...');
@@ -640,12 +641,12 @@ class _Question5_2PageState extends State<Question5_2Page>
     );
   }
 
-  void checkAnswer() {
+  void checkAnswer() async {
     if (answerTextController.text.replaceAll(' ', '').trim() ==
         '3868220'.trim()) {
       answerController.forward(from: 0.0);
-      Timer(const Duration(milliseconds: 600), () async {
-        await _player.stop();
+      await _player.stop();
+      Timer(const Duration(milliseconds: 600), () {
         Get.offNamed('/act1-21');
       });
     } else {

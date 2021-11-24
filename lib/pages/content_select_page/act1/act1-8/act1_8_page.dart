@@ -143,16 +143,12 @@ class _Act1_8PageState extends State<Act1_8Page> {
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/kimjaegyu1.png',
-                        rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
                         '김형욱을 살릴지 먼저 나서서 죽일지 고심하던 <b>김재규</b> 부장은 이에 결심을 굳히게 된다.',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/kimjaegyu1.png',
-                        rightPerson: 'assets/character/parkjunghee1.png',
                         statement:
                         '바로 <b>박 대통령</b>에게서 자신이 잃어버린 신뢰와 신임을 다시 되찾아 관계를 회복하기 위해서, 친구이자 혁명의 동지였던 <b>김형욱</b>을 <b>차지철</b> 실장보다 먼저 <r>제거</r>하기로 결정하게 되었다.',
                         name: ''),

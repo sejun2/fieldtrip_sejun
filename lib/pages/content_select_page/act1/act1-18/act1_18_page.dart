@@ -87,16 +87,12 @@ class _Act1_18PageState extends State<Act1_18Page> {
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        rightPerson: 'assets/character/kimjaegyu1.png',
-                        leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
                         '이 후 <b>김재규</b> 부장의 심복들이 궁정동의 인원들을 제압하는데 성공하고 <b>김재규</b> 부장은 그 모습들을 확인한 후,',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        rightPerson: 'assets/character/kimjaegyu1.png',
-                        leftPerson: 'assets/character/jungseunghwa.png',
                         statement:
                         '난리통에 당황한 육군참모총장과 자신의 심복들과 함께 차에 타 엄지 손가락을 들어올리는 제스처를 취하려다 버벅거리면서',
                         name: ''),
