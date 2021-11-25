@@ -57,65 +57,68 @@ class _Act1_13PageState extends State<Act1_13Page> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          GestureDetector(
-            onTap: () {},
-            child: Image.asset(
-              'assets/background/closet.png',
-              width: Get.width,
-              height: Get.height,
-              fit: BoxFit.fill,
-            ),
-          ),
-          Positioned(
-            bottom: 7,
-            child: Opacity(
-              opacity: 0.7,
-              child: Container(
-                width: Get.width,
-                height: Get.height * 2 / 5,
-                padding: const EdgeInsets.all(8),
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Obx(
-            () => ProsteIndexedStack(
-                index: progressService.progress.value,
-                children: [
-                  IndexedStackChild(child: Container()),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        statement:
-                            '<b>박 대통령과 차 실장</b>의 대화 내용을 도청한 <b>김재규</b> 부장은 그 내용에 소스라치게 놀라며 결심을 하게 된다.',
-                        name: ''),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        rightPerson: 'assets/character/kimjaegyu1.png',
-                        statement: '가만히 앉아서 당하느니 내가 먼저 친다!',
-                        name: '김재규'),
-                  ),
-                ]),
-          ),
-          IgnorePointer(
-            ignoring: _isIgnore,
-            child: GestureDetector(
-              onTap: () async {
-                await _player.stop();
-                progressService.resetProgress();
-                Get.offNamed('/act1-14');
-              },
-              child: Container(
-                color: Colors.transparent,
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Stack(
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Image.asset(
+                'assets/background/closet.png',
                 width: Get.width,
                 height: Get.height,
+                fit: BoxFit.fill,
               ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 7,
+              child: Opacity(
+                opacity: 0.7,
+                child: Container(
+                  width: Get.width,
+                  height: Get.height * 2 / 5,
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Obx(
+              () => ProsteIndexedStack(
+                  index: progressService.progress.value,
+                  children: [
+                    IndexedStackChild(child: Container()),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          statement:
+                              '<b>박 대통령과 차 실장</b>의 대화 내용을 도청한 <b>김재규</b> 부장은 그 내용에 소스라치게 놀라며 결심을 하게 된다.',
+                          name: ''),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          rightPerson: 'assets/character/kimjaegyu1.png',
+                          statement: '가만히 앉아서 당하느니 내가 먼저 친다!',
+                          name: '김재규'),
+                    ),
+                  ]),
+            ),
+            IgnorePointer(
+              ignoring: _isIgnore,
+              child: GestureDetector(
+                onTap: () async {
+                  await _player.stop();
+                  progressService.resetProgress();
+                  Get.offNamed('/act1-14');
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  width: Get.width,
+                  height: Get.height,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

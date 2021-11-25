@@ -15,7 +15,6 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   final controller = Get.put(SplashController());
 
-
   void doAnimationWork() {
     controller.currentStep = 0;
     Timer.periodic(const Duration(milliseconds: 300), (t) {
@@ -35,7 +34,11 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildAndroid();
+    return WillPopScope(
+        child: _buildAndroid(),
+        onWillPop: () {
+          return Future(() => false);
+        });
   }
 
   Container _buildAndroid() {
@@ -46,13 +49,12 @@ class _SplashPageState extends State<SplashPage> {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Positioned(
-              child: LayoutBuilder(
-                builder: (context, constraints){
-                  return Image.asset('assets/background/startbackground.png', width: constraints.maxWidth,
-                      fit: BoxFit.fill);
-                },
-              )),
+          Positioned(child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Image.asset('assets/background/startbackground.png',
+                  width: constraints.maxWidth, fit: BoxFit.fill);
+            },
+          )),
           Positioned(
             child: Padding(
               padding: const EdgeInsets.only(left: 28),

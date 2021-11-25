@@ -18,18 +18,21 @@ class _Act1EndingPageState extends State<Act1EndingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: (){
-          _resetAllResources();
-          Get.offAllNamed('/splash');
-        },
-        child: Container(
-          color: Colors.black,
-          width: Get.width,
-          height: Get.height,
-          child: const Center(
-            child: Text('플레이 해주셔서 감사합니다.', style: TextStyle(color: Colors.white, fontSize: 35),),
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: GestureDetector(
+          onTap: (){
+            _resetAllResources();
+            Get.offAllNamed('/splash');
+          },
+          child: Container(
+            color: Colors.black,
+            width: Get.width,
+            height: Get.height,
+            child: const Center(
+              child: Text('플레이 해주셔서 감사합니다.', style: TextStyle(color: Colors.white, fontSize: 35),),
+            ),
           ),
         ),
       ),

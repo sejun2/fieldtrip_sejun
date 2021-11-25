@@ -140,130 +140,60 @@ class _Question1PageState extends State<Question1Page>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: Image.asset(
-                'assets/background/questionbackground.png',
-                fit: BoxFit.fill,
-                width: Get.width,
-                height: Get.height,
-              ),
-            ),
-
-            _buildContent(),
-            /*   Positioned(
-              right: 30,
-              bottom: 30,
-              child: GestureDetector(
-                onTap: () {
-                  answerController.forward();
-                },
-                child: const Icon(
-                  Icons.check_circle_outline,
-                  size: 40,
-                  color: Colors.white,
-                ),
-              ),
-            ),*/
-            Positioned(
-              child: GestureDetector(
-                onTap: () {
-                  hintController.forward();
-                },
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Positioned.fill(
                 child: Image.asset(
-                  'assets/background/icon_hint.png',
-                  width: 60,
-                  fit: BoxFit.fitWidth,
+                  'assets/background/questionbackground.png',
+                  fit: BoxFit.fill,
+                  width: Get.width,
+                  height: Get.height,
                 ),
               ),
-              right: 50,
-              top: 30,
-            ),
-            //정답입니다 위젯
-            AnimatedBuilder(
-              builder: (BuildContext context, Widget? child) {
-                return Positioned(
-                    top: 0,
-                    bottom: 0,
-                    child: IgnorePointer(
-                      ignoring: _isIgnored,
-                      child: Opacity(
-                        opacity: answerAnimation.value,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Opacity(
-                              opacity: 0.6,
-                              child: Container(
-                                color: Colors.black,
-                                width: Get.width,
-                                height: Get.height * 2 / 5,
-                              ),
-                            ),
-                            const Text(
-                              '정답입니다.',
-                              style: statementTextStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ));
-              },
-              animation: answerAnimation,
-            ),
-            //정답이 아닙니다 위젯
-            AnimatedBuilder(
-              builder: (BuildContext context, Widget? child) {
-                return Positioned(
-                    top: 0,
-                    bottom: 0,
-                    child: IgnorePointer(
-                      ignoring: _isIgnored,
-                      child: Opacity(
-                        opacity: notAnswerAnimation.value,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Opacity(
-                              opacity: 0.6,
-                              child: Container(
-                                color: Colors.black,
-                                width: Get.width,
-                                height: Get.height * 2 / 5,
-                              ),
-                            ),
-                            const Text(
-                              '정답이 아닙니다.',
-                              style: statementTextStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ));
-              },
-              animation: notAnswerAnimation,
-            ),
-            //Hint 위젯
-            AnimatedBuilder(
-              builder: (BuildContext context, Widget? child) {
-                return Positioned(
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: IgnorePointer(
-                      ignoring: _isIgnored,
-                      child: GestureDetector(
-                        onTap: () {
-                          if (isHintClickable) {
-                            hintController.reverse(from: 1.0);
-                          }
-                        },
+
+              _buildContent(),
+              /*   Positioned(
+                right: 30,
+                bottom: 30,
+                child: GestureDetector(
+                  onTap: () {
+                    answerController.forward();
+                  },
+                  child: const Icon(
+                    Icons.check_circle_outline,
+                    size: 40,
+                    color: Colors.white,
+                  ),
+                ),
+              ),*/
+              Positioned(
+                child: GestureDetector(
+                  onTap: () {
+                    hintController.forward();
+                  },
+                  child: Image.asset(
+                    'assets/background/icon_hint.png',
+                    width: 60,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                right: 50,
+                top: 30,
+              ),
+              //정답입니다 위젯
+              AnimatedBuilder(
+                builder: (BuildContext context, Widget? child) {
+                  return Positioned(
+                      top: 0,
+                      bottom: 0,
+                      child: IgnorePointer(
+                        ignoring: _isIgnored,
                         child: Opacity(
-                          opacity: hintAnimation.value,
+                          opacity: answerAnimation.value,
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
@@ -275,22 +205,95 @@ class _Question1PageState extends State<Question1Page>
                                   height: Get.height * 2 / 5,
                                 ),
                               ),
-                              Text(
-                                hintList[_hintIndex],
+                              const Text(
+                                '정답입니다.',
                                 style: statementTextStyle,
-                                softWrap: true,
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.visible,
                               ),
                             ],
                           ),
                         ),
-                      ),
-                    ));
-              },
-              animation: hintAnimation,
-            ),
-          ],
+                      ));
+                },
+                animation: answerAnimation,
+              ),
+              //정답이 아닙니다 위젯
+              AnimatedBuilder(
+                builder: (BuildContext context, Widget? child) {
+                  return Positioned(
+                      top: 0,
+                      bottom: 0,
+                      child: IgnorePointer(
+                        ignoring: _isIgnored,
+                        child: Opacity(
+                          opacity: notAnswerAnimation.value,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Opacity(
+                                opacity: 0.6,
+                                child: Container(
+                                  color: Colors.black,
+                                  width: Get.width,
+                                  height: Get.height * 2 / 5,
+                                ),
+                              ),
+                              const Text(
+                                '정답이 아닙니다.',
+                                style: statementTextStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ));
+                },
+                animation: notAnswerAnimation,
+              ),
+              //Hint 위젯
+              AnimatedBuilder(
+                builder: (BuildContext context, Widget? child) {
+                  return Positioned(
+                      top: 0,
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: IgnorePointer(
+                        ignoring: _isIgnored,
+                        child: GestureDetector(
+                          onTap: () {
+                            if (isHintClickable) {
+                              hintController.reverse(from: 1.0);
+                            }
+                          },
+                          child: Opacity(
+                            opacity: hintAnimation.value,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Opacity(
+                                  opacity: 0.6,
+                                  child: Container(
+                                    color: Colors.black,
+                                    width: Get.width,
+                                    height: Get.height * 2 / 5,
+                                  ),
+                                ),
+                                Text(
+                                  hintList[_hintIndex],
+                                  style: statementTextStyle,
+                                  softWrap: true,
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.visible,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ));
+                },
+                animation: hintAnimation,
+              ),
+            ],
+          ),
         ),
       ),
     );

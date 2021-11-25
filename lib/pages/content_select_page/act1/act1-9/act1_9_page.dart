@@ -102,111 +102,114 @@ class _Act1_9PageState extends State<Act1_9Page> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          IgnorePointer(
-            ignoring: _wholeIgnore,
-            child: AnimatedOpacity(
-              opacity: _wholeOpacity,
-              duration: const Duration(seconds: 2),
-              child: Stack(
-                children: [
-                  AnimatedBuilder(
-                    animation: backgroundAnimation,
-                    builder: (BuildContext context, Widget? child) {
-                      return Opacity(
-                        opacity: backgroundAnimation.value,
-                        child: Image.asset(
-                          'assets/background/france2.png',
-                          width: Get.width,
-                          height: Get.height,
-                          fit: BoxFit.fill,
-                        ),
-                      );
-                    },
-                  ),
-                  AnimatedBuilder(
-                    animation: statementContainerAnimation,
-                    builder: (BuildContext context, Widget? child) {
-                      return Positioned(
-                        bottom: 7,
-                        child: AnimatedOpacity(
-                          duration: const Duration(seconds: 3),
-                          opacity: statementContainerAnimation.value,
-                          child: Container(
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Stack(
+          children: [
+            IgnorePointer(
+              ignoring: _wholeIgnore,
+              child: AnimatedOpacity(
+                opacity: _wholeOpacity,
+                duration: const Duration(seconds: 2),
+                child: Stack(
+                  children: [
+                    AnimatedBuilder(
+                      animation: backgroundAnimation,
+                      builder: (BuildContext context, Widget? child) {
+                        return Opacity(
+                          opacity: backgroundAnimation.value,
+                          child: Image.asset(
+                            'assets/background/france2.png',
                             width: Get.width,
-                            height: Get.height * 2 / 5,
-                            padding: const EdgeInsets.all(8),
-                            color: Colors.black,
+                            height: Get.height,
+                            fit: BoxFit.fill,
                           ),
-                        ),
+                        );
+                      },
+                    ),
+                    AnimatedBuilder(
+                      animation: statementContainerAnimation,
+                      builder: (BuildContext context, Widget? child) {
+                        return Positioned(
+                          bottom: 7,
+                          child: AnimatedOpacity(
+                            duration: const Duration(seconds: 3),
+                            opacity: statementContainerAnimation.value,
+                            child: Container(
+                              width: Get.width,
+                              height: Get.height * 2 / 5,
+                              padding: const EdgeInsets.all(8),
+                              color: Colors.black,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    Obx(() {
+                      return ProsteIndexedStack(
+                        index: progressService.progress.value,
+                        children: [
+                          IndexedStackChild(
+                            child: Container(),
+                          ),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '',
+                            statement: '<b>김재규</b> 부장이 <b>김형욱</b>을 처리하기 위해 수를 쓰게 되는데,',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '',
+                            statement:
+                                '미리 파견을 보낸 <b>김재규</b> 부장의 요원을 통해 <b>수지 박</b>을 거짓말로 속여내어 프랑스로 부른 뒤 차에 태워 \'고국땅을 밟고 싶으면 <b>김형욱</b>을 <r>유인</r>하라 \'며 그녀를 포섭하는 방법이었다.',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '',
+                            statement:
+                                '납치되어 차를 타고 끌려가던 <b>김형욱</b>은 차량 내부에서 사고를 낸뒤 도망가지만 이내 <b>김재규</b> 부장의 요원들에게 잡혀 현장에서 <r>살해</r>된다.',
+                          )),
+                        ],
                       );
-                    },
-                  ),
-                  Obx(() {
-                    return ProsteIndexedStack(
-                      index: progressService.progress.value,
-                      children: [
-                        IndexedStackChild(
-                          child: Container(),
-                        ),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '',
-                          statement: '<b>김재규</b> 부장이 <b>김형욱</b>을 처리하기 위해 수를 쓰게 되는데,',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '',
-                          statement:
-                              '미리 파견을 보낸 <b>김재규</b> 부장의 요원을 통해 <b>수지 박</b>을 거짓말로 속여내어 프랑스로 부른 뒤 차에 태워 \'고국땅을 밟고 싶으면 <b>김형욱</b>을 <r>유인</r>하라 \'며 그녀를 포섭하는 방법이었다.',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '',
-                          statement:
-                              '납치되어 차를 타고 끌려가던 <b>김형욱</b>은 차량 내부에서 사고를 낸뒤 도망가지만 이내 <b>김재규</b> 부장의 요원들에게 잡혀 현장에서 <r>살해</r>된다.',
-                        )),
-                      ],
-                    );
-                  })
-                ],
+                    })
+                  ],
+                ),
               ),
             ),
-          ),
-          //chapter 화면
-          IgnorePointer(
-            ignoring: _chapterIgnore,
-            child: AnimatedOpacity(
-              opacity: _chapterOpacity,
-              duration: const Duration(seconds: 2),
-              child: GestureDetector(
-                onTap: () async {
-                  await _chapterPlayer.stop();
-                  setState(() {
-                    _chapterOpacity = 0.0;
-                  });
-                  Timer(const Duration(seconds: 2), () async {
-                    Get.offAndToNamed('/act1-10');
-                  });
-                },
-                child: Container(
-                  width: Get.width,
-                  height: Get.height,
-                  color: Colors.black,
-                  child: const Center(
-                    child: Text(
-                      'CHAPTER. 3\n김재규',
-                      style: chapterTextStyle,
-                      textAlign: TextAlign.center,
+            //chapter 화면
+            IgnorePointer(
+              ignoring: _chapterIgnore,
+              child: AnimatedOpacity(
+                opacity: _chapterOpacity,
+                duration: const Duration(seconds: 2),
+                child: GestureDetector(
+                  onTap: () async {
+                    await _chapterPlayer.stop();
+                    setState(() {
+                      _chapterOpacity = 0.0;
+                    });
+                    Timer(const Duration(seconds: 2), () async {
+                      Get.offAndToNamed('/act1-10');
+                    });
+                  },
+                  child: Container(
+                    width: Get.width,
+                    height: Get.height,
+                    color: Colors.black,
+                    child: const Center(
+                      child: Text(
+                        'CHAPTER. 3\n김재규',
+                        style: chapterTextStyle,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -99,117 +99,120 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          AnimatedBuilder(
-              animation: backgroundAnimation,
-              builder: (context, widget) {
-                return GestureDetector(
-                  onTap: () {},
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Stack(
+          children: [
+            AnimatedBuilder(
+                animation: backgroundAnimation,
+                builder: (context, widget) {
+                  return GestureDetector(
+                    onTap: () {},
+                    child: Opacity(
+                        opacity: backgroundAnimation.value,
+                        child: Image.asset(
+                          'assets/background/informationinstitution.png',
+                          width: Get.width,
+                          height: Get.height,
+                          fit: BoxFit.fill,
+                        )),
+                  );
+                }),
+            AnimatedBuilder(
+              animation: titleAnimation,
+              builder: (container, widget) {
+                return Positioned(
+                  right: 0,
+                  left: 0,
+                  bottom: 40,
                   child: Opacity(
-                      opacity: backgroundAnimation.value,
-                      child: Image.asset(
-                        'assets/background/informationinstitution.png',
-                        width: Get.width,
-                        height: Get.height,
-                        fit: BoxFit.fill,
-                      )),
-                );
-              }),
-          AnimatedBuilder(
-            animation: titleAnimation,
-            builder: (container, widget) {
-              return Positioned(
-                right: 0,
-                left: 0,
-                bottom: 40,
-                child: Opacity(
-                  opacity: titleAnimation.value,
-                  child: const TitleContainerWidget(
-                    text: '남산 중앙정보부',
-                  ),
-                ),
-              );
-            },
-          ),
-          AnimatedBuilder(
-            animation: statementAnimation,
-            builder: (BuildContext context, Widget? child) {
-              return Positioned(
-                bottom: 7,
-                child: IgnorePointer(
-                  ignoring: !_isIgnore,
-                  child: Opacity(
-                    opacity: statementAnimation.value,
-                    child: Container(
-                      width: Get.width,
-                      height: Get.height * 2 / 5,
-                      padding: const EdgeInsets.all(8),
-                      color: Colors.black,
+                    opacity: titleAnimation.value,
+                    child: const TitleContainerWidget(
+                      text: '남산 중앙정보부',
                     ),
                   ),
-                ),
-              );
-            },
-          ),
-          Obx(
-            () => ProsteIndexedStack(
-                index: progressService.progress.value,
-                children: [
-                  IndexedStackChild(child: Container()),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        statement:
-                            '김재규는 수행 비서를 시켜 자신을 <r>도청</r>하던 어떤 대학 교수를 중앙정보부로 끌고 와 심문하게 된다.',
-                        name: ''),
+                );
+              },
+            ),
+            AnimatedBuilder(
+              animation: statementAnimation,
+              builder: (BuildContext context, Widget? child) {
+                return Positioned(
+                  bottom: 7,
+                  child: IgnorePointer(
+                    ignoring: !_isIgnore,
+                    child: Opacity(
+                      opacity: statementAnimation.value,
+                      child: Container(
+                        width: Get.width,
+                        height: Get.height * 2 / 5,
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
-                ]),
-          ),
-          //background ignore pointer
-          IgnorePointer(
-            ignoring: _isBackgroundIgnore,
-            child: GestureDetector(
-                onTap: () {
-                  Get.log('onTap...');
-                  if (!isTitleDisappear) {
-                    setState(() {
-                      if (mounted) {
-                        _isBackgroundIgnore = true;
-                      }
-                    });
-                    Get.log('isTitleDisappear : $isTitleDisappear');
-                    isTitleDisappear = true;
-                    titleController.reverse(from: 1.0);
-                    statementController.forward(from: 0.0);
-                    progressService.progress.value = 1;
-                  }
-                  if (progressService.isDone.value) {}
+                );
+              },
+            ),
+            Obx(
+              () => ProsteIndexedStack(
+                  index: progressService.progress.value,
+                  children: [
+                    IndexedStackChild(child: Container()),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          statement:
+                              '김재규는 수행 비서를 시켜 자신을 <r>도청</r>하던 어떤 대학 교수를 중앙정보부로 끌고 와 심문하게 된다.',
+                          name: ''),
+                    ),
+                  ]),
+            ),
+            //background ignore pointer
+            IgnorePointer(
+              ignoring: _isBackgroundIgnore,
+              child: GestureDetector(
+                  onTap: () {
+                    Get.log('onTap...');
+                    if (!isTitleDisappear) {
+                      setState(() {
+                        if (mounted) {
+                          _isBackgroundIgnore = true;
+                        }
+                      });
+                      Get.log('isTitleDisappear : $isTitleDisappear');
+                      isTitleDisappear = true;
+                      titleController.reverse(from: 1.0);
+                      statementController.forward(from: 0.0);
+                      progressService.progress.value = 1;
+                    }
+                    if (progressService.isDone.value) {}
+                  },
+                  child: Container(
+                    width: Get.width,
+                    height: Get.height,
+                    color: Colors.transparent,
+                  )),
+            ),
+            //whole page ignorepointer
+            IgnorePointer(
+              ignoring: _isIgnore,
+              child: GestureDetector(
+                onTap: () async {
+                  Get.log('clicked...');
+                  progressService.resetProgress();
+                  await _player.stop();
+                  Get.offAndToNamed('/act1/question2');
                 },
                 child: Container(
+                  color: Colors.transparent,
                   width: Get.width,
                   height: Get.height,
-                  color: Colors.transparent,
-                )),
-          ),
-          //whole page ignorepointer
-          IgnorePointer(
-            ignoring: _isIgnore,
-            child: GestureDetector(
-              onTap: () async {
-                Get.log('clicked...');
-                progressService.resetProgress();
-                await _player.stop();
-                Get.offAndToNamed('/act1/question2');
-              },
-              child: Container(
-                color: Colors.transparent,
-                width: Get.width,
-                height: Get.height,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

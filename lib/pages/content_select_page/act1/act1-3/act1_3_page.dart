@@ -109,162 +109,165 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          IgnorePointer(
-            ignoring: _wholeIgnore,
-            child: AnimatedOpacity(
-              opacity: _wholeOpacity,
-              duration: const Duration(seconds: 2),
-              child: Stack(
-                children: [
-                  AnimatedBuilder(
-                    animation: backgroundAnimation,
-                    builder: (BuildContext context, Widget? child) {
-                      return Opacity(
-                        opacity: backgroundAnimation.value,
-                        child: Image.asset(
-                          'assets/background/bluehouseoffice.png',
-                          width: Get.width,
-                          height: Get.height,
-                          fit: BoxFit.fill,
-                        ),
-                      );
-                    },
-                  ),
-                  AnimatedBuilder(
-                    animation: statementContainerAnimation,
-                    builder: (BuildContext context, Widget? child) {
-                      return Positioned(
-                        bottom: 7,
-                        child: AnimatedOpacity(
-                          duration: const Duration(seconds: 3),
-                          opacity: statementContainerAnimation.value,
-                          child: Container(
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Stack(
+          children: [
+            IgnorePointer(
+              ignoring: _wholeIgnore,
+              child: AnimatedOpacity(
+                opacity: _wholeOpacity,
+                duration: const Duration(seconds: 2),
+                child: Stack(
+                  children: [
+                    AnimatedBuilder(
+                      animation: backgroundAnimation,
+                      builder: (BuildContext context, Widget? child) {
+                        return Opacity(
+                          opacity: backgroundAnimation.value,
+                          child: Image.asset(
+                            'assets/background/bluehouseoffice.png',
                             width: Get.width,
-                            height: Get.height * 2 / 5,
-                            padding: const EdgeInsets.all(8),
-                            color: Colors.black,
+                            height: Get.height,
+                            fit: BoxFit.fill,
                           ),
-                        ),
+                        );
+                      },
+                    ),
+                    AnimatedBuilder(
+                      animation: statementContainerAnimation,
+                      builder: (BuildContext context, Widget? child) {
+                        return Positioned(
+                          bottom: 7,
+                          child: AnimatedOpacity(
+                            duration: const Duration(seconds: 3),
+                            opacity: statementContainerAnimation.value,
+                            child: Container(
+                              width: Get.width,
+                              height: Get.height * 2 / 5,
+                              padding: const EdgeInsets.all(8),
+                              color: Colors.black,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    Obx(() {
+                      return ProsteIndexedStack(
+                        index: progressService.progress.value,
+                        children: [
+                          IndexedStackChild(
+                            child: Container(),
+                          ),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '김재규',
+                            statement:
+                                '각하, 미국 프레이저 청문회에서 <b>김형욱</b>이 폭로를 하고 있습니다. 횡령이나 박동선이라는 자와의 일을 밝혔으며, FBI와 기자들에게, 각하에 대해 안좋은 이야기를 퍼뜨리고 있다고 합니다.',
+                            leftPerson: 'assets/character/chajichul.png',
+                            rightPerson: 'assets/character/kimjaegyu2.png',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '차지철',
+                            statement:
+                                '아니, <b>중정부장</b>씩이나 되는 사람이 그거 하나 못 막고 뭘 하고 있었던거요?',
+                            leftPerson: 'assets/character/chajichul.png',
+                            rightPerson: 'assets/character/kimjaegyu2.png',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '박정희',
+                            statement: '그 배신자 새끼를 어떻게 하면 좋겠나?',
+                            leftPerson: 'assets/character/chajichul.png',
+                            rightPerson: 'assets/character/parkjunghee1.png',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '차지철',
+                            statement: '당장 잡아다가 청와대 뒷마당 무궁화 퇴비로 써야죠. 각하!',
+                            leftPerson: 'assets/character/chajichul.png',
+                            rightPerson: 'assets/character/parkjunghee1.png',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '김재규',
+                            statement: '각하 우선 제가 미국으로 넘어가서 조용히 해결해보겠습니다.',
+                            leftPerson: 'assets/character/kimjaegyu1.png',
+                            rightPerson: 'assets/character/parkjunghee1.png',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '박정희',
+                            statement: '김부장 잠시..',
+                            leftPerson: 'assets/character/kimjaegyu1.png',
+                            rightPerson: 'assets/character/parkjunghee1.png',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '김재규',
+                            statement:
+                                '각하 현재 미국의 시선이 <b>김형욱</b>에게 집중되어 있습니다. 제가 미국으로 넘어가 직접 만나서 <r>회고록</r>부터 회수하도록 하겠습니다.',
+                            leftPerson: 'assets/character/kimjaegyu1.png',
+                            rightPerson: 'assets/character/parkjunghee1.png',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '박정희',
+                            statement: '<b>김부장</b>도 내가 그만두기를 바라나?',
+                            leftPerson: 'assets/character/kimjaegyu1.png',
+                            rightPerson: 'assets/character/parkjunghee1.png',
+                          )),
+                          IndexedStackChild(
+                              child: const StatementSceneWidget(
+                            name: '김재규',
+                            statement: '제가.. 각하 옆을 지키겠습니다.',
+                            leftPerson: 'assets/character/kimjaegyu1.png',
+                            rightPerson: 'assets/character/parkjunghee1.png',
+                          )),
+                        ],
                       );
-                    },
-                  ),
-                  Obx(() {
-                    return ProsteIndexedStack(
-                      index: progressService.progress.value,
-                      children: [
-                        IndexedStackChild(
-                          child: Container(),
-                        ),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '김재규',
-                          statement:
-                              '각하, 미국 프레이저 청문회에서 <b>김형욱</b>이 폭로를 하고 있습니다. 횡령이나 박동선이라는 자와의 일을 밝혔으며, FBI와 기자들에게, 각하에 대해 안좋은 이야기를 퍼뜨리고 있다고 합니다.',
-                          leftPerson: 'assets/character/chajichul.png',
-                          rightPerson: 'assets/character/kimjaegyu2.png',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '차지철',
-                          statement:
-                              '아니, <b>중정부장</b>씩이나 되는 사람이 그거 하나 못 막고 뭘 하고 있었던거요?',
-                          leftPerson: 'assets/character/chajichul.png',
-                          rightPerson: 'assets/character/kimjaegyu2.png',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '박정희',
-                          statement: '그 배신자 새끼를 어떻게 하면 좋겠나?',
-                          leftPerson: 'assets/character/chajichul.png',
-                          rightPerson: 'assets/character/parkjunghee1.png',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '차지철',
-                          statement: '당장 잡아다가 청와대 뒷마당 무궁화 퇴비로 써야죠. 각하!',
-                          leftPerson: 'assets/character/chajichul.png',
-                          rightPerson: 'assets/character/parkjunghee1.png',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '김재규',
-                          statement: '각하 우선 제가 미국으로 넘어가서 조용히 해결해보겠습니다.',
-                          leftPerson: 'assets/character/kimjaegyu1.png',
-                          rightPerson: 'assets/character/parkjunghee1.png',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '박정희',
-                          statement: '김부장 잠시..',
-                          leftPerson: 'assets/character/kimjaegyu1.png',
-                          rightPerson: 'assets/character/parkjunghee1.png',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '김재규',
-                          statement:
-                              '각하 현재 미국의 시선이 <b>김형욱</b>에게 집중되어 있습니다. 제가 미국으로 넘어가 직접 만나서 <r>회고록</r>부터 회수하도록 하겠습니다.',
-                          leftPerson: 'assets/character/kimjaegyu1.png',
-                          rightPerson: 'assets/character/parkjunghee1.png',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '박정희',
-                          statement: '<b>김부장</b>도 내가 그만두기를 바라나?',
-                          leftPerson: 'assets/character/kimjaegyu1.png',
-                          rightPerson: 'assets/character/parkjunghee1.png',
-                        )),
-                        IndexedStackChild(
-                            child: const StatementSceneWidget(
-                          name: '김재규',
-                          statement: '제가.. 각하 옆을 지키겠습니다.',
-                          leftPerson: 'assets/character/kimjaegyu1.png',
-                          rightPerson: 'assets/character/parkjunghee1.png',
-                        )),
-                      ],
-                    );
-                  })
-                ],
+                    })
+                  ],
+                ),
               ),
             ),
-          ),
-          //chapter 화면
-          IgnorePointer(
-            ignoring: _chapterIgnore,
-            child: AnimatedOpacity(
-              opacity: _chapterOpacity,
-              duration: const Duration(seconds: 2),
-              child: GestureDetector(
-                onTap: () async {
-                  setState(() {
-                    _chapterOpacity = 0.0;
-                  });
-                  await _chapterPlayer.stop();
-                  Timer(const Duration(seconds: 2), () async {
+            //chapter 화면
+            IgnorePointer(
+              ignoring: _chapterIgnore,
+              child: AnimatedOpacity(
+                opacity: _chapterOpacity,
+                duration: const Duration(seconds: 2),
+                child: GestureDetector(
+                  onTap: () async {
+                    setState(() {
+                      _chapterOpacity = 0.0;
+                    });
                     await _chapterPlayer.stop();
-                    progressService.resetProgress();
-                    Get.offAndToNamed('/act1-4');
-                  });
-                },
-                child: Container(
-                  width: Get.width,
-                  height: Get.height,
-                  color: Colors.black,
-                  child: const Center(
-                    child: Text(
-                      'CHAPTER. 2\n첩보전',
-                      style: chapterTextStyle,
-                      textAlign: TextAlign.center,
+                    Timer(const Duration(seconds: 2), () async {
+                      await _chapterPlayer.stop();
+                      progressService.resetProgress();
+                      Get.offAndToNamed('/act1-4');
+                    });
+                  },
+                  child: Container(
+                    width: Get.width,
+                    height: Get.height,
+                    color: Colors.black,
+                    child: const Center(
+                      child: Text(
+                        'CHAPTER. 2\n첩보전',
+                        style: chapterTextStyle,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

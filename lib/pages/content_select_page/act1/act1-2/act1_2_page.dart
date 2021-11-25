@@ -95,59 +95,62 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          AnimatedBuilder(
-            animation: backgroundAnimation,
-            builder: (BuildContext context, Widget? child) {
-              return Opacity(
-                opacity: backgroundAnimation.value,
-                child: Image.asset(
-                  'assets/background/bluehouse2.png',
-                  width: Get.width,
-                  height: Get.height,
-                  fit: BoxFit.fill,
-                ),
-              );
-            },
-          ),
-          AnimatedBuilder(
-            animation: statementContainerAnimation,
-            builder: (BuildContext context, Widget? child) {
-              return Positioned(
-                bottom: 7,
-                child: AnimatedOpacity(
-                  duration: const Duration(seconds: 3),
-                  opacity: statementContainerAnimation.value,
-                  child: Container(
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Stack(
+          children: [
+            AnimatedBuilder(
+              animation: backgroundAnimation,
+              builder: (BuildContext context, Widget? child) {
+                return Opacity(
+                  opacity: backgroundAnimation.value,
+                  child: Image.asset(
+                    'assets/background/bluehouse2.png',
                     width: Get.width,
-                    height: Get.height * 2 / 5,
-                    padding: const EdgeInsets.all(8),
-                    color: Colors.black,
+                    height: Get.height,
+                    fit: BoxFit.fill,
                   ),
-                ),
+                );
+              },
+            ),
+            AnimatedBuilder(
+              animation: statementContainerAnimation,
+              builder: (BuildContext context, Widget? child) {
+                return Positioned(
+                  bottom: 7,
+                  child: AnimatedOpacity(
+                    duration: const Duration(seconds: 3),
+                    opacity: statementContainerAnimation.value,
+                    child: Container(
+                      width: Get.width,
+                      height: Get.height * 2 / 5,
+                      padding: const EdgeInsets.all(8),
+                      color: Colors.black,
+                    ),
+                  ),
+                );
+              },
+            ),
+            Obx(() {
+              return ProsteIndexedStack(
+                index: progressService.progress.value,
+                children: [
+                  IndexedStackChild(
+                    child: Container(),
+                  ),
+                  IndexedStackChild(
+                      child: const StatementSceneWidget(
+                    name: '',
+                    statement: '미국의 소식을 듣게 된 <b>김재규</b>는 대통령을 만나기 위해 청와대로 향한다 .',
+                    leftPerson: null,
+                    rightPerson: null,
+                  )),
+                ],
               );
-            },
-          ),
-          Obx(() {
-            return ProsteIndexedStack(
-              index: progressService.progress.value,
-              children: [
-                IndexedStackChild(
-                  child: Container(),
-                ),
-                IndexedStackChild(
-                    child: const StatementSceneWidget(
-                  name: '',
-                  statement: '미국의 소식을 듣게 된 <b>김재규</b>는 대통령을 만나기 위해 청와대로 향한다 .',
-                  leftPerson: null,
-                  rightPerson: null,
-                )),
-              ],
-            );
-          })
-        ],
+            })
+          ],
+        ),
       ),
     );
   }

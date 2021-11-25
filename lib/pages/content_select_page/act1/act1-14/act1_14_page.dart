@@ -35,32 +35,35 @@ class _Act1_14PageState extends State<Act1_14Page> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: //chapter 화면
-            AnimatedOpacity(
-          opacity: _chapterOpacity,
-          duration: const Duration(seconds: 2),
-          child: GestureDetector(
-            onTap: () async {
-              setState(() {
-                _chapterOpacity = 0.0;
-              });
-              await _chapterPlayer.stop();
-              Timer(const Duration(seconds: 2), () async {
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Container(
+          child: //chapter 화면
+              AnimatedOpacity(
+            opacity: _chapterOpacity,
+            duration: const Duration(seconds: 2),
+            child: GestureDetector(
+              onTap: () async {
+                setState(() {
+                  _chapterOpacity = 0.0;
+                });
                 await _chapterPlayer.stop();
-                Get.offNamed('/act1-15');
-              });
-            },
-            child: Container(
-              width: Get.width,
-              height: Get.height,
-              color: Colors.black,
-              child: const Center(
-                child: Text(
-                  'CHAPTER. 4\n그날 밤,',
-                  style: chapterTextStyle,
-                  textAlign: TextAlign.center,
+                Timer(const Duration(seconds: 2), () async {
+                  await _chapterPlayer.stop();
+                  Get.offNamed('/act1-15');
+                });
+              },
+              child: Container(
+                width: Get.width,
+                height: Get.height,
+                color: Colors.black,
+                child: const Center(
+                  child: Text(
+                    'CHAPTER. 4\n그날 밤,',
+                    style: chapterTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),

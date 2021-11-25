@@ -57,65 +57,68 @@ class _Act1_20PageState extends State<Act1_20Page> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          GestureDetector(
-            onTap: () {},
-            child: Image.asset(
-              'assets/background/bluehouseoffice.png',
-              width: Get.width,
-              height: Get.height,
-              fit: BoxFit.fill,
-            ),
-          ),
-          Positioned(
-            bottom: 7,
-            child: Opacity(
-              opacity: 0.7,
-              child: Container(
-                width: Get.width,
-                height: Get.height * 2 / 5,
-                padding: const EdgeInsets.all(8),
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Obx(
-            () => ProsteIndexedStack(
-                index: progressService.progress.value,
-                children: [
-                  IndexedStackChild(child: Container()),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        statement:
-                            '<b>박정희</b>가 죽은 지 6개월 후, 누군가 주인 잃은 청와대 집무실에 몰래 들어오는데,',
-                        name: ''),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        statement:
-                            '무엇을 찾는 것인지 조심스럽게 들어와서 뒤적거리다가, 이내 <r>금고</r>를 찾아내고는 해제를 시도한다.',
-                        name: ''),
-                  ),
-                ]),
-          ),
-          IgnorePointer(
-            ignoring: _isIgnore,
-            child: GestureDetector(
-              onTap: () async {
-                await _player.stop();
-                progressService.resetProgress();
-                Get.offNamed('/act1/question5');
-              },
-              child: Container(
-                color: Colors.transparent,
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Stack(
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Image.asset(
+                'assets/background/bluehouseoffice.png',
                 width: Get.width,
                 height: Get.height,
+                fit: BoxFit.fill,
               ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 7,
+              child: Opacity(
+                opacity: 0.7,
+                child: Container(
+                  width: Get.width,
+                  height: Get.height * 2 / 5,
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Obx(
+              () => ProsteIndexedStack(
+                  index: progressService.progress.value,
+                  children: [
+                    IndexedStackChild(child: Container()),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          statement:
+                              '<b>박정희</b>가 죽은 지 6개월 후, 누군가 주인 잃은 청와대 집무실에 몰래 들어오는데,',
+                          name: ''),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          statement:
+                              '무엇을 찾는 것인지 조심스럽게 들어와서 뒤적거리다가, 이내 <r>금고</r>를 찾아내고는 해제를 시도한다.',
+                          name: ''),
+                    ),
+                  ]),
+            ),
+            IgnorePointer(
+              ignoring: _isIgnore,
+              child: GestureDetector(
+                onTap: () async {
+                  await _player.stop();
+                  progressService.resetProgress();
+                  Get.offNamed('/act1/question5');
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  width: Get.width,
+                  height: Get.height,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -134,138 +134,141 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: Get.width,
-        height: Get.height,
-        color: Colors.black,
-        child: Stack(
-          children: [
-            AnimatedOpacity(
-                opacity: _opacity,
-                duration: const Duration(seconds: 3),
-                child: Image.asset('assets/background/hearing2.png',
-                    width: Get.width, height: Get.height, fit: BoxFit.fill)),
-            AnimatedBuilder(
-              animation: statementContainerAnimation,
-              builder: (BuildContext context, Widget? child) {
-                return Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 7,
-                  child: AnimatedOpacity(
-                    duration: const Duration(seconds: 3),
-                    opacity: statementContainerAnimation.value,
-                    child: Container(
-                      width: Get.width,
-                      height: Get.height * 2 / 5,
-                      padding: const EdgeInsets.all(8),
-                      color: Colors.black,
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Container(
+          width: Get.width,
+          height: Get.height,
+          color: Colors.black,
+          child: Stack(
+            children: [
+              AnimatedOpacity(
+                  opacity: _opacity,
+                  duration: const Duration(seconds: 3),
+                  child: Image.asset('assets/background/hearing2.png',
+                      width: Get.width, height: Get.height, fit: BoxFit.fill)),
+              AnimatedBuilder(
+                animation: statementContainerAnimation,
+                builder: (BuildContext context, Widget? child) {
+                  return Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 7,
+                    child: AnimatedOpacity(
+                      duration: const Duration(seconds: 3),
+                      opacity: statementContainerAnimation.value,
+                      child: Container(
+                        width: Get.width,
+                        height: Get.height * 2 / 5,
+                        padding: const EdgeInsets.all(8),
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-            Obx(
-              () => ProsteIndexedStack(
-                index: progressService.progress.value,
-                children: [
-                  IndexedStackChild(child: Container()),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                      statement:
-                          '전 중앙정보부의 부장 <b>김형욱</b>은 미국 프레이저 청문회에 참석해 대통령의 통치와 부정부패 및 비리 등을 폭로한다.',
-                      name: '',
-                    ),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                      statement:
-                          '심지어 <b>김형욱</b>은 프레이저 청문회에서 밝히진 않았지만 FBI와 기자들에게 잔뜩 알린 대통령의 치부들, 특히 스위스 비밀계좌에 관한 내용에 상세히 적힌 <r>회고록</r>을 작성하고 있었고,',
-                      name: '',
-                    ),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                      statement:
-                          '이것이 세상에 알려지면 가뜩이나 정권 유지가 위기에 놓인 대통령은 궁지에 몰릴 터였다.',
-                      name: '',
-                    ),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                      statement:
-                          '내가 1960년대 정보부장 시절 주미대사 김현철씨가 말하길 \'박동선이라는 자가 박 대통령의 친척이라고 하고 다닌다\'는 보고를 받았고, 귀국한 박씨를 조사하면서 알게 되었다.',
-                      name: '김형욱',
-                      leftPerson: 'assets/character/american2.png',
-                      rightPerson: 'assets/character/kimhyungwook3.png',
-                    ),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                      statement:
-                          '이후 나는 박씨가 미국에 발이 넓다는 걸 알고 편의를 제공했었다. 또한 그의 클럽이 자금난이라고 해서 서울 암달러상에게 구한 10만 달러를 파우치편으로 보내주었다.',
-                      name: '김형욱',
-                      leftPerson: 'assets/character/american2.png',
-                      rightPerson: 'assets/character/kimhyungwook3.png',
-                    ),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                      statement:
-                          '또한 한국의 정부 보유금 300만달러를 박동선의 거래은행에 맡기게 해 클럽 운용자금으로 융자해주었다.',
-                      name: '김형욱',
-                      leftPerson: 'assets/character/american2.png',
-                      rightPerson: 'assets/character/kimhyungwook3.png',
-                    ),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                      statement: '정확한 내용이나 증거를 확인할 수 있는 내용입니까?',
-                      name: '기자',
-                      leftPerson: 'assets/character/american2.png',
-                      rightPerson: 'assets/character/kimhyungwook3.png',
-                    ),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                      statement:
-                          '작성 중인 <r>회고록</r>이 있으며, <r>회고록</r>에 상세한 내용을 담아 공개할 예정입니다.',
-                      name: '김형욱',
-                      leftPerson: 'assets/character/american2.png',
-                      rightPerson: 'assets/character/kimhyungwook3.png',
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Opacity(
-                opacity: introAnimation.value as double,
-                child: const Text('CHAPTER. 1\n폭로',
-                    textAlign: TextAlign.center, style: chapterTextStyle),
-              ),
-            ),
-            IgnorePointer(
-              ignoring: _isIgnore,
-              child: GestureDetector(
-                onTap: () async {
-                  Get.log('onTap...');
-                  await (_chapterAudioPlayer).stop();
-                  introController.reverse(from: 1.0);
-                  setState(() {
-                    _isIgnore = true;
-                  });
+                  );
                 },
-                child: Container(
-                  color: Colors.transparent,
-                  width: Get.width,
-                  height: Get.height,
+              ),
+              Obx(
+                () => ProsteIndexedStack(
+                  index: progressService.progress.value,
+                  children: [
+                    IndexedStackChild(child: Container()),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                        statement:
+                            '전 중앙정보부의 부장 <b>김형욱</b>은 미국 프레이저 청문회에 참석해 대통령의 통치와 부정부패 및 비리 등을 폭로한다.',
+                        name: '',
+                      ),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                        statement:
+                            '심지어 <b>김형욱</b>은 프레이저 청문회에서 밝히진 않았지만 FBI와 기자들에게 잔뜩 알린 대통령의 치부들, 특히 스위스 비밀계좌에 관한 내용에 상세히 적힌 <r>회고록</r>을 작성하고 있었고,',
+                        name: '',
+                      ),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                        statement:
+                            '이것이 세상에 알려지면 가뜩이나 정권 유지가 위기에 놓인 대통령은 궁지에 몰릴 터였다.',
+                        name: '',
+                      ),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                        statement:
+                            '내가 1960년대 정보부장 시절 주미대사 김현철씨가 말하길 \'박동선이라는 자가 박 대통령의 친척이라고 하고 다닌다\'는 보고를 받았고, 귀국한 박씨를 조사하면서 알게 되었다.',
+                        name: '김형욱',
+                        leftPerson: 'assets/character/american2.png',
+                        rightPerson: 'assets/character/kimhyungwook3.png',
+                      ),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                        statement:
+                            '이후 나는 박씨가 미국에 발이 넓다는 걸 알고 편의를 제공했었다. 또한 그의 클럽이 자금난이라고 해서 서울 암달러상에게 구한 10만 달러를 파우치편으로 보내주었다.',
+                        name: '김형욱',
+                        leftPerson: 'assets/character/american2.png',
+                        rightPerson: 'assets/character/kimhyungwook3.png',
+                      ),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                        statement:
+                            '또한 한국의 정부 보유금 300만달러를 박동선의 거래은행에 맡기게 해 클럽 운용자금으로 융자해주었다.',
+                        name: '김형욱',
+                        leftPerson: 'assets/character/american2.png',
+                        rightPerson: 'assets/character/kimhyungwook3.png',
+                      ),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                        statement: '정확한 내용이나 증거를 확인할 수 있는 내용입니까?',
+                        name: '기자',
+                        leftPerson: 'assets/character/american2.png',
+                        rightPerson: 'assets/character/kimhyungwook3.png',
+                      ),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                        statement:
+                            '작성 중인 <r>회고록</r>이 있으며, <r>회고록</r>에 상세한 내용을 담아 공개할 예정입니다.',
+                        name: '김형욱',
+                        leftPerson: 'assets/character/american2.png',
+                        rightPerson: 'assets/character/kimhyungwook3.png',
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            )
-          ],
+              Align(
+                alignment: Alignment.center,
+                child: Opacity(
+                  opacity: introAnimation.value as double,
+                  child: const Text('CHAPTER. 1\n폭로',
+                      textAlign: TextAlign.center, style: chapterTextStyle),
+                ),
+              ),
+              IgnorePointer(
+                ignoring: _isIgnore,
+                child: GestureDetector(
+                  onTap: () async {
+                    Get.log('onTap...');
+                    await (_chapterAudioPlayer).stop();
+                    introController.reverse(from: 1.0);
+                    setState(() {
+                      _isIgnore = true;
+                    });
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                    width: Get.width,
+                    height: Get.height,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

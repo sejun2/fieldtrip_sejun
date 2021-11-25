@@ -57,90 +57,93 @@ class _Act1_12PageState extends State<Act1_12Page> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          GestureDetector(
-            onTap: () {},
-            child: Image.asset(
-              'assets/background/food.png',
-              width: Get.width,
-              height: Get.height,
-              fit: BoxFit.fill,
-            ),
-          ),
-          Positioned(
-            bottom: 7,
-            child: Opacity(
-              opacity: 0.7,
-              child: Container(
-                width: Get.width,
-                height: Get.height * 2 / 5,
-                padding: const EdgeInsets.all(8),
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Obx(
-            () => ProsteIndexedStack(
-                index: progressService.progress.value,
-                children: [
-                  IndexedStackChild(child: Container()),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/chajichul.png',
-                        rightPerson: 'assets/character/parkjunghee1.png',
-                        statement:
-                            '<b>차실장</b> 덕분에 미 대사관에서 <b>김부장</b>의 속내를 알 수 있었어.',
-                        name: '박정희'),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/chajichul.png',
-                        rightPerson: 'assets/character/parkjunghee1.png',
-                        statement: '아닙니다 각하. 당연한 일을 했을 뿐입니다.',
-                        name: '차지철'),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/chajichul.png',
-                        rightPerson: 'assets/character/parkjunghee1.png',
-                        statement:
-                            '나를 몰아내겠다고 하는 주한대사나 <b>김재규</b> 부장. 그 새끼나 다 똑같은 새끼들이다. 미국에게 붙어먹고 <r>친구나 죽인</r> 교활한 백정같은 배신자 새끼일 뿐이야!',
-                        name: '박정희'),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/chajichul.png',
-                        rightPerson: 'assets/character/parkjunghee1.png',
-                        statement: '<b>김재규</b>를 어떻게 하면 좋겠습니까?',
-                        name: '차지철'),
-                  ),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        leftPerson: 'assets/character/chajichul.png',
-                        rightPerson: 'assets/character/parkjunghee1.png',
-                        statement: '임자 하고 싶은 대로 해. 임자 곁에는 내가 있잖아!',
-                        name: '박정희'),
-                  ),
-                ]),
-          ),
-          IgnorePointer(
-            ignoring: _isIgnore,
-            child: GestureDetector(
-              onTap: () async {
-                await _player.stop();
-                progressService.resetProgress();
-                Get.offNamed('/act1-13');
-              },
-              child: Container(
-                color: Colors.transparent,
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Stack(
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Image.asset(
+                'assets/background/food.png',
                 width: Get.width,
                 height: Get.height,
+                fit: BoxFit.fill,
               ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 7,
+              child: Opacity(
+                opacity: 0.7,
+                child: Container(
+                  width: Get.width,
+                  height: Get.height * 2 / 5,
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Obx(
+              () => ProsteIndexedStack(
+                  index: progressService.progress.value,
+                  children: [
+                    IndexedStackChild(child: Container()),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          leftPerson: 'assets/character/chajichul.png',
+                          rightPerson: 'assets/character/parkjunghee1.png',
+                          statement:
+                              '<b>차실장</b> 덕분에 미 대사관에서 <b>김부장</b>의 속내를 알 수 있었어.',
+                          name: '박정희'),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          leftPerson: 'assets/character/chajichul.png',
+                          rightPerson: 'assets/character/parkjunghee1.png',
+                          statement: '아닙니다 각하. 당연한 일을 했을 뿐입니다.',
+                          name: '차지철'),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          leftPerson: 'assets/character/chajichul.png',
+                          rightPerson: 'assets/character/parkjunghee1.png',
+                          statement:
+                              '나를 몰아내겠다고 하는 주한대사나 <b>김재규</b> 부장. 그 새끼나 다 똑같은 새끼들이다. 미국에게 붙어먹고 <r>친구나 죽인</r> 교활한 백정같은 배신자 새끼일 뿐이야!',
+                          name: '박정희'),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          leftPerson: 'assets/character/chajichul.png',
+                          rightPerson: 'assets/character/parkjunghee1.png',
+                          statement: '<b>김재규</b>를 어떻게 하면 좋겠습니까?',
+                          name: '차지철'),
+                    ),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          leftPerson: 'assets/character/chajichul.png',
+                          rightPerson: 'assets/character/parkjunghee1.png',
+                          statement: '임자 하고 싶은 대로 해. 임자 곁에는 내가 있잖아!',
+                          name: '박정희'),
+                    ),
+                  ]),
+            ),
+            IgnorePointer(
+              ignoring: _isIgnore,
+              child: GestureDetector(
+                onTap: () async {
+                  await _player.stop();
+                  progressService.resetProgress();
+                  Get.offNamed('/act1-13');
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  width: Get.width,
+                  height: Get.height,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -34,28 +34,31 @@ class _ContentSelectPageState extends State<ContentSelectPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: Get.width,
-        padding: defaultPadding,
-        child: ListView.separated(
-          itemCount: 1,
-          itemBuilder: (context, index) {
-            switch (index) {
-              case 0:
-                return const ContentSelectListItem('assets/background/gun.png',
-                    '전국(온라인)', '그날의 총성', true, '5.18 민주화 운동의 시작이 된 사건을 체험하라.');
-              default:
-                return const ContentSelectListItem('assets/background/gun.png',
-                    'MainTitle', 'subTitle', true, 'content');
-            }
-          },
-          separatorBuilder: (context, index) {
-            return Container(
-              height: 1,
-              color: Colors.grey,
-            );
-          },
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Container(
+          width: Get.width,
+          padding: defaultPadding,
+          child: ListView.separated(
+            itemCount: 1,
+            itemBuilder: (context, index) {
+              switch (index) {
+                case 0:
+                  return const ContentSelectListItem('assets/background/gun.png',
+                      '전국(온라인)', '그날의 총성', true, '5.18 민주화 운동의 시작이 된 사건을 체험하라.');
+                default:
+                  return const ContentSelectListItem('assets/background/gun.png',
+                      'MainTitle', 'subTitle', true, 'content');
+              }
+            },
+            separatorBuilder: (context, index) {
+              return Container(
+                height: 1,
+                color: Colors.grey,
+              );
+            },
+          ),
         ),
       ),
     );

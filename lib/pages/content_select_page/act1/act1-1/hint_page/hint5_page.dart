@@ -13,13 +13,16 @@ class Hint5Page extends StatefulWidget {
 class _Hint5PageState extends State<Hint5Page> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset('assets/background/questionbackground.png',
-              width: Get.width, height: Get.height, fit: BoxFit.fill),
-          _buildContent(),
-        ],
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Image.asset('assets/background/questionbackground.png',
+                width: Get.width, height: Get.height, fit: BoxFit.fill),
+            _buildContent(),
+          ],
+        ),
       ),
     );
   }

@@ -92,69 +92,72 @@ class _IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.black,
-        child: Stack(
-          children: [
-            AnimatedOpacity(
-              opacity: op1,
-              duration: const Duration(seconds: 3),
-              child: GestureDetector(
-                onTap: () {
-                  if (_isClickable) {
-                    Get.toNamed('/act1');
-                  }
-                },
-                child: Image.asset(
-                  'assets/background/gun.png',
-                  width: Get.width,
-                  height: Get.height,
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 40,
-              right: 40,
-              child: AnimatedOpacity(
-                onEnd: () async {
-                  if (op2 == 0.00001) {
-                    setState(() {
-                      if (_canRun != true) {
-                        _canRun = true;
-                      }
-                    });
-                  }
-                },
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Container(
+          color: Colors.black,
+          child: Stack(
+            children: [
+              AnimatedOpacity(
+                opacity: op1,
                 duration: const Duration(seconds: 3),
-                opacity: op2,
-                child: const Text(
-                  '그 날의 총성',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 45,
+                child: GestureDetector(
+                  onTap: () {
+                    if (_isClickable) {
+                      Get.toNamed('/act1');
+                    }
+                  },
+                  child: Image.asset(
+                    'assets/background/gun.png',
+                    width: Get.width,
+                    height: Get.height,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-            ),
-            Align(
-                alignment: Alignment.center,
-                child: _canRun ? content1 : Container()),
-            IgnorePointer(
-              ignoring: _isIgnore,
-              child: GestureDetector(
-                onTap: () {
-                  Get.offNamed('/act1');
-                },
-                child: Container(
-                  width: Get.width,
-                  height: Get.height,
-                  color: Colors.transparent,
+              Positioned(
+                bottom: 40,
+                right: 40,
+                child: AnimatedOpacity(
+                  onEnd: () async {
+                    if (op2 == 0.00001) {
+                      setState(() {
+                        if (_canRun != true) {
+                          _canRun = true;
+                        }
+                      });
+                    }
+                  },
+                  duration: const Duration(seconds: 3),
+                  opacity: op2,
+                  child: const Text(
+                    '그 날의 총성',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 45,
+                    ),
+                  ),
                 ),
               ),
-            )
-          ],
+              Align(
+                  alignment: Alignment.center,
+                  child: _canRun ? content1 : Container()),
+              IgnorePointer(
+                ignoring: _isIgnore,
+                child: GestureDetector(
+                  onTap: () {
+                    Get.offNamed('/act1');
+                  },
+                  child: Container(
+                    width: Get.width,
+                    height: Get.height,
+                    color: Colors.transparent,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

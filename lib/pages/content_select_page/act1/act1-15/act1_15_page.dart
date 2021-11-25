@@ -57,59 +57,62 @@ class _Act1_15PageState extends State<Act1_15Page> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          GestureDetector(
-            onTap: () {},
-            child: Image.asset(
-              'assets/background/home.png',
-              width: Get.width,
-              height: Get.height,
-              fit: BoxFit.fill,
-            ),
-          ),
-          Positioned(
-            bottom: 7,
-            child: Opacity(
-              opacity: 0.7,
-              child: Container(
-                width: Get.width,
-                height: Get.height * 2 / 5,
-                padding: const EdgeInsets.all(8),
-                color: Colors.black,
-              ),
-            ),
-          ),
-          Obx(
-            () => ProsteIndexedStack(
-                index: progressService.progress.value,
-                children: [
-                  IndexedStackChild(child: Container()),
-                  IndexedStackChild(
-                    child: const StatementSceneWidget(
-                        statement:
-                            '<b>김재규</b> 부장은 비밀 금고에서 <r>권총</r>을 챙겨 주머니에 찔러 넣고 궁정동 안가의 만찬 장소로 향한다.',
-                        name: ''),
-                  ),
-                ]),
-          ),
-          IgnorePointer(
-            ignoring: _isIgnore,
-            child: GestureDetector(
-              onTap: () async {
-                await _player.stop();
-                progressService.resetProgress();
-                Get.offNamed('/act1-16');
-              },
-              child: Container(
-                color: Colors.transparent,
+    return WillPopScope(
+      onWillPop: () {return Future(() => false);},
+      child: Scaffold(
+        body: Stack(
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Image.asset(
+                'assets/background/home.png',
                 width: Get.width,
                 height: Get.height,
+                fit: BoxFit.fill,
               ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 7,
+              child: Opacity(
+                opacity: 0.7,
+                child: Container(
+                  width: Get.width,
+                  height: Get.height * 2 / 5,
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Obx(
+              () => ProsteIndexedStack(
+                  index: progressService.progress.value,
+                  children: [
+                    IndexedStackChild(child: Container()),
+                    IndexedStackChild(
+                      child: const StatementSceneWidget(
+                          statement:
+                              '<b>김재규</b> 부장은 비밀 금고에서 <r>권총</r>을 챙겨 주머니에 찔러 넣고 궁정동 안가의 만찬 장소로 향한다.',
+                          name: ''),
+                    ),
+                  ]),
+            ),
+            IgnorePointer(
+              ignoring: _isIgnore,
+              child: GestureDetector(
+                onTap: () async {
+                  await _player.stop();
+                  progressService.resetProgress();
+                  Get.offNamed('/act1-16');
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  width: Get.width,
+                  height: Get.height,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
