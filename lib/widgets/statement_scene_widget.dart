@@ -41,7 +41,6 @@ class _StatementSceneWidgetState extends State<StatementSceneWidget> {
 
   @override
   Widget build(BuildContext context) {
-    //test
 
     return Container(
       width: Get.width,

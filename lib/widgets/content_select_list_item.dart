@@ -17,7 +17,7 @@ class ContentSelectListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Get.toNamed('/act1/intro');
+        Get.offAndToNamed('/act1/intro');
       },
       child: IntrinsicHeight(
         child: Row(

@@ -28,7 +28,7 @@ class _Act1_17PageState extends State<Act1_17Page> {
 
   @override
   void dispose() {
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
 
@@ -42,10 +42,11 @@ class _Act1_17PageState extends State<Act1_17Page> {
       progressService.progress.value = 1;
     });
     progressService.isDone.listen((value) {
-      if (value) {
-        //isDone 일경우
-        Get.log('isDone : $value');
-        if (mounted) {
+      if (mounted) {
+        if (value) {
+          progressService.resetProgress();
+          //isDone 일경우
+          Get.log('isDone : $value');
           setState(() {
             _isIgnore = false;
           });
@@ -108,7 +109,7 @@ class _Act1_17PageState extends State<Act1_17Page> {
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
-              onTap: ()async {
+              onTap: () async {
                 await _player.stop();
                 progressService.resetProgress();
                 Get.offNamed('/act1-18');

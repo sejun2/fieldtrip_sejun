@@ -17,7 +17,6 @@ class Question5_2Page extends StatefulWidget {
 
 class _Question5_2PageState extends State<Question5_2Page>
     with TickerProviderStateMixin {
-  final progressService = Get.put<ProgressService>(ProgressService());
 
   bool _isIgnored = true;
   bool _isIgnored2 = true;
@@ -202,7 +201,7 @@ class _Question5_2PageState extends State<Question5_2Page>
     answerTextController.dispose();
     hint2Controller.dispose();
     hint3Controller.dispose();
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
 

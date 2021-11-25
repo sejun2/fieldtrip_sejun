@@ -39,20 +39,21 @@ class _Act1_7PageState extends State<Act1_7Page> {
       progressService.progress.value = 1;
     });
     progressService.isDone.listen((value) {
-      if (value) {
-        //isDone 일경우
-        Get.log('isDone : $value');
-        if(mounted) {
-          setState(() {
-            _isIgnore = false;
-          });
-        }
+      if (mounted) {
+        if (value) {
+          progressService.resetProgress();
+                //isDone 일경우
+                Get.log('isDone : $value');
+                  setState(() {
+                    _isIgnore = false;
+                  });
+              }
       }
     });
   }
   @override
   void dispose() {
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
   @override
@@ -133,7 +134,7 @@ class _Act1_7PageState extends State<Act1_7Page> {
             child: GestureDetector(
               onTap: ()async {
                   await _player.stop();
-                  Get.offNamed('/act1/question3');
+                  Get.offAndToNamed('/act1/question3');
               },
               child: Container(
                 color: Colors.transparent,

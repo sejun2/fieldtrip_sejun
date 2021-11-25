@@ -37,10 +37,11 @@ class _Act1_5PageState extends State<Act1_5Page> {
       progressService.progress.value = 1;
     });
     progressService.isDone.listen((value) {
-      if (value) {
-        //isDone 일경우
-        Get.log('isDone : $value');
-        if(mounted) {
+      if (mounted) {
+        progressService.resetProgress();
+        if (value) {
+          //isDone 일경우
+          Get.log('isDone : $value');
           setState(() {
             _isIgnore = false;
           });
@@ -48,11 +49,13 @@ class _Act1_5PageState extends State<Act1_5Page> {
       }
     });
   }
-@override
+
+  @override
   void dispose() {
-  progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +127,7 @@ class _Act1_5PageState extends State<Act1_5Page> {
               onTap: () async {
                 Get.log('IgnorePointer tapped...');
                 await _player.stop();
-                Get.offNamed('/act1-6');
+                Get.offAndToNamed('/act1-6');
               },
               child: Container(
                 color: Colors.transparent,

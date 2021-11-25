@@ -28,7 +28,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
   @override
   void dispose() {
     Get.log('Act1_8page dispose called...');
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
   @override
@@ -43,15 +43,16 @@ class _Act1_8PageState extends State<Act1_8Page> {
       progressService.progress.value = 1;
     });
     progressService.isDone.listen((value) {
-      if (value) {
-        //isDone 일경우
-        Get.log('isDone : $value');
-        Get.log('act 1-8 isdone called...');
-        if(mounted) {
-          setState(() {
-            _isIgnore = false;
-          });
-        }
+      if (mounted) {
+        if (value) {
+            progressService.resetProgress();
+                //isDone 일경우
+                Get.log('isDone : $value');
+                Get.log('act 1-8 isdone called...');
+                  setState(() {
+                    _isIgnore = false;
+                  });
+              }
       }
     });
   }
@@ -161,7 +162,7 @@ class _Act1_8PageState extends State<Act1_8Page> {
               onTap: () async {
                  await _player.stop();
                  progressService.resetProgress();
-                Get.offNamed('/act1-9');
+                Get.offAndToNamed('/act1-9');
               },
               child: Container(
                 color: Colors.transparent,

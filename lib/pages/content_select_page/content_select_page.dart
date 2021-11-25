@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:history_game_project/services/progress_service.dart';
 import 'package:history_game_project/widgets/content_select_list_item.dart';
 
 import '../../constant.dart';
@@ -12,6 +13,25 @@ class ContentSelectPage extends StatefulWidget {
 }
 
 class _ContentSelectPageState extends State<ContentSelectPage> {
+
+
+
+  _init() async{
+    //Get.reset(clearRouteBindings: true);
+    await Get.put(ProgressService()).resetProgress();
+  }
+
+  @override
+  void initState() {
+    _init();
+    super.initState();
+  }
+
+  @override
+  void deactivate() {
+    print('deactivate called... content select page');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

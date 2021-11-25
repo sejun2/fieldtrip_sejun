@@ -12,8 +12,8 @@ class Act1EndingPage extends StatefulWidget {
 class _Act1EndingPageState extends State<Act1EndingPage> {
 
   _resetAllResources() async{
-    final progressServcie = Get.find<ProgressService>();
-    progressServcie.resetProgress();
+    final progressService = Get.find<ProgressService>();
+    progressService.resetProgress();
   }
 
   @override

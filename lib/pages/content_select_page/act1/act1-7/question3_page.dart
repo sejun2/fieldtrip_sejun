@@ -16,8 +16,6 @@ class Question3Page extends StatefulWidget {
 
 class _Question3PageState extends State<Question3Page>
     with TickerProviderStateMixin {
-  final progressService = Get.put<ProgressService>(ProgressService());
-
   bool _isIgnored = true;
 
   late TextEditingController answerTextController;
@@ -125,7 +123,7 @@ class _Question3PageState extends State<Question3Page>
     answerController.dispose();
     notAnswerController.dispose();
     answerTextController.dispose();
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
 
@@ -368,7 +366,7 @@ class _Question3PageState extends State<Question3Page>
       answerController.forward(from: 0.0);
       await _player.stop();
       Timer(const Duration(milliseconds: 600), ()  {
-        Get.offNamed('/act1-8');
+        Get.offAndToNamed('/act1-8');
       });
     } else {
       notAnswerController.forward(from: 0.0);

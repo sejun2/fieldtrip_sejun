@@ -135,7 +135,7 @@ class _Question2PageState extends State<Question2Page>
     answerController.dispose();
     notAnswerController.dispose();
     answerTextController.dispose();
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
 
@@ -377,7 +377,7 @@ class _Question2PageState extends State<Question2Page>
       answerController.forward(from: 0.0);
       await _player.stop();
       Timer(const Duration(milliseconds: 600), ()  {
-        Get.offNamed('/act1-5');
+        Get.offAndToNamed('/act1-5');
       });
     } else {
       notAnswerController.forward(from: 0.0);

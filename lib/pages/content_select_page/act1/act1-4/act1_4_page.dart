@@ -1,4 +1,3 @@
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +14,6 @@ class Act1_4Page extends StatefulWidget {
 }
 
 class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
-
   late AnimationController backgroundController;
   late Animation backgroundAnimation;
 
@@ -36,15 +34,15 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
 
   var _isBackgroundIgnore = false;
 
-  _initResources()async {
+  _initResources() async {
     progressService.lastProgress = 1;
 
-   _player= await AudioCache().play(soundPath);
+    _player = await AudioCache().play(soundPath);
 
     progressService.isDone.listen((value) {
-      if (value) {
-        Get.log('isDone : $value');
-        if(mounted) {
+      if (mounted) {
+        if (value) {
+          Get.log('isDone : $value');
           setState(() {
             _isIgnore = false;
           });
@@ -83,11 +81,11 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
     statementController.dispose();
     backgroundController.dispose();
     titleController.dispose();
-    progressService.isDone.close();
+    super.dispose();
+    // progressService.isDone.close();
   }
 
   @override
@@ -108,9 +106,7 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
               animation: backgroundAnimation,
               builder: (context, widget) {
                 return GestureDetector(
-                  onTap: () {
-
-                  },
+                  onTap: () {},
                   child: Opacity(
                       opacity: backgroundAnimation.value,
                       child: Image.asset(
@@ -172,41 +168,39 @@ class _Act1_4PageState extends State<Act1_4Page> with TickerProviderStateMixin {
           ),
           //background ignore pointer
           IgnorePointer(
-           ignoring: _isBackgroundIgnore,
-           child: GestureDetector(
-             onTap: (){
-               Get.log('onTap...');
-               if (!isTitleDisappear) {
-                 setState(() {
-                   if(mounted){
-                     _isBackgroundIgnore = true;
-                   }
-                 });
-                 Get.log('isTitleDisappear : $isTitleDisappear');
-                 isTitleDisappear = true;
-                 titleController.reverse(from: 1.0);
-                 statementController.forward(from: 0.0);
-                 progressService.progress.value = 1;
-               }
-               if (progressService.isDone.value) {}
-             },
-             child:Container(
-               width: Get.width,
-               height: Get.height,
-               color: Colors.transparent,
-             )
-
-           ),
+            ignoring: _isBackgroundIgnore,
+            child: GestureDetector(
+                onTap: () {
+                  Get.log('onTap...');
+                  if (!isTitleDisappear) {
+                    setState(() {
+                      if (mounted) {
+                        _isBackgroundIgnore = true;
+                      }
+                    });
+                    Get.log('isTitleDisappear : $isTitleDisappear');
+                    isTitleDisappear = true;
+                    titleController.reverse(from: 1.0);
+                    statementController.forward(from: 0.0);
+                    progressService.progress.value = 1;
+                  }
+                  if (progressService.isDone.value) {}
+                },
+                child: Container(
+                  width: Get.width,
+                  height: Get.height,
+                  color: Colors.transparent,
+                )),
           ),
           //whole page ignorepointer
           IgnorePointer(
             ignoring: _isIgnore,
             child: GestureDetector(
               onTap: () async {
-                  Get.log('clicked...');
-                  progressService.resetProgress();
-                  await _player.stop();
-                  Get.offNamed('/act1/question2');
+                Get.log('clicked...');
+                progressService.resetProgress();
+                await _player.stop();
+                Get.offAndToNamed('/act1/question2');
               },
               child: Container(
                 color: Colors.transparent,

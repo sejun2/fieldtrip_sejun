@@ -22,14 +22,16 @@ class _Act1_12PageState extends State<Act1_12Page> {
   late AudioPlayer _player;
   final String audioPath = 'BGM/closet_sound.mp3';
 
-  initResources() async{
+  initResources() async {
     _player = await AudioCache().play(audioPath);
   }
+
   @override
   void dispose() {
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
@@ -40,10 +42,11 @@ class _Act1_12PageState extends State<Act1_12Page> {
       progressService.progress.value = 1;
     });
     progressService.isDone.listen((value) {
-      if (value) {
-        //isDone 일경우
-        Get.log('isDone : $value');
-        if(mounted) {
+      if (mounted) {
+        if (value) {
+          progressService.resetProgress();
+          //isDone 일경우
+          Get.log('isDone : $value');
           setState(() {
             _isIgnore = false;
           });
@@ -79,15 +82,16 @@ class _Act1_12PageState extends State<Act1_12Page> {
             ),
           ),
           Obx(
-                () => ProsteIndexedStack(
+            () => ProsteIndexedStack(
                 index: progressService.progress.value,
                 children: [
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                      leftPerson: 'assets/character/chajichul.png',
+                        leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        statement: '<b>차실장</b> 덕분에 미 대사관에서 <b>김부장</b>의 속내를 알 수 있었어.',
+                        statement:
+                            '<b>차실장</b> 덕분에 미 대사관에서 <b>김부장</b>의 속내를 알 수 있었어.',
                         name: '박정희'),
                   ),
                   IndexedStackChild(
@@ -101,7 +105,8 @@ class _Act1_12PageState extends State<Act1_12Page> {
                     child: const StatementSceneWidget(
                         leftPerson: 'assets/character/chajichul.png',
                         rightPerson: 'assets/character/parkjunghee1.png',
-                        statement: '나를 몰아내겠다고 하는 주한대사나 <b>김재규</b> 부장. 그 새끼나 다 똑같은 새끼들이다. 미국에게 붙어먹고 <r>친구나 죽인</r> 교활한 백정같은 배신자 새끼일 뿐이야!',
+                        statement:
+                            '나를 몰아내겠다고 하는 주한대사나 <b>김재규</b> 부장. 그 새끼나 다 똑같은 새끼들이다. 미국에게 붙어먹고 <r>친구나 죽인</r> 교활한 백정같은 배신자 새끼일 뿐이야!',
                         name: '박정희'),
                   ),
                   IndexedStackChild(

@@ -41,18 +41,19 @@ class _Act1_9PageState extends State<Act1_9Page> with TickerProviderStateMixin {
 
     progressService.isDone.listen((value) async {
       Get.log('isDone : $value');
-      if (value) {
-        Get.log('if ....');
-        await _player.stop();
-        AudioCache().play(_chapterPath).then((value) => _chapterPlayer = value);
-        if(mounted) {
-          setState(() {
-            _wholeIgnore = true;
-            _chapterIgnore = false;
-            _wholeOpacity = 0.0;
-            _chapterOpacity = 1.0;
-          });
-        }
+      if (mounted) {
+        if (value) {
+            progressService.resetProgress();
+                Get.log('if ....');
+                await _player.stop();
+                AudioCache().play(_chapterPath).then((value) => _chapterPlayer = value);
+                  setState(() {
+                    _wholeIgnore = true;
+                    _chapterIgnore = false;
+                    _wholeOpacity = 0.0;
+                    _chapterOpacity = 1.0;
+                  });
+              }
       }
     });
   }
@@ -91,7 +92,7 @@ class _Act1_9PageState extends State<Act1_9Page> with TickerProviderStateMixin {
   @override
   void dispose() {
     Get.log('dispose called...');
-    progressService.isDone.close();
+    // progressService.isDone.close();
     _player.stop();
     statementContainerController.dispose();
     backgroundController.dispose();
@@ -187,7 +188,7 @@ class _Act1_9PageState extends State<Act1_9Page> with TickerProviderStateMixin {
                     _chapterOpacity = 0.0;
                   });
                   Timer(const Duration(seconds: 2), () async {
-                    Get.offNamed('/act1-10');
+                    Get.offAndToNamed('/act1-10');
                   });
                 },
                 child: Container(
@@ -208,9 +209,5 @@ class _Act1_9PageState extends State<Act1_9Page> with TickerProviderStateMixin {
         ],
       ),
     );
-  }
-
-  void doLastProcess() {
-    //TODO: 화면이 어두워지면서 Chapter 나타남. 이후 해당 화면 클릭시 화면 이동.
   }
 }

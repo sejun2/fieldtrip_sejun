@@ -22,14 +22,16 @@ class _Act1_11PageState extends State<Act1_11Page> {
   late AudioPlayer _player;
   final String audioPath = 'BGM/closet_sound.mp3';
 
-  initResources() async{
+  initResources() async {
     _player = await AudioCache().play(audioPath);
   }
+
   @override
   void dispose() {
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
@@ -40,10 +42,11 @@ class _Act1_11PageState extends State<Act1_11Page> {
       progressService.progress.value = 1;
     });
     progressService.isDone.listen((value) {
-      if (value) {
-        //isDone 일경우
-        Get.log('isDone : $value');
-        if(mounted) {
+      if (mounted) {
+        if (value) {
+          //isDone 일경우
+          progressService.resetProgress();
+          Get.log('isDone : $value');
           setState(() {
             _isIgnore = false;
           });
@@ -79,18 +82,20 @@ class _Act1_11PageState extends State<Act1_11Page> {
             ),
           ),
           Obx(
-                () => ProsteIndexedStack(
+            () => ProsteIndexedStack(
                 index: progressService.progress.value,
                 children: [
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '이대로라면 박정희로부터 버림받을 위기에 놓였다고 생각한 <b>김재규</b>는 비가 억수같이 쏟아지는 밤,',
+                        statement:
+                            '이대로라면 박정희로부터 버림받을 위기에 놓였다고 생각한 <b>김재규</b>는 비가 억수같이 쏟아지는 밤,',
                         name: ''),
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '<b>차 실장과 박 대통령</b>이 술을 나누는 술자리로 <r>잠입</r>해 옆방의 옷장에서 둘이 나누는 이야기를 도청한다.',
+                        statement:
+                            '<b>차 실장과 박 대통령</b>이 술을 나누는 술자리로 <r>잠입</r>해 옆방의 옷장에서 둘이 나누는 이야기를 도청한다.',
                         name: ''),
                   ),
                 ]),

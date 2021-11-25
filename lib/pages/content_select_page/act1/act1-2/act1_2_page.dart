@@ -29,17 +29,30 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
   late AudioPlayer _player;
   final bluehouseAudioPath = 'BGM/bluehouse_sound.mp3';
 
+  @override
+  void deactivate() {
+    print('deactivate called... act 1-2');
+  }
+
   void _initResources() async {
     progressService.isDone.listen((value) {
-      if(value){
-      Future.delayed(const Duration(milliseconds: 2500), () async {
-       await progressService.resetProgress();
-        Get.log('isDone::true...');
-        Get.offNamed('/act1-3');
-      });}
+      if (mounted) {
+        if (value) {
+          Future.delayed(const Duration(milliseconds: 2500), () async {
+            await progressService.resetProgress();
+            Get.log('isDone::true...');
+            Get.offAndToNamed('/act1-3');
+          });
+        }
+      }
     });
 
     _player = await AudioCache().play(bluehouseAudioPath);
+
+    Timer(const Duration(seconds: 2), () {
+      backgroundController.forward(from: 0.0);
+      statementContainerController.forward(from: 0.0);
+    });
   }
 
   void _initAnimation() {
@@ -50,7 +63,8 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
 
     statementContainerController =
         AnimationController(vsync: this, duration: const Duration(seconds: 2));
-    statementContainerAnimation = Tween<double>(begin: 0, end: 0.7).animate(statementContainerController);
+    statementContainerAnimation =
+        Tween<double>(begin: 0, end: 0.7).animate(statementContainerController);
 
     backgroundAnimation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -58,7 +72,8 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
       }
     });
   }
-  _releaseResources()async{
+
+  _releaseResources() async {
     await _player.stop();
   }
 
@@ -68,10 +83,6 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
     progressService.lastProgress = 1;
     _initAnimation();
     _initResources();
-    Timer(const Duration(seconds: 2), () {
-      backgroundController.forward(from: 0.0);
-      statementContainerController.forward(from: 0.0);
-    });
   }
 
   @override
@@ -79,7 +90,6 @@ class _Act1_2PageState extends State<Act1_2Page> with TickerProviderStateMixin {
     statementContainerController.dispose();
     backgroundController.dispose();
     _releaseResources();
-    progressService.isDone.close();
     super.dispose();
   }
 

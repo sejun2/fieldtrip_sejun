@@ -22,14 +22,16 @@ class _Act1_15PageState extends State<Act1_15Page> {
   late AudioPlayer _player;
   final String audioPath = 'BGM/goongjungdong_sound.mp3';
 
-  initResources() async{
+  initResources() async {
     _player = await AudioCache().play(audioPath);
   }
+
   @override
   void dispose() {
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
@@ -40,10 +42,11 @@ class _Act1_15PageState extends State<Act1_15Page> {
       progressService.progress.value = 1;
     });
     progressService.isDone.listen((value) {
-      if (value) {
-        //isDone 일경우
-        Get.log('isDone : $value');
-        if(mounted) {
+      if (mounted) {
+        if (value) {
+          progressService.resetProgress();
+          //isDone 일경우
+          Get.log('isDone : $value');
           setState(() {
             _isIgnore = false;
           });
@@ -79,13 +82,14 @@ class _Act1_15PageState extends State<Act1_15Page> {
             ),
           ),
           Obx(
-                () => ProsteIndexedStack(
+            () => ProsteIndexedStack(
                 index: progressService.progress.value,
                 children: [
                   IndexedStackChild(child: Container()),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                        statement: '<b>김재규</b> 부장은 비밀 금고에서 <r>권총</r>을 챙겨 주머니에 찔러 넣고 궁정동 안가의 만찬 장소로 향한다.',
+                        statement:
+                            '<b>김재규</b> 부장은 비밀 금고에서 <r>권총</r>을 챙겨 주머니에 찔러 넣고 궁정동 안가의 만찬 장소로 향한다.',
                         name: ''),
                   ),
                 ]),

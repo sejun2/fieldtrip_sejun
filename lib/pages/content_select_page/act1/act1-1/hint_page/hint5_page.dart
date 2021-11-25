@@ -137,7 +137,7 @@ class _Hint5PageState extends State<Hint5Page> {
                   alignment: Alignment.center,
                   child: GestureDetector(
                     onTap: () {
-                      Get.offNamed('act1/question1');
+                      Get.back();
                     },
                     child: const Icon(
                       Icons.check_circle_outline,

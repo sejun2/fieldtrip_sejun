@@ -13,7 +13,6 @@ class Question1Page extends StatefulWidget {
   _Question1PageState createState() => _Question1PageState();
 }
 
-//TODO: Notification 때문에 클릭영역 문제있음. Notification이 입력 및 확인버튼 클릭 영역 침범
 class _Question1PageState extends State<Question1Page>
     with TickerProviderStateMixin {
   final progressService = Get.put<ProgressService>(ProgressService());
@@ -93,14 +92,14 @@ class _Question1PageState extends State<Question1Page>
         setState(() {
           _isIgnored = true;
         });
-      }
+     }
     });
     hintAnimation.addStatusListener((status) {
       if (status == AnimationStatus.dismissed) {
         if (_hintIndex != 3) {
           _hintIndex++;
         } else {
-          Get.toNamed('act1/hint5');
+         Get.toNamed('act1/hint5');
         }
       }
       if (status == AnimationStatus.forward) {
@@ -128,7 +127,6 @@ class _Question1PageState extends State<Question1Page>
     answerController.dispose();
     notAnswerController.dispose();
     answerTextController.dispose();
-    progressService.isDone.close();
     _stopAudioPlayer();
     super.dispose();
   }
@@ -335,7 +333,7 @@ class _Question1PageState extends State<Question1Page>
                   '11. 미국 하원에 로비를 한 코리아게이트 사건을 둘러싼 청문회로 인해 정국이 시끄러운 틈을 타,',
                   style: questionTextStyle),
               const Text(
-                '. 부정 및 비리 등을 폭로하기 위해 청문회에 참석하였다.',
+                '7. 부정 및 비리 등을 폭로하기 위해 청문회에 참석하였다.',
                 style: questionTextStyle,
               ),
               const Align(
@@ -396,7 +394,7 @@ class _Question1PageState extends State<Question1Page>
       answerController.forward();
       await _player.stop();
       Timer(const Duration(milliseconds: 800), () {
-        Get.offNamed('/act1-2');
+        Get.offAndToNamed('/act1-2');
       });
     } else {
       notAnswerController.forward();

@@ -18,7 +18,7 @@ class Act1_1Page extends StatefulWidget {
 class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
   var _isIntroVisible = true;
 
-  final progressService = Get.put<ProgressService>(ProgressService());
+  final progressService = Get.find<ProgressService>();
 
   double _opacity = 0.0;
   bool _isIgnore = false;
@@ -39,7 +39,6 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
 
   final chapterAudioPath = 'BGM/chapter_sound.mp3';
   final contentAudioPath = 'BGM/hearing_sound.wav';
-  ///대본
 
   @override
   void dispose() {
@@ -48,9 +47,13 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
     backgroundController.dispose();
     statementContainerController.dispose();
 
-    progressService.isDone.close();
-
+    // progressService.isDone.close();
     super.dispose();
+  }
+
+  @override
+  void deactivate() {
+    print('deactivate called...  act1-1');
   }
 
   @override
@@ -60,17 +63,19 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
     _initResources();
     progressService.lastProgress = 8;
     progressService.isDone.listen((isDone) {
-      if (isDone) {
-        Future.delayed(const Duration(milliseconds: 2500), () async {
-          await progressService.resetProgress();
-          Get.log('isDone::true...');
-          _canRun = true;
-          statementContainerController.reverse(from: 0.7);
-          backgroundController.reverse(from: 1.0);
-          Timer(const Duration(milliseconds: 500), () {
-            Get.offNamed('act1/question1');
+      if (mounted) {
+        if (isDone) {
+          Future.delayed(const Duration(milliseconds: 2500), () async {
+            await progressService.resetProgress();
+            Get.log('isDone::true...');
+            _canRun = true;
+            statementContainerController.reverse(from: 0.7);
+            backgroundController.reverse(from: 1.0);
+            Timer(const Duration(milliseconds: 500), () {
+              Get.offAndToNamed('act1/question1');
+            });
           });
-        });
+        }
       }
     });
   }
@@ -88,8 +93,8 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
         AnimationController(vsync: this, duration: const Duration(seconds: 3));
     backgroundAnimation =
         CurvedAnimation(parent: backgroundController, curve: Curves.linear);
-    statementContainerController = AnimationController(
-        vsync: this, duration: const Duration(seconds: 3));
+    statementContainerController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 3));
     statementContainerAnimation =
         Tween<double>(begin: 0, end: 0.7).animate(statementContainerController);
 
@@ -140,9 +145,7 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                 opacity: _opacity,
                 duration: const Duration(seconds: 3),
                 child: Image.asset('assets/background/hearing2.png',
-                    width: Get.width,
-                    height: Get.height,
-                    fit: BoxFit.fill)),
+                    width: Get.width, height: Get.height, fit: BoxFit.fill)),
             AnimatedBuilder(
               animation: statementContainerAnimation,
               builder: (BuildContext context, Widget? child) {
@@ -226,7 +229,8 @@ class _Act1_1PageState extends State<Act1_1Page> with TickerProviderStateMixin {
                   ),
                   IndexedStackChild(
                     child: const StatementSceneWidget(
-                      statement: '작성 중인 <r>회고록</r>이 있으며, <r>회고록</r>에 상세한 내용을 담아 공개할 예정입니다.',
+                      statement:
+                          '작성 중인 <r>회고록</r>이 있으며, <r>회고록</r>에 상세한 내용을 담아 공개할 예정입니다.',
                       name: '김형욱',
                       leftPerson: 'assets/character/american2.png',
                       rightPerson: 'assets/character/kimhyungwook3.png',

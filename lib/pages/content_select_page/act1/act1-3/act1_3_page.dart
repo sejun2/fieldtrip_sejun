@@ -39,22 +39,22 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
   Future<void> _initResources() async {
     await AudioCache().clearAll();
     progressService.isDone.listen((value) async {
-      if (value) {
-        await _bluehousePlayer.stop();
-        _chapterPlayer = await AudioCache().play(_chapterSoundPath);
-        //해당 page의 progress가 끝났을 경우...
-        progressService.resetProgress();
-        Get.log('act1-3 done...');
-        Timer(const Duration(seconds: 1), () async {
-          if (mounted) {
+      if (mounted) {
+        if (value) {
+          await _bluehousePlayer.stop();
+          _chapterPlayer = await AudioCache().play(_chapterSoundPath);
+          //해당 page의 progress가 끝났을 경우...
+          progressService.resetProgress();
+          Get.log('act1-3 done...');
+          Timer(const Duration(seconds: 1), () async {
             setState(() {
               _wholeIgnore = true;
               _chapterIgnore = false;
               _wholeOpacity = 0.0;
               _chapterOpacity = 1.0;
             });
-          }
-        });
+          });
+        }
       }
     });
 
@@ -93,16 +93,17 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
     });
   }
 
-  releaseResources() async{
+  releaseResources() async {
     await _chapterPlayer.stop();
   }
+
   @override
   void dispose() {
     Get.log('dispose called...');
     statementContainerController.dispose();
     releaseResources();
     backgroundController.dispose();
-    progressService.isDone.close();
+    // progressService.isDone.close();
     super.dispose();
   }
 
@@ -245,7 +246,7 @@ class _Act1_3PageState extends State<Act1_3Page> with TickerProviderStateMixin {
                   Timer(const Duration(seconds: 2), () async {
                     await _chapterPlayer.stop();
                     progressService.resetProgress();
-                    Get.offNamed('/act1-4');
+                    Get.offAndToNamed('/act1-4');
                   });
                 },
                 child: Container(
