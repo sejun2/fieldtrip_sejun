@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:history_game_project/constant.dart';
 import 'package:history_game_project/services/progress_service.dart';
 
@@ -13,12 +14,20 @@ class Question1Page extends StatefulWidget {
   _Question1PageState createState() => _Question1PageState();
 }
 
+//TODO('Satoshi') : 보상형 광고 달기.
+
+/*
+광고 flow
+hint 누름 -> 광고 시청 -> 힌트 표시
+ */
 class _Question1PageState extends State<Question1Page>
     with TickerProviderStateMixin {
   final progressService = Get.put<ProgressService>(ProgressService());
 
   bool _isIgnored = true;
   bool _checkAnswerMutex = true;
+
+  late RewardedAd myRewardedAd;
 
   late TextEditingController answerTextController;
 
@@ -42,6 +51,31 @@ class _Question1PageState extends State<Question1Page>
     'Hint.4\n정답 확인'
   ];
   int _hintIndex = 0;
+
+/*  _setTestDeviceIds(){
+    MobileAds.instance
+  }*/
+
+  _showRewardedAdvertise() {
+    print('_showRewardedAdvertise called...');
+    myRewardedAd.show(onUserEarnedReward: (ad, reward) async{
+      print('rewardedAd shown...');
+      await ad.dispose();
+    });
+  }
+
+  _loadRewardedAdvertise() {
+    print('_loadRewardedAdvertise called...');
+    RewardedAd.load(
+        adUnitId: RewardedAd.testAdUnitId,//here should changed to user's Advertise Unit Id
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
+          print('onAdLoaded called...');
+          myRewardedAd = ad;
+        }, onAdFailedToLoad: (ad) {
+          print('onAdFailedToLoad called...');
+        }));
+  }
 
   _initResources() async {
     answerTextController = TextEditingController();
@@ -92,14 +126,14 @@ class _Question1PageState extends State<Question1Page>
         setState(() {
           _isIgnored = true;
         });
-     }
+      }
     });
     hintAnimation.addStatusListener((status) {
       if (status == AnimationStatus.dismissed) {
         if (_hintIndex != 3) {
           _hintIndex++;
         } else {
-         Get.toNamed('act1/hint5');
+          Get.toNamed('act1/hint5');
         }
       }
       if (status == AnimationStatus.forward) {
@@ -134,6 +168,9 @@ class _Question1PageState extends State<Question1Page>
   @override
   void initState() {
     super.initState();
+    //init admob for testing
+    MobileAds.instance.initialize();
+
     _initResources();
     _initAnimation();
   }
@@ -141,7 +178,9 @@ class _Question1PageState extends State<Question1Page>
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {return Future(() => false);},
+      onWillPop: () {
+        return Future(() => false);
+      },
       child: Scaffold(
         body: SingleChildScrollView(
           child: Stack(
@@ -172,7 +211,9 @@ class _Question1PageState extends State<Question1Page>
               ),*/
               Positioned(
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async{
+                    await _loadRewardedAdvertise();
+                    await _showRewardedAdvertise();
                     hintController.forward();
                   },
                   child: Image.asset(

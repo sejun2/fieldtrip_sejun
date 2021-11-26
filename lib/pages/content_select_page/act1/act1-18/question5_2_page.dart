@@ -4,7 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:history_game_project/services/progress_service.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../../../constant.dart';
 
@@ -67,6 +67,8 @@ class _Question5_2PageState extends State<Question5_2Page>
   int _hint3Index = 0;
 
   bool _checkAnswerMutex = true;
+
+  late RewardedAd myRewardedAd;
 
   _initResources() async {
     answerTextController = TextEditingController();
@@ -204,7 +206,26 @@ class _Question5_2PageState extends State<Question5_2Page>
     // progressService.isDone.close();
     super.dispose();
   }
+  _showRewardedAdvertise() {
+    print('_showRewardedAdvertise called...');
+    myRewardedAd.show(onUserEarnedReward: (ad, reward) async{
+      print('rewardedAd shown...');
+      await ad.dispose();
+    });
+  }
 
+  _loadRewardedAdvertise() {
+    print('_loadRewardedAdvertise called...');
+    RewardedAd.load(
+        adUnitId: RewardedAd.testAdUnitId,//here should changed to user's Advertise Unit Id
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
+          print('onAdLoaded called...');
+          myRewardedAd = ad;
+        }, onAdFailedToLoad: (ad) {
+          print('onAdFailedToLoad called...');
+        }));
+  }
   @override
   void initState() {
     _initResources();
@@ -488,7 +509,9 @@ class _Question5_2PageState extends State<Question5_2Page>
                               fontSize: 30, color: Colors.black, height: 2),
                         ),
                         GestureDetector(
-                            onTap: () {
+                            onTap: ()async {
+                              await _loadRewardedAdvertise();
+                              await _showRewardedAdvertise();
                               hintController.forward();
                             },
                             child: Image.asset(
@@ -536,7 +559,9 @@ class _Question5_2PageState extends State<Question5_2Page>
                               fontSize: 30, color: Colors.black, height: 2),
                         ),
                         GestureDetector(
-                            onTap: () {
+                            onTap: () async {
+                              await _loadRewardedAdvertise();
+                              await _showRewardedAdvertise();
                               hint2Controller.forward();
                             },
                             child: Image.asset(
@@ -584,7 +609,9 @@ class _Question5_2PageState extends State<Question5_2Page>
                               fontSize: 30, color: Colors.black, height: 2),
                         ),
                         GestureDetector(
-                            onTap: () {
+                            onTap: () async {
+                              await _loadRewardedAdvertise();
+                              await _showRewardedAdvertise();
                               hint3Controller.forward();
                             },
                             child: Image.asset(

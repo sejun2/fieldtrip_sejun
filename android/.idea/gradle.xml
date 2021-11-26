@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.20.1/android" />
+            <option value="$PROJECT_DIR$/../../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/google_mobile_ads-1.0.0/android" />
+            <option value="$PROJECT_DIR$/../../../develops/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.6/android" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

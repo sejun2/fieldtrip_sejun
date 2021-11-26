@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:history_game_project/services/progress_service.dart';
 
 import '../../../../constant.dart';
@@ -20,6 +21,8 @@ class _Question2PageState extends State<Question2Page>
 
   bool _checkAnswerMutex = true;
   bool _isIgnored = true;
+
+  late RewardedAd myRewardedAd;
 
   late TextEditingController answerTextController;
 
@@ -128,6 +131,26 @@ class _Question2PageState extends State<Question2Page>
       }
     });
   }
+  _showRewardedAdvertise() {
+    print('_showRewardedAdvertise called...');
+    myRewardedAd.show(onUserEarnedReward: (ad, reward) async{
+      print('rewardedAd shown...');
+      await ad.dispose();
+    });
+  }
+
+  _loadRewardedAdvertise() {
+    print('_loadRewardedAdvertise called...');
+    RewardedAd.load(
+        adUnitId: RewardedAd.testAdUnitId,//here should changed to user's Advertise Unit Id
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
+          print('onAdLoaded called...');
+          myRewardedAd = ad;
+        }, onAdFailedToLoad: (ad) {
+          print('onAdFailedToLoad called...');
+        }));
+  }
 
   @override
   void dispose() {
@@ -163,7 +186,9 @@ class _Question2PageState extends State<Question2Page>
             ),
             Positioned(
               child: GestureDetector(
-                onTap: () {
+                onTap: () async{
+                 await _loadRewardedAdvertise();
+                 await _showRewardedAdvertise();
                   hintController.forward();
                 },
                 child: Image.asset('assets/background/icon_hint.png', width: 60,

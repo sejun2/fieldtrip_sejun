@@ -42,6 +42,7 @@ dependencies:
   audioplayers: ^0.20.1
   css_text: ^2.1.0
   styled_text: ^3.0.4+1
+  google_mobile_ads: ^1.0.0
   
 dev_dependencies:
   flutter_test:
