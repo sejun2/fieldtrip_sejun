@@ -61,16 +61,18 @@ class _Question1PageState extends State<Question1Page>
     myRewardedAd.show(onUserEarnedReward: (ad, reward) async{
       print('rewardedAd shown...');
       await ad.dispose();
+      await _player.resume();
     });
   }
 
   _loadRewardedAdvertise() {
     print('_loadRewardedAdvertise called...');
     RewardedAd.load(
-        adUnitId: RewardedAd.testAdUnitId,//here should changed to user's Advertise Unit Id
+        adUnitId: RewardedAd.testAdUnitId,//here should changed to user's Advertise Unit Id :: advertiseId1
         request: const AdRequest(),
-        rewardedAdLoadCallback: RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) {
+        rewardedAdLoadCallback: RewardedAdLoadCallback(onAdLoaded: (RewardedAd ad) async {
           print('onAdLoaded called...');
+          await _player.pause();
           myRewardedAd = ad;
         }, onAdFailedToLoad: (ad) {
           print('onAdFailedToLoad called...');

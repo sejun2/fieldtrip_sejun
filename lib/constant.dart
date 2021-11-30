@@ -23,4 +23,4 @@ typedef OnAnimatedTextFinished = Function();
  * 보상형 광고 IDs
  */
 const advertiseId1 = 'ca-app-pub-8102956424157208~3623885430';
-const advertiseId2 = 'ca-app-pub-8102956424157208/5483762012';
+// const advertiseId2 = 'ca-app-pub-8102956424157208/5483762012';
