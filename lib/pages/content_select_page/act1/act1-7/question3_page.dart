@@ -4,6 +4,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:history_game_project/exceptions/AdFailedToLoadException.dart';
 import 'package:history_game_project/services/progress_service.dart';
 
 import '../../../../constant.dart';
@@ -141,6 +142,9 @@ class _Question3PageState extends State<Question3Page>
     myRewardedAd.show(onUserEarnedReward: (ad, reward) async{
       print('rewardedAd shown...');
       await ad.dispose();
+      Timer(const Duration(milliseconds: 1400), (){
+        hintController.forward();
+      });
       await _player.resume();
     });
   }
@@ -154,8 +158,10 @@ class _Question3PageState extends State<Question3Page>
           print('onAdLoaded called...');
           await _player.pause();
           myRewardedAd = ad;
+          await _showRewardedAdvertise();
         }, onAdFailedToLoad: (ad) {
           print('onAdFailedToLoad called...');
+          throw AdFailedToLoadException();
         }));
   }
   @override
@@ -176,9 +182,12 @@ class _Question3PageState extends State<Question3Page>
             Positioned(
               child: GestureDetector(
                 onTap: () async{
-                  await _loadRewardedAdvertise();
-                  await _showRewardedAdvertise();
-                  hintController.forward();
+                  try {
+                    await _loadRewardedAdvertise();
+                    // hintController.forward();
+                  } on AdFailedToLoadException catch (e) {
+                    print("AdLoad failed... :: $e");
+                  }
                 },
                 child: Image.asset('assets/background/icon_hint.png', width: 60, fit: BoxFit.fitWidth,),
               ),

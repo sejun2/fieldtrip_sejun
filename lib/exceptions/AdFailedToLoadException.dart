@@ -1,0 +1,3 @@
+class AdFailedToLoadException implements Exception {
+
+}
