@@ -209,17 +209,17 @@ class _Question2PageState extends State<Question2Page>
               top: 30,
             ),
             _buildContent(),
-            Positioned(
-              child: GestureDetector(
-                onTap: () {
-                  hintController.forward();
-                },
-                child: Image.asset('assets/background/icon_hint.png', width: 60,
-                  fit: BoxFit.fitWidth,),
-              ),
-              right: 50,
-              top: 30,
-            ),
+            // Positioned(
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       hintController.forward();
+            //     },
+            //     child: Image.asset('assets/background/icon_hint.png', width: 60,
+            //       fit: BoxFit.fitWidth,),
+            //   ),
+            //   right: 50,
+            //   top: 30,
+            // ),
             //정답입니다 위젯
             AnimatedBuilder(
               builder: (BuildContext context, Widget? child) {
